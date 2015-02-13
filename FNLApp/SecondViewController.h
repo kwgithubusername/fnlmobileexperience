@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SecondViewController : UIViewController
-
+#import <AVFoundation/AVFoundation.h>
+@interface SecondViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
+@property (nonatomic) NSArray *tracksArray;
 
 @end
 

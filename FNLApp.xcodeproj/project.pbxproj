@@ -764,6 +764,7 @@
 				);
 				INFOPLIST_FILE = FNLApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-l\"Pods-STTwitter\"",
 					"-framework",
@@ -780,16 +781,8 @@
 					"\"UIKit\"",
 					"-weak_framework",
 					"\"Social\"",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-OHAttributedLabel.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-NXOAuth2Client.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudAPI.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudAPI.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudUI.a",
+					"-all_load",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -808,6 +801,7 @@
 				);
 				INFOPLIST_FILE = FNLApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-l\"Pods-STTwitter\"",
 					"-framework",
@@ -824,16 +818,8 @@
 					"\"UIKit\"",
 					"-weak_framework",
 					"\"Social\"",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-OHAttributedLabel.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-NXOAuth2Client.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudAPI.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudAPI.a",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/libPods-CocoaSoundCloudUI.a",
+					"-all_load",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
