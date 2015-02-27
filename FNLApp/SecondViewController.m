@@ -17,6 +17,7 @@
 - (IBAction)getTracksButtonTapped:(UIButton *)sender
 {
     SCAccount *account = [SCSoundCloud account];
+
     if (account == nil) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Not Logged In"
@@ -37,6 +38,7 @@
                                              error:&jsonError];
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             self.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
+            NSLog(@"json response is %@", jsonResponse);
             [self.tableView reloadData];
         }
     };
@@ -61,7 +63,8 @@
                 reuseIdentifier:@"trackCell"];
     }
     
-    NSDictionary *track = [self.tracksArray objectAtIndex:indexPath.row];
+    NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
+    NSLog(@"trackis %@", track);
     cell.textLabel.text = [track objectForKey:@"title"];
     
     return cell;
@@ -69,7 +72,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tracksArray count];
+    return [[self.tracksArray firstObject] count];
 }
 
 - (void)viewDidLoad {
