@@ -14,7 +14,7 @@
 @end
 
 @implementation SecondViewController
-- (IBAction)getTracksButtonTapped:(UIButton *)sender
+- (void)getTracks
 {
     SCAccount *account = [SCSoundCloud account];
 
@@ -75,8 +75,42 @@
     return [[self.tracksArray firstObject] count];
 }
 
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.audioPlayer)
+    {
+        NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
+        NSString *streamURL = [track objectForKey:@"stream_url"];
+        
+        SCAccount *account = [SCSoundCloud account];
+        
+        [SCRequest performMethod:SCRequestMethodGET
+                      onResource:[NSURL URLWithString:streamURL]
+                 usingParameters:nil
+                     withAccount:account
+          sendingProgressHandler:nil
+                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                     NSError *playerError;
+                     self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+                     [self.audioPlayer prepareToPlay];
+                     [self.audioPlayer play];
+                 }];
+    }
+    else if (self.audioPlayer.playing)
+    {
+        [self.audioPlayer pause];
+    }
+    else if (!self.audioPlayer.playing)
+    {
+        [self.audioPlayer play];
+    }
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getTracks];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

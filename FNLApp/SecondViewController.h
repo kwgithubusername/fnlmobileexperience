@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 @interface SecondViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate>
 @property (nonatomic) NSArray *tracksArray;
-@property (nonatomic) AVAudioPlayer *player;
+@property (nonatomic) AVAudioPlayer *audioPlayer;
 
 @end
 
