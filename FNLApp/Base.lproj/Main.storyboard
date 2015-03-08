@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Social-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="mkL-qc-uFL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Social" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="tableView" destination="BDz-rN-EiO" id="yiq-FV-jtm"/>
                     </connections>
@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Second-->
+        <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController">
@@ -144,7 +144,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="tableView" destination="v1a-WJ-78F" id="U4w-ts-wws"/>
                     </connections>
@@ -152,6 +152,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Shop-->
+        <scene sceneID="ULD-Q3-M9a">
+            <objects>
+                <viewController id="BRh-wL-Saa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jcO-of-grS"/>
+                        <viewControllerLayoutGuide type="bottom" id="txJ-C1-6uW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SL4-am-Op4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkw-oV-3LI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="104"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -166,6 +185,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="BRh-wL-Saa" kind="relationship" relationship="viewControllers" id="5Fl-MX-PM4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

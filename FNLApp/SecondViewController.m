@@ -10,7 +10,7 @@
 #import "SCUI.h"
 @interface SecondViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic) int currentTrackInt;
 @end
 
 @implementation SecondViewController
@@ -78,7 +78,19 @@
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.audioPlayer)
+    
+    if (!self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
+    {
+        [self.audioPlayer play];
+        return;
+    }
+    
+    if (self.audioPlayer.playing)
+    {
+        [self.audioPlayer pause];
+    }
+    
+    if (!self.audioPlayer || self.currentTrackInt != indexPath.row)
     {
         NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
         NSString *streamURL = [track objectForKey:@"stream_url"];
@@ -96,16 +108,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                      [self.audioPlayer prepareToPlay];
                      [self.audioPlayer play];
                  }];
+        self.currentTrackInt = indexPath.row;
     }
-    else if (self.audioPlayer.playing)
-    {
-        [self.audioPlayer pause];
-    }
-    else if (!self.audioPlayer.playing)
-    {
-        [self.audioPlayer play];
-    }
-
 }
 
 - (void)viewDidLoad {
