@@ -17,6 +17,7 @@
 @interface FirstViewController ()
 @property (nonatomic) NSMutableArray *twitterFeedMutableArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSString *currentIDString;
 
 @end
 
@@ -45,14 +46,53 @@
     return [self.twitterFeedMutableArray count];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self.twitterFeedMutableArray count]-1)
+    {
+        [self fetchMoreTweets];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    NSLog(@"The");
+//    sleep(1);
+//    NSLog(@"world");
+//    sleep(1);
+//    NSLog(@"is");
+//    sleep(1);
+//    NSLog(@"yurns");
+//    sleep(1);
+//    sleep(3);
     [self loadTwitter];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)fetchMoreTweets
+{
+    NSLog(@"fetching more");
+    STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:FLFConsumerKey consumerSecret:FLFConsumerSecret];
+    
+    [twitter verifyCredentialsWithSuccessBlock:^(NSString *username)
+     {
+         [twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
+             [self.twitterFeedMutableArray addObjectsFromArray:statuses];
+             [self.tableView reloadData];
+             self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
+         } errorBlock:^(NSError *error) {
+             NSLog(@"%@", error.debugDescription);
+         }];
+         
+     } errorBlock:^(NSError *error)
+     {
+         
+         NSLog(@"%@", error.debugDescription);
+         
+     }];
+    
+}
 
 - (void)loadTwitter
 {
@@ -66,6 +106,7 @@
               self.twitterFeedMutableArray = [[NSMutableArray alloc] initWithArray:statuses];
               NSLog(@"%@", self.twitterFeedMutableArray);
               [self.tableView reloadData];
+              self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
               
           } errorBlock:^(NSError *error)
           {
