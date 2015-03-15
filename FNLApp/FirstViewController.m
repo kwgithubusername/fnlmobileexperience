@@ -66,7 +66,8 @@
 //    sleep(1);
 //    sleep(3);
     [self loadTwitter];
-    
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
