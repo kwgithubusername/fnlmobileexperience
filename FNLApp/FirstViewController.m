@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "STTwitter.h"
 #import "FLFTwitterTableViewCell.h"
+#import "FLFTwitterDataSource.h"
 
 #define FLFUsername @"thefunlyfe_"
 #define FLFConsumerKey @"Wdk3Vcbhbrcu7AM6EeMPTdjm5"
@@ -18,40 +19,46 @@
 @property (nonatomic) NSMutableArray *twitterFeedMutableArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSString *currentIDString;
+@property (nonatomic) FLFTwitterDataSource *dataSource;
 
 @end
 
 @implementation FirstViewController
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)setupDataSource
 {
-    FLFTwitterTableViewCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
+    UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
+        
+        FLFTwitterTableViewCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
     
-    //    if (!twitterCell)
-    //    {
-    //        twitterCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"twitterCell"];
-    //    }
-    //
-    NSDictionary *twitterFeedDictionary = self.twitterFeedMutableArray[indexPath.row];
+        NSDictionary *twitterFeedDictionary = self.twitterFeedMutableArray[indexPath.row];
+        
+        twitterCell.tweetLabel.text = twitterFeedDictionary[@"text"];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //Wed Dec 01 17:08:03 +0000 2010
+        [dateFormatter setDateFormat:@"eee, MMM dd HH:mm:ss ZZZZ yyyy"];
+        NSDate *date = [dateFormatter dateFromString:twitterFeedDictionary[@"created_at"]];
+        [dateFormatter setDateFormat:@"eee, MMM dd HH:mm:ss yyyy"];
+        NSString *dateString = [dateFormatter stringFromDate:date];
+        twitterCell.dateLabel.text = dateString;
+        return twitterCell;
+    };
     
-    twitterCell.tweetLabel.text = twitterFeedDictionary[@"text"];
-    twitterCell.dateLabel.text = twitterFeedDictionary[@"created_at"];
-    return twitterCell;
-}
-
-
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.twitterFeedMutableArray count];
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == [self.twitterFeedMutableArray count]-1)
-    {
-        [self fetchMoreTweets];
-    }
+    NSInteger(^numberOfRowsInSectionBlock)() = ^NSInteger(){
+        return [self.twitterFeedMutableArray count];
+    };
+    
+    void (^willDisplayCellBlock)(NSIndexPath *indexPath) = ^(NSIndexPath *indexPath){
+        if (indexPath.row == [self.twitterFeedMutableArray count]-1)
+        {
+            [self fetchMoreTweets];
+        }
+    };
+    
+    self.dataSource = [[FLFTwitterDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
+    self.tableView.delegate = self.dataSource;
+    self.tableView.dataSource = self.dataSource;
 }
 
 - (void)viewDidLoad {
@@ -66,6 +73,7 @@
 //    sleep(1);
 //    sleep(3);
     [self loadTwitter];
+    [self setupDataSource];
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     // Do any additional setup after loading the view, typically from a nib.
