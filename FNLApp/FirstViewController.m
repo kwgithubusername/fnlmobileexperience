@@ -27,11 +27,13 @@
 
 -(void)setupDataSource
 {
+    __weak FirstViewController *weakSelf = self;
+    
     UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
         
         FLFTwitterTableViewCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
     
-        NSDictionary *twitterFeedDictionary = self.twitterFeedMutableArray[indexPath.row];
+        NSDictionary *twitterFeedDictionary = weakSelf.twitterFeedMutableArray[indexPath.row];
         
         twitterCell.tweetLabel.text = twitterFeedDictionary[@"text"];
         
@@ -46,13 +48,13 @@
     };
     
     NSInteger(^numberOfRowsInSectionBlock)() = ^NSInteger(){
-        return [self.twitterFeedMutableArray count];
+        return [weakSelf.twitterFeedMutableArray count];
     };
     
     void (^willDisplayCellBlock)(NSIndexPath *indexPath) = ^(NSIndexPath *indexPath){
-        if (indexPath.row == [self.twitterFeedMutableArray count]-1)
+        if (indexPath.row == [weakSelf.twitterFeedMutableArray count]-1)
         {
-            [self fetchMoreTweets];
+            [weakSelf fetchMoreTweets];
         }
     };
     
