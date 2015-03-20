@@ -18,61 +18,15 @@
 
 @interface FirstViewController ()
 
-typedef void (^FavoriteTweetBlock)(FLFTwitterTableViewCell *cell, NSString *idString);
-
 @property (nonatomic) NSMutableArray *twitterFeedMutableArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSString *currentIDString;
 @property (nonatomic) FLFTwitterDataSource *dataSource;
 @property (nonatomic) STTwitterAPI *twitter;
-@property (nonatomic, copy) FavoriteTweetBlock favoriteBlock;
 
 @end
 
 @implementation FirstViewController
-
--(void)setupTweetButtonBlocks
-{
-    __weak FirstViewController *weakSelf = self;
-    
-    void (^favoriteTweetBlock)(FLFTwitterTableViewCell*, NSString*) = ^(FLFTwitterTableViewCell *cell, NSString *idString) {
-        if (![cell.tintColor isEqual:[UIColor redColor]])
-        {
-            [weakSelf.twitter postFavoriteCreateWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status) {
-                cell.tintColor = [UIColor redColor];
-            } errorBlock:^(NSError *error) {
-                NSLog(@"error favoriting:%@", [error localizedDescription]);
-            }];
-        }
-        else
-        {
-            [weakSelf.twitter postFavoriteDestroyWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status) {
-                cell.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
-            } errorBlock:^(NSError *error) {
-                NSLog(@"error unfavoriting:%@", [error localizedDescription]);
-            }];
-        }
-    };
-    
-    void (^retweetBlock)(FLFTwitterTableViewCell*, NSString*) = ^(FLFTwitterTableViewCell *cell, NSString *idString) {
-
-        [weakSelf.twitter postStatusRetweetWithID:idString successBlock:^(NSDictionary *status) {
-                cell.favoriteButton.enabled = NO;
-                cell.tintColor = [UIColor redColor];
-            } errorBlock:^(NSError *error) {
-                NSLog(@"error favoriting:%@", [error localizedDescription]);
-        }];
-    };
-    
-}
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag == 0)
-    {
-        
-    }
-}
 
 - (IBAction)tweetButtonTapped:(UIButton *)sender
 {
@@ -82,22 +36,78 @@ typedef void (^FavoriteTweetBlock)(FLFTwitterTableViewCell *cell, NSString *idSt
     NSString *idString = tweetDictionary[@"id_str"];
     NSLog(@"idstring is %@",idString);
     
-    if ([sender.titleLabel.text isEqualToString:@"Favorite"])
+    UIImage *favoriteOnImage = [UIImage imageNamed:@"favorite_on.png"];
+    UIImage *favoriteOffImage = [UIImage imageNamed:@"favorite.png"];
+    UIImage *retweetOnImage = [UIImage imageNamed:@"retweet_on.png"];
+    UIImage *retweetImage = [UIImage imageNamed:@"retweet.png"];
+    
+    if (sender.tag == 4) // if not favorited
     {
-        
+        [self.twitter postFavoriteCreateWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
+        {
+            sender.imageView.image = favoriteOnImage;
+            sender.tag = 5;
+        } errorBlock:^(NSError *error)
+        {
+                NSLog(@"error favoriting:%@", [error localizedDescription]);
+        }];
+    }
+    else if (sender.tag == 5) // if favorited
+    {
+        [self.twitter postFavoriteDestroyWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
+        {
+            sender.imageView.image = favoriteOffImage;
+            sender.tag = 4;
+        } errorBlock:^(NSError *error)
+        {
+                NSLog(@"error unfavoriting:%@", [error localizedDescription]);
+        }];
     }
     
-    if ([sender.titleLabel.text isEqualToString:@"Retweet"])
+    if (sender.tag == 2) // if not retweeted
     {
-        
+        [self.twitter postStatusRetweetWithID:idString successBlock:^(NSDictionary *status)
+        {
+            sender.imageView.image = retweetOnImage;
+            sender.tag = 3;
+        } errorBlock:^(NSError *error)
+        {
+            NSLog(@"error retweeting:%@", [error localizedDescription]);
+        }];
     }
-    
-    if ([sender.titleLabel.text isEqualToString:@"Reply"])
+    else if (sender.tag == 3) // if retweeted
     {
-        UIActionSheet *share = [[UIActionSheet alloc] initWithTitle:@"Reply" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Tweet", nil];
-        [share showInView:self.view];
+        [self.twitter getStatusesShowID:idString trimUser:@1 includeMyRetweet:@1 includeEntities:@1 successBlock:^(NSDictionary *status)
+        {
+            NSString *idStringOfRetweet = status[@"current_user_retweet"][@"id_str"];
+            [self.twitter postStatusesDestroy:idStringOfRetweet trimUser:@1 successBlock:^(NSDictionary *status)
+            {
+                sender.imageView.image = retweetImage;
+                sender.tag = 2;
+            } errorBlock:^(NSError *error)
+            {
+                NSLog(@"error removing retweet:%@", [error localizedDescription]);
+            }];
+            
+        } errorBlock:^(NSError *error) {
+            NSLog(@"error removing retweet:%@", [error localizedDescription]);
+        }];
     }
-    
+
+    if (sender.tag == 1)
+    {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        {
+            SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [tweetSheet setInitialText:[[NSString alloc] initWithFormat:@"@%@",FLFUsername]];
+            [self presentViewController:tweetSheet animated:YES completion:nil];
+        }
+        else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please make sure you have at least one Twitter account set up." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+        };
+    }
 }
 
 -(void)setupTwitterTimeline
@@ -158,6 +168,15 @@ typedef void (^FavoriteTweetBlock)(FLFTwitterTableViewCell *cell, NSString *idSt
         [dateFormatter setDateFormat:@"eee, MMM dd HH:mm:ss yyyy"];
         NSString *dateString = [dateFormatter stringFromDate:date];
         twitterCell.dateLabel.text = dateString;
+        
+        UIImage *favoriteStatusImage = [twitterFeedDictionary[@"favorited"] boolValue] ? [UIImage imageNamed:@"favorite_on.png"] : [UIImage imageNamed:@"favorite.png"];
+        twitterCell.favoriteButton.tag = [twitterFeedDictionary[@"favorited"] boolValue] ? 5 : 4;
+        twitterCell.favoriteButton.imageView.image = favoriteStatusImage;
+        
+        UIImage *retweetStatusImage = [twitterFeedDictionary[@"retweeted"] boolValue] ? [UIImage imageNamed:@"retweet_on.png"] : [UIImage imageNamed:@"retweet.png"];
+        twitterCell.retweetButton.tag = [twitterFeedDictionary[@"retweeted"] boolValue] ? 3 : 2;
+        twitterCell.retweetButton.imageView.image = retweetStatusImage;
+        
         return twitterCell;
     };
     
@@ -198,25 +217,13 @@ typedef void (^FavoriteTweetBlock)(FLFTwitterTableViewCell *cell, NSString *idSt
 -(void)fetchMoreTweets
 {
     NSLog(@"fetching more");
-    STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:FLFConsumerKey consumerSecret:FLFConsumerSecret];
-    
-    [twitter verifyCredentialsWithSuccessBlock:^(NSString *username)
-     {
-         [twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
+    [self.twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
              [self.twitterFeedMutableArray addObjectsFromArray:statuses];
              [self.tableView reloadData];
              self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
          } errorBlock:^(NSError *error) {
              NSLog(@"%@", error.debugDescription);
          }];
-         
-     } errorBlock:^(NSError *error)
-     {
-         
-         NSLog(@"%@", error.debugDescription);
-         
-     }];
-    
 }
 
 - (void)loadTwitter

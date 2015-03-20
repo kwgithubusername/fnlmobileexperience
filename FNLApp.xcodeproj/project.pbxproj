@@ -32,6 +32,11 @@
 		9E20C26A1A83C31500DFCD93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C2691A83C31500DFCD93 /* QuartzCore.framework */; };
 		9E20C26C1A83C31A00DFCD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C26B1A83C31A00DFCD93 /* Security.framework */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
+		9ECB99441ABBB0520016A28D /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB99431ABBB0520016A28D /* favorite.png */; };
+		9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994A1ABBB0730016A28D /* favorite_on.png */; };
+		9ECB994F1ABBB0990016A28D /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994C1ABBB0990016A28D /* reply.png */; };
+		9ECB99501ABBB0990016A28D /* retweet_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994D1ABBB0990016A28D /* retweet_on.png */; };
+		9ECB99511ABBB0990016A28D /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994E1ABBB0990016A28D /* retweet.png */; };
 		9ECF7DB51AA1536E009A3DC2 /* FLFShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF7DB41AA1536E009A3DC2 /* FLFShopViewController.m */; };
 		9ED091091AB5CD59004E3770 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED091081AB5CD59004E3770 /* KILabel.m */; };
 		9ED091111AB5DBCE004E3770 /* FLFTwitterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED091101AB5DBCE004E3770 /* FLFTwitterDataSource.m */; };
@@ -188,6 +193,11 @@
 		9E20C2691A83C31500DFCD93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E20C26B1A83C31A00DFCD93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
+		9ECB99431ABBB0520016A28D /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
+		9ECB994A1ABBB0730016A28D /* favorite_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_on.png; sourceTree = "<group>"; };
+		9ECB994C1ABBB0990016A28D /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		9ECB994D1ABBB0990016A28D /* retweet_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_on.png; sourceTree = "<group>"; };
+		9ECB994E1ABBB0990016A28D /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
 		9ECF7DB31AA1536E009A3DC2 /* FLFShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFShopViewController.h; sourceTree = "<group>"; };
 		9ECF7DB41AA1536E009A3DC2 /* FLFShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFShopViewController.m; sourceTree = "<group>"; };
 		9ED091071AB5CD59004E3770 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
@@ -289,6 +299,11 @@
 			children = (
 				9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */,
 				9E20C1F51A83BD8000DFCD93 /* AppDelegate.h */,
+				9ECB99431ABBB0520016A28D /* favorite.png */,
+				9ECB994A1ABBB0730016A28D /* favorite_on.png */,
+				9ECB994C1ABBB0990016A28D /* reply.png */,
+				9ECB994D1ABBB0990016A28D /* retweet_on.png */,
+				9ECB994E1ABBB0990016A28D /* retweet.png */,
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
@@ -564,8 +579,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E20C2001A83BD8000DFCD93 /* Main.storyboard in Resources */,
+				9ECB99511ABBB0990016A28D /* retweet.png in Resources */,
+				9ECB99441ABBB0520016A28D /* favorite.png in Resources */,
 				9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */,
 				9E20C2051A83BD8000DFCD93 /* LaunchScreen.xib in Resources */,
+				9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */,
+				9ECB99501ABBB0990016A28D /* retweet_on.png in Resources */,
+				9ECB994F1ABBB0990016A28D /* reply.png in Resources */,
 				9E20C2021A83BD8000DFCD93 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

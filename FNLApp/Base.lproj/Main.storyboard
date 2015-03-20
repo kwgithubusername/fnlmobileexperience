@@ -41,13 +41,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVN-XE-n60">
-                                                    <rect key="frame" x="0.0" y="11" width="560" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="11" width="560" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tweet" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eC7-lr-jaQ" customClass="KILabel">
-                                                    <rect key="frame" x="0.0" y="34" width="560" height="104"/>
+                                                    <rect key="frame" x="0.0" y="28" width="560" height="110"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="tG3-nl-pMD"/>
                                                     </constraints>
@@ -60,27 +60,46 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t35-b5-VRR">
-                                                    <rect key="frame" x="504" y="8" width="56" height="30"/>
-                                                    <state key="normal" title="Favorite">
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t35-b5-VRR">
+                                                    <rect key="frame" x="544" y="8" width="16" height="22"/>
+                                                    <state key="normal" image="favorite.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tweetButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6pj-eI-htK"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdb-SC-T3E">
-                                                    <rect key="frame" x="439" y="8" width="57" height="30"/>
-                                                    <state key="normal" title="Retweet">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdb-SC-T3E">
+                                                    <rect key="frame" x="509" y="8" width="19" height="22"/>
+                                                    <state key="normal" image="retweet.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tweetButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="jit-n9-p1v"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCD-bV-hCQ">
+                                                    <rect key="frame" x="477" y="8" width="16" height="22"/>
+                                                    <state key="normal" image="reply.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tweetButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Gvq-7v-di8"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LVN-XE-n60" firstAttribute="top" secondItem="CJV-GH-BJJ" secondAttribute="topMargin" constant="3" id="4xJ-iu-9SH"/>
+                                                <constraint firstItem="hdb-SC-T3E" firstAttribute="leading" secondItem="UCD-bV-hCQ" secondAttribute="trailing" constant="16" id="9pW-4L-c4j"/>
                                                 <constraint firstItem="eC7-lr-jaQ" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="-8" id="HUA-u1-Ow4"/>
                                                 <constraint firstItem="eC7-lr-jaQ" firstAttribute="trailing" secondItem="CJV-GH-BJJ" secondAttribute="trailingMargin" id="HtG-DQ-94U"/>
+                                                <constraint firstItem="hdb-SC-T3E" firstAttribute="centerY" secondItem="t35-b5-VRR" secondAttribute="centerY" id="N8u-JL-N3K"/>
                                                 <constraint firstItem="t35-b5-VRR" firstAttribute="top" secondItem="CJV-GH-BJJ" secondAttribute="topMargin" id="R0g-mr-gc4"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="eC7-lr-jaQ" secondAttribute="bottom" id="SDb-f5-gke"/>
+                                                <constraint firstItem="t35-b5-VRR" firstAttribute="leading" secondItem="hdb-SC-T3E" secondAttribute="trailing" constant="16" id="XkY-RH-GTc"/>
                                                 <constraint firstItem="t35-b5-VRR" firstAttribute="trailing" secondItem="CJV-GH-BJJ" secondAttribute="trailingMargin" id="a5X-gK-QTb"/>
                                                 <constraint firstItem="eC7-lr-jaQ" firstAttribute="top" secondItem="LVN-XE-n60" secondAttribute="bottom" constant="2" id="lhr-dQ-Kb7"/>
+                                                <constraint firstItem="UCD-bV-hCQ" firstAttribute="centerY" secondItem="hdb-SC-T3E" secondAttribute="centerY" id="qQY-Ka-eln"/>
                                                 <constraint firstAttribute="centerX" secondItem="LVN-XE-n60" secondAttribute="centerX" constant="4" id="rjw-vR-yP6"/>
                                                 <constraint firstItem="LVN-XE-n60" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="-8" id="wfp-BI-BSf"/>
                                             </constraints>
@@ -88,7 +107,6 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="LVN-XE-n60" id="AqR-MC-bou"/>
                                             <outlet property="favoriteButton" destination="t35-b5-VRR" id="ytR-T9-jma"/>
-                                            <outlet property="retweetButton" destination="hdb-SC-T3E" id="bnC-4p-hvf"/>
                                             <outlet property="tweetLabel" destination="eC7-lr-jaQ" id="fcn-Cf-DPw"/>
                                         </connections>
                                     </tableViewCell>
@@ -206,7 +224,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite.png" width="16" height="16"/>
         <image name="first" width="30" height="30"/>
+        <image name="reply.png" width="16" height="16"/>
+        <image name="retweet.png" width="19" height="16"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
