@@ -29,7 +29,7 @@
     [downloadTask resume];
 }
 
--(IBAction)homeButtonTapped:(UIButton *)sender
+-(IBAction)homeButtonTapped:(UIBarButtonItem *)sender
 {
     //[self startSpinner];
     NSURL *url = [NSURL URLWithString:@"http://www.thefunlyfe.com"];
