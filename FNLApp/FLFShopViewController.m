@@ -8,6 +8,9 @@
 
 #import "FLFShopViewController.h"
 
+@interface FLFShopViewController ()
+@end
+
 @implementation FLFShopViewController
 
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
@@ -26,9 +29,24 @@
     [downloadTask resume];
 }
 
+-(IBAction)homeButtonTapped:(UIButton *)sender
+{
+    //[self startSpinner];
+    NSURL *url = [NSURL URLWithString:@"http://www.thefunlyfe.com"];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
+    [downloadTask resume];
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (!self.didLoadFromDifferentTab)
+    {
+        [self homeButtonTapped:nil];
+    }
 }
 
 @end

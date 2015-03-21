@@ -23,9 +23,10 @@ __responder = [__responder nextResponder]; \
     self.tweetLabel.linkURLTapHandler = ^(KILabel *label, NSString *string, NSRange range) {
         // Open URLs
         UIViewController *viewController = UIParentViewController(self);
-        viewController.tabBarController.selectedIndex = 2;
         FLFShopViewController *ThirdViewController = [viewController.tabBarController.viewControllers objectAtIndex:2];
+        ThirdViewController.didLoadFromDifferentTab = YES;
         [ThirdViewController loadWebpageWithURLString:string];
+        viewController.tabBarController.selectedIndex = 2;
         //self.superview.superview.superview.tabBarController.selectedIndex = 2;
         //tabBarController.selectedIndex = 1;
     };

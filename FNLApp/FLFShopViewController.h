@@ -10,6 +10,8 @@
 
 @interface FLFShopViewController : UIViewController <NSURLSessionDownloadDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic) BOOL didLoadFromDifferentTab;
 
 -(void)loadWebpageWithURLString:(NSString *)URLString;
+
 @end
