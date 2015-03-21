@@ -12,6 +12,8 @@
 #import "FLFTwitterDataSource.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import <MBProgressHUD.h>
+
 #define FLFUsername @"thefunlyfe_"
 #define FLFConsumerKey @"Wdk3Vcbhbrcu7AM6EeMPTdjm5"
 #define FLFConsumerSecret @"iT6eLSTD16RidjYpJxIBbzWwnACbjc9qoLVd8iL0C7S66DBTFY"
@@ -29,6 +31,19 @@
 @implementation FirstViewController
 
 
+
+-(void)showMBProgressHUDSuccessWithString:(NSString *)string
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = string;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        sleep(2);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+}
 
 - (IBAction)tweetButtonTapped:(UIButton *)sender
 {
@@ -49,6 +64,8 @@
         {
             sender.imageView.image = favoriteOnImage;
             sender.tag = 5;
+            [self showMBProgressHUDSuccessWithString:@"Tweet favorited"];
+            
         } errorBlock:^(NSError *error)
         {
                 NSLog(@"error favoriting:%@", [error localizedDescription]);
@@ -60,6 +77,7 @@
         {
             sender.imageView.image = favoriteOffImage;
             sender.tag = 4;
+            [self showMBProgressHUDSuccessWithString:@"Tweet unfavorited"];
         } errorBlock:^(NSError *error)
         {
                 NSLog(@"error unfavoriting:%@", [error localizedDescription]);
@@ -72,6 +90,7 @@
         {
             sender.imageView.image = retweetOnImage;
             sender.tag = 3;
+            [self showMBProgressHUDSuccessWithString:@"Tweet retweeted"];
         } errorBlock:^(NSError *error)
         {
             NSLog(@"error retweeting:%@", [error localizedDescription]);
@@ -86,6 +105,7 @@
             {
                 sender.imageView.image = retweetImage;
                 sender.tag = 2;
+                [self showMBProgressHUDSuccessWithString:@"Retweet removed"];
             } errorBlock:^(NSError *error)
             {
                 NSLog(@"error removing retweet:%@", [error localizedDescription]);
@@ -102,6 +122,7 @@
         {
             SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
             [tweetSheet setInitialText:[[NSString alloc] initWithFormat:@"@%@",FLFUsername]];
+            tweetSheet.completionHandler = ^(SLComposeViewControllerResult result){[self showMBProgressHUDSuccessWithString:@"Reply tweeted"];};
             [self presentViewController:tweetSheet animated:YES completion:nil];
         }
         else

@@ -821,6 +821,7 @@
 					"\"Social\"",
 					"-all_load",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -858,6 +859,7 @@
 					"\"Social\"",
 					"-all_load",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
