@@ -7,11 +7,28 @@
 //
 
 #import "FLFTwitterTableViewCell.h"
+#import "FLFShopViewController.h"
+#define UIParentViewController(__view) ({ \
+UIResponder *__responder = __view; \
+while ([__responder isKindOfClass:[UIView class]]) \
+__responder = [__responder nextResponder]; \
+(UIViewController *)__responder; \
+})
 
 @implementation FLFTwitterTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.tweetLabel.linkURLTapHandler = ^(KILabel *label, NSString *string, NSRange range) {
+        // Open URLs
+        UIViewController *viewController = UIParentViewController(self);
+        viewController.tabBarController.selectedIndex = 2;
+        FLFShopViewController *ThirdViewController = [viewController.tabBarController.viewControllers objectAtIndex:2];
+        [ThirdViewController loadWebpageWithURLString:string];
+        //self.superview.superview.superview.tabBarController.selectedIndex = 2;
+        //tabBarController.selectedIndex = 1;
+    };
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

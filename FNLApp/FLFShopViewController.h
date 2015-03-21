@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Hi Range. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface FLFShopViewController : NSObject
+@interface FLFShopViewController : UIViewController <NSURLSessionDownloadDelegate>
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+-(void)loadWebpageWithURLString:(NSString *)URLString;
 @end

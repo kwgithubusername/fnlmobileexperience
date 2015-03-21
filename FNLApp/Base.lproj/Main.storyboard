@@ -186,7 +186,7 @@
         <!--Shop-->
         <scene sceneID="ULD-Q3-M9a">
             <objects>
-                <viewController id="BRh-wL-Saa" sceneMemberID="viewController">
+                <viewController id="BRh-wL-Saa" customClass="FLFShopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jcO-of-grS"/>
                         <viewControllerLayoutGuide type="bottom" id="txJ-C1-6uW"/>
@@ -194,9 +194,24 @@
                     <view key="view" contentMode="scaleToFill" id="SL4-am-Op4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6N-rq-8HS">
+                                <rect key="frame" x="16" y="20" width="568" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A6N-rq-8HS" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" id="ELI-Cs-QmU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A6N-rq-8HS" secondAttribute="trailing" id="duW-38-dCC"/>
+                            <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="ggg-4P-1fe"/>
+                            <constraint firstItem="txJ-C1-6uW" firstAttribute="top" secondItem="A6N-rq-8HS" secondAttribute="bottom" id="hja-k4-DEH"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
+                    <connections>
+                        <outlet property="webView" destination="A6N-rq-8HS" id="Jzb-7R-kop"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkw-oV-3LI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

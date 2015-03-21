@@ -10,4 +10,25 @@
 
 @implementation FLFShopViewController
 
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    [self.webView loadData:[NSData dataWithContentsOfURL:location] MIMEType:downloadTask.response.MIMEType textEncodingName:downloadTask.response.textEncodingName baseURL:downloadTask.response.URL];
+    //[self.spinner stopAnimating];
+}
+
+-(void)loadWebpageWithURLString:(NSString *)URLString
+{
+    //[self startSpinner];
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
+    [downloadTask resume];
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 @end
