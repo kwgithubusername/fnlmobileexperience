@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="147" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BDz-rN-EiO">
-                                <rect key="frame" x="16" y="20" width="568" height="281"/>
+                                <rect key="frame" x="16" y="20" width="568" height="258"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="twitterCell" rowHeight="147" id="ebX-Qk-8dK" customClass="FLFTwitterTableViewCell">
@@ -109,23 +109,41 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="LVN-XE-n60" id="AqR-MC-bou"/>
                                             <outlet property="favoriteButton" destination="t35-b5-VRR" id="ytR-T9-jma"/>
+                                            <outlet property="retweetButton" destination="hdb-SC-T3E" id="vYm-Mf-iFo"/>
                                             <outlet property="tweetLabel" destination="eC7-lr-jaQ" id="fcn-Cf-DPw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGz-le-s5T">
+                                <rect key="frame" x="20" y="286" width="568" height="257"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="centerX" secondItem="BDz-rN-EiO" secondAttribute="centerX" constant="4" id="7RK-CI-aAY"/>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="top" secondItem="BDz-rN-EiO" secondAttribute="bottom" constant="8" id="IKG-xP-nAt"/>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="width" secondItem="BDz-rN-EiO" secondAttribute="width" id="MG1-JH-YMe"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="P1X-qz-dOd"/>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="height" secondItem="BDz-rN-EiO" secondAttribute="height" id="QQp-z1-K1k"/>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="centerX" secondItem="BDz-rN-EiO" secondAttribute="centerX" id="V8d-TX-I3b"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="dEo-4w-Lgv"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="BDz-rN-EiO" secondAttribute="bottom" constant="250" id="g14-K1-9l0"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="cGz-le-s5T" secondAttribute="bottom" constant="8" id="lfY-mi-Jt1"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="mkL-qc-uFL"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="V8d-TX-I3b"/>
+                                <exclude reference="g14-K1-9l0"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Social" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="tableView" destination="BDz-rN-EiO" id="yiq-FV-jtm"/>
+                        <outlet property="instagramTableView" destination="cGz-le-s5T" id="ZTJ-WE-u97"/>
+                        <outlet property="twitterTableView" destination="BDz-rN-EiO" id="OAZ-ns-Rk9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

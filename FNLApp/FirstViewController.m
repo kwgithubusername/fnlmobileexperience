@@ -13,6 +13,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import <MBProgressHUD.h>
+#import "FLFTwitterWebServices.h"
 
 #define FLFUsername @"thefunlyfe_"
 #define FLFConsumerKey @"Wdk3Vcbhbrcu7AM6EeMPTdjm5"
@@ -20,11 +21,10 @@
 
 @interface FirstViewController ()
 
-@property (nonatomic) NSMutableArray *twitterFeedMutableArray;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSString *currentIDString;
+@property (weak, nonatomic) IBOutlet UITableView *twitterTableView;
+@property (weak, nonatomic) IBOutlet UITableView *instagramTableView;
 @property (nonatomic) FLFTwitterDataSource *dataSource;
-@property (nonatomic) STTwitterAPI *twitter;
+@property (nonatomic) FLFTwitterWebServices *twitterWebServices;
 
 @end
 
@@ -48,8 +48,8 @@
 - (IBAction)tweetButtonTapped:(UIButton *)sender
 {
     FLFTwitterTableViewCell *cell = (FLFTwitterTableViewCell *)sender.superview.superview;
-    NSInteger row = [self.tableView indexPathForCell:cell].row;
-    NSDictionary *tweetDictionary = [self.twitterFeedMutableArray objectAtIndex:row];
+    NSInteger row = [self.twitterTableView indexPathForCell:cell].row;
+    NSDictionary *tweetDictionary = [self.twitterWebServices.twitterFeedMutableArray objectAtIndex:row];
     NSString *idString = tweetDictionary[@"id_str"];
     NSLog(@"idstring is %@",idString);
     
@@ -60,7 +60,7 @@
     
     if (sender.tag == 4) // if not favorited
     {
-        [self.twitter postFavoriteCreateWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
+        [self.twitterWebServices.twitter postFavoriteCreateWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = favoriteOnImage;
             sender.tag = 5;
@@ -73,7 +73,7 @@
     }
     else if (sender.tag == 5) // if favorited
     {
-        [self.twitter postFavoriteDestroyWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
+        [self.twitterWebServices.twitter postFavoriteDestroyWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = favoriteOffImage;
             sender.tag = 4;
@@ -86,7 +86,7 @@
     
     if (sender.tag == 2) // if not retweeted
     {
-        [self.twitter postStatusRetweetWithID:idString successBlock:^(NSDictionary *status)
+        [self.twitterWebServices.twitter postStatusRetweetWithID:idString successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = retweetOnImage;
             sender.tag = 3;
@@ -98,10 +98,10 @@
     }
     else if (sender.tag == 3) // if retweeted
     {
-        [self.twitter getStatusesShowID:idString trimUser:@1 includeMyRetweet:@1 includeEntities:@1 successBlock:^(NSDictionary *status)
+        [self.twitterWebServices.twitter getStatusesShowID:idString trimUser:@1 includeMyRetweet:@1 includeEntities:@1 successBlock:^(NSDictionary *status)
         {
             NSString *idStringOfRetweet = status[@"current_user_retweet"][@"id_str"];
-            [self.twitter postStatusesDestroy:idStringOfRetweet trimUser:@1 successBlock:^(NSDictionary *status)
+            [self.twitterWebServices.twitter postStatusesDestroy:idStringOfRetweet trimUser:@1 successBlock:^(NSDictionary *status)
             {
                 sender.imageView.image = retweetImage;
                 sender.tag = 2;
@@ -122,7 +122,17 @@
         {
             SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
             [tweetSheet setInitialText:[[NSString alloc] initWithFormat:@"@%@",FLFUsername]];
-            tweetSheet.completionHandler = ^(SLComposeViewControllerResult result){[self showMBProgressHUDSuccessWithString:@"Reply tweeted"];};
+            tweetSheet.completionHandler = ^(SLComposeViewControllerResult result)
+            {
+                switch(result) {
+                    case SLComposeViewControllerResultCancelled:
+                        break;
+                        //  This means the user hit 'Send'
+                    case SLComposeViewControllerResultDone:
+                        [self showMBProgressHUDSuccessWithString:@"Reply tweeted"];
+                        break;
+                }
+            };
             [self presentViewController:tweetSheet animated:YES completion:nil];
         }
         else
@@ -133,54 +143,17 @@
     }
 }
 
--(void)setupTwitterTimeline
-{
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
-        if (granted == YES)
-        {
-            NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
-            if ([arrayOfAccounts count] > 0)
-            {
-                ACAccount *twitterAccount = [arrayOfAccounts lastObject];
-                NSURL *requestAPI = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/user_timeline.json"];
-                NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-                [parameters setObject:FLFUsername forKey:@"screen_name"];
-                [parameters setObject:@"20" forKey:@"count"];
-                
-                SLRequest *posts = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestAPI parameters:parameters];
-                posts.account = twitterAccount;
-                [posts performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error)
-                {
-                    NSArray *tweetArray = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
-                    if ([tweetArray count] > 0)
-                    {
-                        [self.twitterFeedMutableArray addObjectsFromArray:tweetArray];
-                        dispatch_async(dispatch_get_main_queue(),
-                        ^{
-                            [self.tableView reloadData];
-                        });
-                    }
-                }];
-                
-            }
-        } else {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }
-     ];
-}
-
 -(void)setupDataSource
 {
     __weak FirstViewController *weakSelf = self;
     
     UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
         
-        FLFTwitterTableViewCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
+        FLFTwitterTableViewCell *twitterCell = [[FLFTwitterTableViewCell alloc] init];
+        
+        twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
     
-        NSDictionary *twitterFeedDictionary = weakSelf.twitterFeedMutableArray[indexPath.row];
+        NSDictionary *twitterFeedDictionary = weakSelf.twitterWebServices.twitterFeedMutableArray[indexPath.row];
         
         twitterCell.tweetLabel.text = twitterFeedDictionary[@"text"];
         
@@ -194,103 +167,45 @@
         
         UIImage *favoriteStatusImage = [twitterFeedDictionary[@"favorited"] boolValue] ? [UIImage imageNamed:@"favorite_on.png"] : [UIImage imageNamed:@"favorite.png"];
         twitterCell.favoriteButton.tag = [twitterFeedDictionary[@"favorited"] boolValue] ? 5 : 4;
-        twitterCell.favoriteButton.imageView.image = favoriteStatusImage;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            twitterCell.favoriteButton.imageView.image = favoriteStatusImage;
+        });
+        
         
         UIImage *retweetStatusImage = [twitterFeedDictionary[@"retweeted"] boolValue] ? [UIImage imageNamed:@"retweet_on.png"] : [UIImage imageNamed:@"retweet.png"];
         twitterCell.retweetButton.tag = [twitterFeedDictionary[@"retweeted"] boolValue] ? 3 : 2;
-        twitterCell.retweetButton.imageView.image = retweetStatusImage;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            twitterCell.retweetButton.imageView.image = retweetStatusImage;
+        });
         
         return twitterCell;
     };
     
     NSInteger(^numberOfRowsInSectionBlock)() = ^NSInteger(){
-        return [weakSelf.twitterFeedMutableArray count];
+        return [weakSelf.twitterWebServices.twitterFeedMutableArray count];
     };
     
     void (^willDisplayCellBlock)(NSIndexPath *indexPath) = ^(NSIndexPath *indexPath){
-        if (indexPath.row == [weakSelf.twitterFeedMutableArray count]-1)
+        if (indexPath.row == [weakSelf.twitterWebServices.twitterFeedMutableArray count]-1)
         {
-            [weakSelf fetchMoreTweets];
+            [weakSelf.twitterWebServices fetchMoreTweets];
         }
     };
     
     self.dataSource = [[FLFTwitterDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
-    self.tableView.delegate = self.dataSource;
-    self.tableView.dataSource = self.dataSource;
+    self.twitterTableView.delegate = self.dataSource;
+    self.twitterTableView.dataSource = self.dataSource;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSLog(@"The");
-//    sleep(1);
-//    NSLog(@"world");
-//    sleep(1);
-//    NSLog(@"is");
-//    sleep(1);
-//    NSLog(@"yurns");
-//    sleep(1);
-//    sleep(3);
-    [self loadTwitter];
+    self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
+    [self.twitterWebServices loadTwitter];
     [self setupDataSource];
-    self.tableView.estimatedRowHeight = 44;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.twitterTableView.estimatedRowHeight = 44;
+    self.twitterTableView.rowHeight = UITableViewAutomaticDimension;
     // Do any additional setup after loading the view, typically from a nib.
 }
-
--(void)fetchMoreTweets
-{
-    NSLog(@"fetching more");
-    [self.twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
-             [self.twitterFeedMutableArray addObjectsFromArray:statuses];
-             [self.tableView reloadData];
-             self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
-         } errorBlock:^(NSError *error) {
-             NSLog(@"%@", error.debugDescription);
-         }];
-}
-
-- (void)loadTwitter
-{
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [account requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
-        if (granted == YES)
-        {
-            NSArray *arrayOfAccounts = [account accountsWithAccountType:accountType];
-            if ([arrayOfAccounts count] > 0)
-            {
-                ACAccount *twitterAccount = [arrayOfAccounts lastObject];
-                self.twitter = [STTwitterAPI twitterAPIOSWithAccount:twitterAccount];
-                //    STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:FLFConsumerKey consumerSecret:FLFConsumerSecret];
-                
-                [self.twitter verifyCredentialsWithSuccessBlock:^(NSString *username)
-                 {
-                     [self.twitter getUserTimelineWithScreenName:FLFUsername successBlock:^(NSArray *statuses)
-                      {
-                          
-                          self.twitterFeedMutableArray = [[NSMutableArray alloc] initWithArray:statuses];
-                          NSLog(@"%@", self.twitterFeedMutableArray);
-                          [self.tableView reloadData];
-                          self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
-                          
-                      } errorBlock:^(NSError *error)
-                      {
-                          
-                          NSLog(@"%@", error.debugDescription);
-                          
-                      }];
-                     
-                 } errorBlock:^(NSError *error)
-                 {
-                     
-                     NSLog(@"%@", error.debugDescription);
-                     
-                 }];
-            }
-        }
-    }];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
