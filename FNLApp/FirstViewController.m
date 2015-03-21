@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "STTwitter.h"
 #import "FLFTwitterTableViewCell.h"
 #import "FLFTwitterDataSource.h"
 #import <Accounts/Accounts.h>
@@ -16,8 +15,6 @@
 #import "FLFTwitterWebServices.h"
 
 #define FLFUsername @"thefunlyfe_"
-#define FLFConsumerKey @"Wdk3Vcbhbrcu7AM6EeMPTdjm5"
-#define FLFConsumerSecret @"iT6eLSTD16RidjYpJxIBbzWwnACbjc9qoLVd8iL0C7S66DBTFY"
 
 @interface FirstViewController ()
 
