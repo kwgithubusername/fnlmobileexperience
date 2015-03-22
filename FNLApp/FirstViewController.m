@@ -209,9 +209,13 @@
         
         instagramCell = [tableView dequeueReusableCellWithIdentifier:@"instagramCell"];
         
-        NSDictionary *instagramFeedDictionary = weakSelf.instagramWebServices.mediaMutableArray[indexPath.row];
+        InstagramMedia *instagramObject = weakSelf.instagramWebServices.mediaMutableArray[indexPath.row];
         
-        instagramCell.captionLabel.text = instagramFeedDictionary[@"text"];
+        NSURL *imageURL = instagramObject.standardResolutionImageURL;
+        
+        [weakSelf.instagramWebServices loadImageIntoCell:instagramCell withURL:imageURL];
+        
+        instagramCell.captionLabel.text = instagramObject.caption.text;
         
         return instagramCell;
     };
@@ -243,7 +247,8 @@
     self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView andViewController:ThirdViewController];
     
     //[self.instagramWebServices loadInstagram];
-    //[self setupInstagramDataSource];
+    [self setupInstagramDataSource];
+    [self.instagramWebServices fetchMoreMedia];
 }
 
 -(void)setupTwitter

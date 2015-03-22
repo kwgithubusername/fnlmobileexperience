@@ -7,6 +7,7 @@
 //
 
 #import "FLFInstagramWebServices.h"
+#import <UIImageView+AFNetworking.h>
 
 @implementation FLFInstagramWebServices
 
@@ -78,26 +79,30 @@
 
 -(void)fetchMoreMedia
 {
-//    [[InstagramEngine sharedEngine] getSelfFeedWithCount:20 maxId:nil success:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
-//        NSLog(@"Instagram:%@",media);
-//    } failure:^(NSError *error) {
-//        NSLog(@"Error getting media:%@", [error localizedDescription]);
-//    }];
-//    [[InstagramEngine sharedEngine] searchUsersWithString:@"thefunlyfe_" withSuccess:^(NSArray *users, InstagramPaginationInfo *paginationInfo) {
-//        InstagramModel *user = users[0];
-//        NSLog(@"%@",user.Id);
-//    } failure:^(NSError *error) {
-//        NSLog(@"Error getting media:%@", [error localizedDescription]);
-//    }];
     [[InstagramEngine sharedEngine] getMediaForUser:@"1382575886" count:20 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
         [self.mediaMutableArray addObjectsFromArray:media];
         NSLog(@"Instagram:%@",media);
-        //[self.tableView reloadData];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"Error getting media:%@", [error localizedDescription]);
     }];
-    
-//    //https://api.instagram.com/v1/users/thefunlyfe_/media/recent?access_token=18890017.828ab96.eb34c8fe66b0480b9eca839cebbb819e&count=20
 }
+
+-(void)loadImageIntoCell:(FLFInstagramTableViewCell *)cell withURL:(NSURL *)URL
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    UIImage *placeholderImage = [[UIImage alloc] init];
+    
+    [cell.photoView setImageWithURLRequest:request
+                                   placeholderImage:placeholderImage
+                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                
+                                                //NSLog(@"setImageWithURLRequest executed");
+                                                cell.photoView.image = image;
+                                                //cell.imageView.image = image;
+                                            }
+                                            failure:nil];
+}
+
 
 @end
