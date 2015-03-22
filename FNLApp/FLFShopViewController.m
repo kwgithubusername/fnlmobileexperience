@@ -16,6 +16,8 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *URLString = [request.URL absoluteString];
+    NSLog(@"URLString is %@ while prefix is %@", URLString, [[InstagramEngine sharedEngine] appRedirectURL]);
+
     if ([URLString hasPrefix:[[InstagramEngine sharedEngine] appRedirectURL]]) {
         NSString *delimiter = @"access_token=";
         NSArray *components = [URLString componentsSeparatedByString:delimiter];
@@ -61,6 +63,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.webView.delegate = self;
     
     if (!self.didLoadFromDifferentTab)
     {
