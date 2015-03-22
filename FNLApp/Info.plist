@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>InstagramKitAppClientId</key>
+	<string>828ab96f713d47eda36b468647f85398</string>
+	<key>InstagramKitAppRedirectURL</key>
+	<string>http://thefunlyfe.com/instagram/connected</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

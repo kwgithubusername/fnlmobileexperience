@@ -12,7 +12,7 @@ typedef UITableViewCell *(^CellForRowAtIndexPathBlock)(NSIndexPath *indexPath, U
 typedef NSInteger (^NumberOfRowsInSectionBlock)();
 typedef void (^WillDisplayCellBlock)(NSIndexPath *indexPath);
 
-@interface FLFTwitterDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface FLFTableViewDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 -(id)initWithCellForRowAtIndexPathBlock:(CellForRowAtIndexPathBlock)aCellForRowAtIndexPathBlock
              NumberOfRowsInSectionBlock:(NumberOfRowsInSectionBlock)aNumberOfRowsInSectionBlock

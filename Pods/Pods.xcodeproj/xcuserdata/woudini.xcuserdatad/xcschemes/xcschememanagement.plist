@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-InstagramKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>41F2D4AFADD18E6FA95DDA2D</key>
+		<key>0B6AE60E5D18EC0A225AA124</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E8C58EA32F794F6D3DC7432</key>
+		<key>4EF2B25C4EBCED83D7FBC614</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5459B6EE191199F400A8F978</key>
+		<key>95FDF4DFE0CCBF81A766C6B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A8C398F6355C4BA74837D0A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C899CB49DCC2F73F71511557</key>
 		<dict>
 			<key>primary</key>
 			<true/>

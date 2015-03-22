@@ -39,8 +39,10 @@
 		9ECB99511ABBB0990016A28D /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994E1ABBB0990016A28D /* retweet.png */; };
 		9ECF7DB51AA1536E009A3DC2 /* FLFShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF7DB41AA1536E009A3DC2 /* FLFShopViewController.m */; };
 		9ED091091AB5CD59004E3770 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED091081AB5CD59004E3770 /* KILabel.m */; };
-		9ED091111AB5DBCE004E3770 /* FLFTwitterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED091101AB5DBCE004E3770 /* FLFTwitterDataSource.m */; };
+		9ED091111AB5DBCE004E3770 /* FLFTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED091101AB5DBCE004E3770 /* FLFTableViewDataSource.m */; };
 		9ED693C51ABE00DD00EA60CF /* FLFTwitterWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED693C41ABE00DD00EA60CF /* FLFTwitterWebServices.m */; };
+		9ED693D21ABE1D9B00EA60CF /* FLFInstagramWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED693D11ABE1D9B00EA60CF /* FLFInstagramWebServices.m */; };
+		9ED693D51ABE56A400EA60CF /* FLFInstagramTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED693D41ABE56A400EA60CF /* FLFInstagramTableViewCell.m */; };
 		D27290EC670196F69F723889 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA1045FBD1086DC200037A5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -203,10 +205,14 @@
 		9ECF7DB41AA1536E009A3DC2 /* FLFShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFShopViewController.m; sourceTree = "<group>"; };
 		9ED091071AB5CD59004E3770 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
 		9ED091081AB5CD59004E3770 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
-		9ED0910F1AB5DBCE004E3770 /* FLFTwitterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFTwitterDataSource.h; sourceTree = "<group>"; };
-		9ED091101AB5DBCE004E3770 /* FLFTwitterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFTwitterDataSource.m; sourceTree = "<group>"; };
+		9ED0910F1AB5DBCE004E3770 /* FLFTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFTableViewDataSource.h; sourceTree = "<group>"; };
+		9ED091101AB5DBCE004E3770 /* FLFTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFTableViewDataSource.m; sourceTree = "<group>"; };
 		9ED693C31ABE00DD00EA60CF /* FLFTwitterWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFTwitterWebServices.h; sourceTree = "<group>"; };
 		9ED693C41ABE00DD00EA60CF /* FLFTwitterWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFTwitterWebServices.m; sourceTree = "<group>"; };
+		9ED693D01ABE1D9B00EA60CF /* FLFInstagramWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramWebServices.h; sourceTree = "<group>"; };
+		9ED693D11ABE1D9B00EA60CF /* FLFInstagramWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramWebServices.m; sourceTree = "<group>"; };
+		9ED693D31ABE56A400EA60CF /* FLFInstagramTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramTableViewCell.h; sourceTree = "<group>"; };
+		9ED693D41ABE56A400EA60CF /* FLFInstagramTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramTableViewCell.m; sourceTree = "<group>"; };
 		BAA1045FBD1086DC200037A5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81CB71F8E2C8994EDFFCBEF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -312,10 +318,14 @@
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
 				9ED693C31ABE00DD00EA60CF /* FLFTwitterWebServices.h */,
 				9ED693C41ABE00DD00EA60CF /* FLFTwitterWebServices.m */,
-				9ED0910F1AB5DBCE004E3770 /* FLFTwitterDataSource.h */,
-				9ED091101AB5DBCE004E3770 /* FLFTwitterDataSource.m */,
+				9ED0910F1AB5DBCE004E3770 /* FLFTableViewDataSource.h */,
+				9ED091101AB5DBCE004E3770 /* FLFTableViewDataSource.m */,
 				9E20C2201A83C02E00DFCD93 /* FLFTwitterTableViewCell.h */,
 				9E20C2211A83C02E00DFCD93 /* FLFTwitterTableViewCell.m */,
+				9ED693D01ABE1D9B00EA60CF /* FLFInstagramWebServices.h */,
+				9ED693D11ABE1D9B00EA60CF /* FLFInstagramWebServices.m */,
+				9ED693D31ABE56A400EA60CF /* FLFInstagramTableViewCell.h */,
+				9ED693D41ABE56A400EA60CF /* FLFInstagramTableViewCell.m */,
 				9E20C1FB1A83BD8000DFCD93 /* SecondViewController.h */,
 				9E20C1FC1A83BD8000DFCD93 /* SecondViewController.m */,
 				9ECF7DB31AA1536E009A3DC2 /* FLFShopViewController.h */,
@@ -642,14 +652,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED693D21ABE1D9B00EA60CF /* FLFInstagramWebServices.m in Sources */,
 				9E20C1FD1A83BD8000DFCD93 /* SecondViewController.m in Sources */,
 				9E20C2221A83C02E00DFCD93 /* FLFTwitterTableViewCell.m in Sources */,
+				9ED693D51ABE56A400EA60CF /* FLFInstagramTableViewCell.m in Sources */,
 				9ED091091AB5CD59004E3770 /* KILabel.m in Sources */,
 				9E20C1F71A83BD8000DFCD93 /* AppDelegate.m in Sources */,
 				9ECF7DB51AA1536E009A3DC2 /* FLFShopViewController.m in Sources */,
 				9E20C1FA1A83BD8000DFCD93 /* FirstViewController.m in Sources */,
 				9E20C1F41A83BD8000DFCD93 /* main.m in Sources */,
-				9ED091111AB5DBCE004E3770 /* FLFTwitterDataSource.m in Sources */,
+				9ED091111AB5DBCE004E3770 /* FLFTableViewDataSource.m in Sources */,
 				9ED693C51ABE00DD00EA60CF /* FLFTwitterWebServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +819,7 @@
 					"\"$PROJECT_DIR\"/**",
 				);
 				INFOPLIST_FILE = FNLApp/Info.plist;
+				LD_MAP_FILE_PATH = "$(inherited)$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
@@ -845,6 +858,7 @@
 					"\"$PROJECT_DIR\"/**",
 				);
 				INFOPLIST_FILE = FNLApp/Info.plist;
+				LD_MAP_FILE_PATH = "$(inherited)$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (

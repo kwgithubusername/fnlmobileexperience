@@ -1,12 +1,38 @@
 PODS:
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
+  - AFNetworking/NSURLConnection (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - InstagramKit (3.1.1):
+    - AFNetworking (~> 2.0)
   - MBProgressHUD (0.9.1)
   - STTwitter (0.1.8)
 
 DEPENDENCIES:
+  - InstagramKit (= 3.1.1)
   - MBProgressHUD (~> 0.9.1)
   - STTwitter
 
 SPEC CHECKSUMS:
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  InstagramKit: 9ad28b1e68ab0078fdd1ff40825d977f9dfc59c5
   MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
   STTwitter: 15d299aeb63fe7aad6285d61dd058d0aaa778a82
 

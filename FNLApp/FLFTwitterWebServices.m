@@ -9,7 +9,6 @@
 #import "FLFTwitterWebServices.h"
 #import <Accounts/Accounts.h>
 
-
 #define FLFUsername @"thefunlyfe_"
 #define FLFConsumerKey @"Wdk3Vcbhbrcu7AM6EeMPTdjm5"
 #define FLFConsumerSecret @"iT6eLSTD16RidjYpJxIBbzWwnACbjc9qoLVd8iL0C7S66DBTFY"
@@ -64,7 +63,7 @@
                       {
                           
                           self.twitterFeedMutableArray = [[NSMutableArray alloc] initWithArray:statuses];
-                          NSLog(@"%@", self.twitterFeedMutableArray);
+                          //NSLog(@"%@", self.twitterFeedMutableArray);
                           [self.tableView reloadData];
                           self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
                           

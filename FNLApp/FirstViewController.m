@@ -8,11 +8,13 @@
 
 #import "FirstViewController.h"
 #import "FLFTwitterTableViewCell.h"
-#import "FLFTwitterDataSource.h"
+#import "FLFTableViewDataSource.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import <MBProgressHUD.h>
 #import "FLFTwitterWebServices.h"
+#import "FLFInstagramTableViewCell.h"
+#import "FLFInstagramWebServices.h"
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -20,8 +22,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *twitterTableView;
 @property (weak, nonatomic) IBOutlet UITableView *instagramTableView;
-@property (nonatomic) FLFTwitterDataSource *dataSource;
+@property (nonatomic) FLFTableViewDataSource *twitterDataSource;
+@property (nonatomic) FLFTableViewDataSource *instagramDataSource;
 @property (nonatomic) FLFTwitterWebServices *twitterWebServices;
+@property (nonatomic) FLFInstagramWebServices *instagramWebServices;
 
 @end
 
@@ -140,7 +144,7 @@
     }
 }
 
--(void)setupDataSource
+-(void)setupTwitterDataSource
 {
     __weak FirstViewController *weakSelf = self;
     
@@ -189,18 +193,54 @@
         }
     };
     
-    self.dataSource = [[FLFTwitterDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
-    self.twitterTableView.delegate = self.dataSource;
-    self.twitterTableView.dataSource = self.dataSource;
+    self.twitterDataSource = [[FLFTableViewDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
+    self.twitterTableView.delegate = self.twitterDataSource;
+    self.twitterTableView.dataSource = self.twitterDataSource;
+}
+
+-(void)setupInstagramDataSource
+{
+    __weak FirstViewController *weakSelf = self;
+    
+    UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
+        
+        FLFInstagramTableViewCell *instagramCell = [[FLFInstagramTableViewCell alloc] init];
+        
+        instagramCell = [tableView dequeueReusableCellWithIdentifier:@"instagramCell"];
+        
+        NSDictionary *instagramFeedDictionary = weakSelf.instagramWebServices.mediaMutableArray[indexPath.row];
+        
+        instagramCell.captionLabel.text = instagramFeedDictionary[@"text"];
+        
+        return instagramCell;
+    };
+    
+    NSInteger(^numberOfRowsInSectionBlock)() = ^NSInteger(){
+        return [weakSelf.instagramWebServices.mediaMutableArray count];
+    };
+    
+    void (^willDisplayCellBlock)(NSIndexPath *indexPath) = ^(NSIndexPath *indexPath){
+        if (indexPath.row == [weakSelf.instagramWebServices.mediaMutableArray count]-1)
+        {
+            [weakSelf.instagramWebServices fetchMoreMedia];
+        }
+    };
+    
+    self.instagramDataSource = [[FLFTableViewDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
+    self.instagramTableView.delegate = self.instagramDataSource;
+    self.instagramTableView.dataSource = self.instagramDataSource;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
     [self.twitterWebServices loadTwitter];
-    [self setupDataSource];
+    [self setupTwitterDataSource];
     self.twitterTableView.estimatedRowHeight = 44;
     self.twitterTableView.rowHeight = UITableViewAutomaticDimension;
+    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
+    [self.instagramWebServices loadInstagram];
+    [self setupInstagramDataSource];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

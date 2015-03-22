@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 Hi Range. All rights reserved.
 //
 
-#import "FLFTwitterDataSource.h"
+#import "FLFTableViewDataSource.h"
 
-@interface FLFTwitterDataSource()
+@interface FLFTableViewDataSource()
 @property (nonatomic, copy) CellForRowAtIndexPathBlock cellForRowAtIndexPathBlock;
 @property (nonatomic, copy) NumberOfRowsInSectionBlock numberOfRowsInSectionBlock;
 @property (nonatomic, copy) WillDisplayCellBlock willDisplayCellBlock;
 
 @end
 
-@implementation FLFTwitterDataSource
+@implementation FLFTableViewDataSource
 
 
 -(id)initWithCellForRowAtIndexPathBlock:(CellForRowAtIndexPathBlock)aCellForRowAtIndexPathBlock

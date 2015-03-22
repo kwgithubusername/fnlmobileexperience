@@ -115,9 +115,55 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGz-le-s5T">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="233" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGz-le-s5T">
                                 <rect key="frame" x="20" y="286" width="568" height="257"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="instagramCell" rowHeight="233" id="a3I-Kg-RTU" customClass="FLFInstagramTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a3I-Kg-RTU" id="Ong-gM-d7w">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-PR-f3B" customClass="KILabel">
+                                                    <rect key="frame" x="233" y="8" width="327" height="216"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RiZ-le-uBS">
+                                                    <rect key="frame" x="8" y="8" width="217" height="217"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="217" id="JUD-H8-yG6"/>
+                                                        <constraint firstAttribute="height" constant="217" id="ibB-ua-CAW"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="4wN-4k-sXe"/>
+                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="9KM-UV-zPr"/>
+                                                <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="8" id="BWm-tB-BQb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hUZ-PR-f3B" secondAttribute="bottom" id="DEh-S1-wVl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="Ec8-P8-pzG"/>
+                                                <constraint firstAttribute="centerY" secondItem="RiZ-le-uBS" secondAttribute="centerY" id="Gw1-ct-0Ft"/>
+                                                <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="59" id="uRI-rU-krm"/>
+                                                <constraint firstItem="hUZ-PR-f3B" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="vvc-UL-Mwu"/>
+                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="leading" secondItem="Ong-gM-d7w" secondAttribute="leadingMargin" id="y6t-Or-gyh"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="4wN-4k-sXe"/>
+                                                    <exclude reference="9KM-UV-zPr"/>
+                                                    <exclude reference="uRI-rU-krm"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="hUZ-PR-f3B" id="ZAh-Rf-f88"/>
+                                            <outlet property="photoView" destination="RiZ-le-uBS" id="WiD-Yz-Bes"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -148,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="750" y="-329"/>
         </scene>
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
