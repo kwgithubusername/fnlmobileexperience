@@ -16,7 +16,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *URLString = [request.URL absoluteString];
-    NSLog(@"URLString is %@ while prefix is %@", URLString, [[InstagramEngine sharedEngine] appRedirectURL]);
 
     if ([URLString hasPrefix:[[InstagramEngine sharedEngine] appRedirectURL]]) {
         NSString *delimiter = @"access_token=";
@@ -28,6 +27,8 @@
             
             self.tabBarController.selectedIndex = 0;
                 NSLog(@"ready to load media");
+            self.loadInitialInstagramMediaBlock();
+            
         }
         return NO;
     }

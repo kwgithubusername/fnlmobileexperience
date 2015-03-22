@@ -210,7 +210,7 @@ typedef enum
     }
     
     NSString *percentageEscapedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
+    NSLog(@"path is %@", percentageEscapedPath);
     [self.operationManager GET:percentageEscapedPath
         parameters:params
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -437,7 +437,7 @@ typedef enum
                 failure:(InstagramFailureBlock)failure
 {
     NSDictionary *params = [self parametersFromCount:count maxId:maxId andMaxIdType:kPaginationMaxId];
-    [self getPath:[NSString stringWithFormat:@"users/%@/media/recent",userId] parameters:params responseModel:[InstagramMedia class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
+    [self getPath:[NSString stringWithFormat:@"users/%@/media/recent/",userId] parameters:params responseModel:[InstagramMedia class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
         if(success)
 		{
 			NSArray *objects = response;
@@ -477,7 +477,7 @@ typedef enum
 - (void)getSelfUserDetailsWithSuccess:(void (^)(InstagramUser *userDetail))success
                              failure:(InstagramFailureBlock)failure
 {
-    [self getPath:@"users/self" parameters:nil responseModel:[InstagramUser class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
+    [self getPath:@"users/self/" parameters:nil responseModel:[InstagramUser class] success:^(id response, InstagramPaginationInfo *paginationInfo) {
         InstagramUser *userDetail = response;
 		if(success)
 		{

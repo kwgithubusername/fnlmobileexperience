@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^LoadInitialInstagramMediaBlock)();
+
 @interface FLFShopViewController : UIViewController <NSURLSessionDownloadDelegate, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic) BOOL didLoadFromDifferentTab;
+@property (nonatomic, copy) LoadInitialInstagramMediaBlock loadInitialInstagramMediaBlock;
+
 
 -(void)loadWebpageWithURLString:(NSString *)URLString;
 
