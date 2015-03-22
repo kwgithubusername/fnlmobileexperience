@@ -9,6 +9,11 @@
 #import "FLFInstagramWebServices.h"
 #import <UIImageView+AFNetworking.h>
 
+@interface FLFInstagramWebServices ()
+@property (nonatomic) NSString *currentMaxIDString;
+@end
+
+
 @implementation FLFInstagramWebServices
 
 -(id)initWithTableView:(UITableView *)tableView andViewController:(FLFShopViewController *)viewController
@@ -79,8 +84,11 @@
 
 -(void)fetchMoreMedia
 {
-    [[InstagramEngine sharedEngine] getMediaForUser:@"1382575886" count:20 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+    NSString *maxIDString = self.currentMaxIDString;
+    [[InstagramEngine sharedEngine] getMediaForUser:@"1382575886" count:10 maxId:maxIDString withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
         [self.mediaMutableArray addObjectsFromArray:media];
+        InstagramMedia *lastMediaObject = [self.mediaMutableArray lastObject];
+        self.currentMaxIDString = lastMediaObject.Id;
         NSLog(@"Instagram:%@",media);
         [self.tableView reloadData];
     } failure:^(NSError *error) {
