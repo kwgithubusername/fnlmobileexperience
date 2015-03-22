@@ -110,7 +110,7 @@ typedef enum
         mBackgroundQueue = dispatch_queue_create("background", NULL);
 
         self.operationManager.responseSerializer = [[AFJSONResponseSerializer alloc] init];
-        NSLog(@"idis%@",self.appClientID);
+
         BOOL validClientId = IKNotNull(self.appClientID) && ![self.appClientID isEqualToString:@""] && [self.appClientID isEqualToString:@"828ab96f713d47eda36b468647f85398"];
         NSAssert(validClientId, @"Invalid Instagram Client ID.");
         NSAssert([NSURL URLWithString:self.appRedirectURL], @"App Redirect URL invalid: %@", self.appRedirectURL);

@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "InstagramKit.h"
+#import "FLFShopViewController.h"
 @interface FLFInstagramWebServices : NSObject
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) InstagramEngine *instagram;
 @property (nonatomic) NSMutableArray *mediaMutableArray;
+@property (nonatomic) NSString *scopeString;
+@property (nonatomic) FLFShopViewController *viewControllerForLogin;
 
--(id)initWithTableView:(UITableView *)tableView;
+-(id)initWithTableView:(UITableView *)tableView andViewController:(FLFShopViewController *)viewController;
 -(void)loadInstagram;
 -(void)fetchMoreMedia;
 

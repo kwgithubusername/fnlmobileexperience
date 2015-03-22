@@ -7,11 +7,30 @@
 //
 
 #import "FLFShopViewController.h"
-
+#import "InstagramEngine.h"
 @interface FLFShopViewController ()
 @end
 
 @implementation FLFShopViewController
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *URLString = [request.URL absoluteString];
+    if ([URLString hasPrefix:[[InstagramEngine sharedEngine] appRedirectURL]]) {
+        NSString *delimiter = @"access_token=";
+        NSArray *components = [URLString componentsSeparatedByString:delimiter];
+        if (components.count > 1) {
+            NSString *accessToken = [components lastObject];
+            NSLog(@"ACCESS TOKEN = %@",accessToken);
+            [[InstagramEngine sharedEngine] setAccessToken:accessToken];
+            
+            self.tabBarController.selectedIndex = 0;
+                NSLog(@"ready to load media");
+        }
+        return NO;
+    }
+    return YES;
+}
 
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {

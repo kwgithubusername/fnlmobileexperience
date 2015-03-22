@@ -15,6 +15,7 @@
 #import "FLFTwitterWebServices.h"
 #import "FLFInstagramTableViewCell.h"
 #import "FLFInstagramWebServices.h"
+#import "FLFShopViewController.h"
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -231,16 +232,34 @@
     self.instagramTableView.dataSource = self.instagramDataSource;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)setupInstagram
+{
+    FLFShopViewController *ThirdViewController = [[FLFShopViewController alloc] init];
+    ThirdViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+    ThirdViewController.didLoadFromDifferentTab = YES;
+    
+    self.tabBarController.selectedIndex = 2;
+    
+    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView andViewController:ThirdViewController];
+    
+    //[self.instagramWebServices loadInstagram];
+    //[self setupInstagramDataSource];
+}
+
+-(void)setupTwitter
+{
     self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
     [self.twitterWebServices loadTwitter];
     [self setupTwitterDataSource];
     self.twitterTableView.estimatedRowHeight = 44;
     self.twitterTableView.rowHeight = UITableViewAutomaticDimension;
-    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
-    [self.instagramWebServices loadInstagram];
-    [self setupInstagramDataSource];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupTwitter];
+    [self setupInstagram];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FLFShopViewController : UIViewController <NSURLSessionDownloadDelegate>
+@interface FLFShopViewController : UIViewController <NSURLSessionDownloadDelegate, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic) BOOL didLoadFromDifferentTab;
 
