@@ -108,7 +108,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                      [self.audioPlayer prepareToPlay];
                      [self.audioPlayer play];
                  }];
-        self.currentTrackInt = indexPath.row;
+        self.currentTrackInt = (int)indexPath.row;
     }
 }
 
