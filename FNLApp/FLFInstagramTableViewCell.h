@@ -11,5 +11,6 @@
 @interface FLFInstagramTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet KILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @end

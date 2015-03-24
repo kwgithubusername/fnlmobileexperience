@@ -32,6 +32,7 @@
 		9E20C26A1A83C31500DFCD93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C2691A83C31500DFCD93 /* QuartzCore.framework */; };
 		9E20C26C1A83C31A00DFCD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C26B1A83C31A00DFCD93 /* Security.framework */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
+		9EBAA9311AC0DA4400D214BB /* FLFInstagramLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */; };
 		9ECB99441ABBB0520016A28D /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB99431ABBB0520016A28D /* favorite.png */; };
 		9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994A1ABBB0730016A28D /* favorite_on.png */; };
 		9ECB994F1ABBB0990016A28D /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994C1ABBB0990016A28D /* reply.png */; };
@@ -196,6 +197,8 @@
 		9E20C2691A83C31500DFCD93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E20C26B1A83C31A00DFCD93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
+		9EBAA92F1AC0DA4400D214BB /* FLFInstagramLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramLoginViewController.h; sourceTree = "<group>"; };
+		9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramLoginViewController.m; sourceTree = "<group>"; };
 		9ECB99431ABBB0520016A28D /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		9ECB994A1ABBB0730016A28D /* favorite_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_on.png; sourceTree = "<group>"; };
 		9ECB994C1ABBB0990016A28D /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
+				9EBAA92F1AC0DA4400D214BB /* FLFInstagramLoginViewController.h */,
+				9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */,
 				9ED693C31ABE00DD00EA60CF /* FLFTwitterWebServices.h */,
 				9ED693C41ABE00DD00EA60CF /* FLFTwitterWebServices.m */,
 				9ED0910F1AB5DBCE004E3770 /* FLFTableViewDataSource.h */,
@@ -662,6 +667,7 @@
 				9E20C1FA1A83BD8000DFCD93 /* FirstViewController.m in Sources */,
 				9E20C1F41A83BD8000DFCD93 /* main.m in Sources */,
 				9ED091111AB5DBCE004E3770 /* FLFTableViewDataSource.m in Sources */,
+				9EBAA9311AC0DA4400D214BB /* FLFInstagramLoginViewController.m in Sources */,
 				9ED693C51ABE00DD00EA60CF /* FLFTwitterWebServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

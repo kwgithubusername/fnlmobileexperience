@@ -126,7 +126,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-PR-f3B" customClass="KILabel">
-                                                    <rect key="frame" x="116" y="8" width="444" height="120"/>
+                                                    <rect key="frame" x="116" y="8" width="414" height="120"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -138,23 +138,40 @@
                                                         <constraint firstAttribute="height" constant="100" id="wf5-nn-fnH"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2m-7z-Owy">
+                                                    <rect key="frame" x="530" y="54" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="7sX-lq-RTi"/>
+                                                        <constraint firstAttribute="width" constant="30" id="aA5-jZ-Ij5"/>
+                                                    </constraints>
+                                                    <state key="normal" title="♥︎">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pjn-Y3-MEo"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="8" id="2jf-vy-RBV"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="4wN-4k-sXe"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="7JJ-g3-edk"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="9KM-UV-zPr"/>
+                                                <constraint firstAttribute="centerY" secondItem="G2m-7z-Owy" secondAttribute="centerY" constant="-0.5" id="Djw-vY-IwW"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="H2p-Pn-1s8"/>
-                                                <constraint firstItem="hUZ-PR-f3B" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" id="Lin-r7-bpA"/>
+                                                <constraint firstItem="hUZ-PR-f3B" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" constant="-30" id="Lin-r7-bpA"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="leading" secondItem="Ong-gM-d7w" secondAttribute="leadingMargin" id="SZt-hP-uxO"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" constant="0.5" id="brR-BT-Mu8"/>
+                                                <constraint firstItem="G2m-7z-Owy" firstAttribute="leading" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="frg-Jf-sYZ"/>
                                                 <constraint firstAttribute="centerX" secondItem="hUZ-PR-f3B" secondAttribute="centerX" constant="-112.5" id="gIz-tI-JNl"/>
+                                                <constraint firstItem="G2m-7z-Owy" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" id="o6o-1j-zQw"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="59" id="uRI-rU-krm"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="4wN-4k-sXe"/>
                                                     <exclude reference="9KM-UV-zPr"/>
+                                                    <exclude reference="Lin-r7-bpA"/>
                                                     <exclude reference="gIz-tI-JNl"/>
                                                     <exclude reference="uRI-rU-krm"/>
                                                 </mask>
@@ -162,6 +179,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="hUZ-PR-f3B" id="ZAh-Rf-f88"/>
+                                            <outlet property="likeButton" destination="G2m-7z-Owy" id="uqm-1u-ICb"/>
                                             <outlet property="photoView" destination="RiZ-le-uBS" id="WiD-Yz-Bes"/>
                                         </connections>
                                     </tableViewCell>
@@ -196,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-329"/>
+            <point key="canvasLocation" x="750" y="-330"/>
         </scene>
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">

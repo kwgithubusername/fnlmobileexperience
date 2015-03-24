@@ -15,7 +15,7 @@
 #import "FLFTwitterWebServices.h"
 #import "FLFInstagramTableViewCell.h"
 #import "FLFInstagramWebServices.h"
-#import "FLFShopViewController.h"
+#import "FLFInstagramLoginViewController.h"
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -45,6 +45,32 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     });
+}
+- (IBAction)likeButtonTapped:(UIButton *)sender
+{
+    FLFInstagramTableViewCell *cell = (FLFInstagramTableViewCell *)sender.superview.superview;
+    NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
+    InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
+    
+    if (sender.titleLabel.textColor != [UIColor redColor])
+    {
+        [[InstagramEngine sharedEngine] likeMedia:media withSuccess:^{
+            sender.titleLabel.textColor = [UIColor redColor];
+            [self showMBProgressHUDSuccessWithString:@"Media liked"];
+        } failure:^(NSError *error) {
+            NSLog(@"error liking:%@", [error localizedDescription]);
+        }];
+    }
+    else if (sender.titleLabel.textColor == [UIColor redColor])
+    {
+        [[InstagramEngine sharedEngine] unlikeMedia:media withSuccess:^{
+            sender.titleLabel.textColor = [UIColor redColor];
+            [self showMBProgressHUDSuccessWithString:@"Media unliked"];
+        } failure:^(NSError *error) {
+            NSLog(@"error liking:%@", [error localizedDescription]);
+        }];
+    }
+    
 }
 
 - (IBAction)tweetButtonTapped:(UIButton *)sender
@@ -217,6 +243,17 @@
         
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
+        [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
+            NSLog(@"media is %@", media);
+            NSSet *likesSet = [[NSSet alloc] initWithArray:media.likes];
+            UIColor *likedOrNotColor =  [likesSet containsObject:[weakSelf.instagramWebServices loadInstagramUserInfo].Id]? [UIColor redColor] : [UIColor grayColor];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
+            });
+        } failure:^(NSError *error) {
+            NSLog(@"Error getting media:%@", [error localizedDescription]);
+        }];
+        
         return instagramCell;
     };
     
@@ -238,17 +275,15 @@
 
 - (void)setupInstagram
 {
-    FLFShopViewController *ThirdViewController = [[FLFShopViewController alloc] init];
-    ThirdViewController = [self.tabBarController.viewControllers objectAtIndex:2];
-    ThirdViewController.didLoadFromDifferentTab = YES;
+    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
     
-    self.tabBarController.selectedIndex = 2;
-    
-    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView andViewController:ThirdViewController];
-    
-    //[self.instagramWebServices loadInstagram];
+    if (![self.instagramWebServices hasAccessToken])
+    {
+        FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    }
+
     [self setupInstagramDataSource];
-    [self.instagramWebServices fetchMoreMedia];
 }
 
 -(void)setupTwitter
@@ -262,10 +297,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self setupTwitter];
     [self setupInstagram];
-    
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {

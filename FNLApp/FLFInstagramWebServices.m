@@ -16,20 +16,18 @@
 
 @implementation FLFInstagramWebServices
 
--(id)initWithTableView:(UITableView *)tableView andViewController:(FLFShopViewController *)viewController
+-(id)initWithTableView:(UITableView *)tableView
 {
     self = [super init];
     if (self)
     {
-        self.viewControllerForLogin = viewController;
         self.tableView = tableView;
         self.mediaMutableArray = [[NSMutableArray alloc] init];
-        [self setupAccessToken];
     }
     return self;
 }
 
--(void)setupAccessToken
+-(NSURL *)setupAccessToken
 {
     self.scopeString = @"basic+likes+comments";
     
@@ -38,21 +36,21 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&redirect_uri=%@&response_type=token&scope=%@", configuration[kInstagramKitAuthorizationUrlConfigurationKey], configuration[kInstagramKitAppClientIdConfigurationKey], configuration[kInstagramKitAppRedirectUrlConfigurationKey], scopeString]];
     
-    self.viewControllerForLogin.webView.delegate = self.viewControllerForLogin;
-    
-    __weak FLFInstagramWebServices *weakSelf = self;
-    
-    void(^loadMediaBlock)() = ^(){
-        InstagramEngine *sharedEngine = [InstagramEngine sharedEngine];
-        
-        if (sharedEngine.accessToken)
-        {
-            [weakSelf fetchMoreMedia];
-        }
-    };
-    
-    self.viewControllerForLogin.loadInitialInstagramMediaBlock = loadMediaBlock;
-    [self.viewControllerForLogin.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    return url;
+}
+
+-(BOOL)hasAccessToken
+{
+    InstagramEngine *sharedEngine = [InstagramEngine sharedEngine];
+    return sharedEngine.accessToken ? YES : NO;
+}
+
+-(void)checkForAccessTokenAndLoad
+{
+    if ([self hasAccessToken])
+    {
+        [self fetchMoreMedia];
+    }
 }
 
 -(BOOL)shouldLoadRequest:(NSURLRequest *)request
@@ -74,12 +72,16 @@
     return YES;
 }
 
--(void)loadInstagram
+-(InstagramUser *)loadInstagramUserInfo
 {
-    [self.instagram loginWithBlock:^(NSError *error) {
-        NSLog(@"Instagram success");
-        
+    //__weak FLFInstagramWebServices *weakSelf = self;
+    __block InstagramUser *user;
+    [[InstagramEngine sharedEngine] getSelfUserDetailsWithSuccess:^(InstagramUser *userDetail) {
+         user = userDetail;
+    } failure:^(NSError *error) {
+        NSLog(@"Error getting user info:%@", [error localizedDescription]);
     }];
+    return user;
 }
 
 -(void)fetchMoreMedia
