@@ -26,7 +26,6 @@
 {
     self = [super init];
     if (self && IKNotNull(info)) {
-        //NSLog(@"info is %@", info);
         _Id = [[NSString alloc] initWithString:info[kID]];
     }
     return self;

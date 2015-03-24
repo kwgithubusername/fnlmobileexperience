@@ -44,6 +44,7 @@
         _link = [[NSString alloc] initWithString:info[kLink]];
         _caption = [[InstagramComment alloc] initWithInfo:info[kCaption]];
         _likesCount = [(info[kLikes])[kCount] integerValue];
+        _userHasLiked = [info[kUserHasLiked] boolValue];
         mLikes = [[NSMutableArray alloc] init];
         for (NSDictionary *userInfo in (info[kLikes])[kData]) {
             InstagramUser *user = [[InstagramUser alloc] initWithInfo:userInfo];

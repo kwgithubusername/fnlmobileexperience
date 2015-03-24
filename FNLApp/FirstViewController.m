@@ -52,19 +52,21 @@
     NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
     InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
     
-    if (sender.titleLabel.textColor != [UIColor redColor])
+    if (sender.tag == 6)
     {
         [[InstagramEngine sharedEngine] likeMedia:media withSuccess:^{
             sender.titleLabel.textColor = [UIColor redColor];
+            sender.tag = 7;
             [self showMBProgressHUDSuccessWithString:@"Media liked"];
         } failure:^(NSError *error) {
             NSLog(@"error liking:%@", [error localizedDescription]);
         }];
     }
-    else if (sender.titleLabel.textColor == [UIColor redColor])
+    else if (sender.tag == 7)
     {
         [[InstagramEngine sharedEngine] unlikeMedia:media withSuccess:^{
-            sender.titleLabel.textColor = [UIColor redColor];
+            sender.titleLabel.textColor = [UIColor grayColor];
+            sender.tag = 6;
             [self showMBProgressHUDSuccessWithString:@"Media unliked"];
         } failure:^(NSError *error) {
             NSLog(@"error liking:%@", [error localizedDescription]);
@@ -245,8 +247,8 @@
         
         [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
             NSLog(@"media is %@", media);
-            NSSet *likesSet = [[NSSet alloc] initWithArray:media.likes];
-            UIColor *likedOrNotColor =  [likesSet containsObject:[weakSelf.instagramWebServices loadInstagramUserInfo].Id]? [UIColor redColor] : [UIColor grayColor];
+            UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
+            instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
             dispatch_async(dispatch_get_main_queue(), ^{
                 instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
             });
@@ -276,14 +278,8 @@
 - (void)setupInstagram
 {
     self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
-    
-    if (![self.instagramWebServices hasAccessToken])
-    {
-        FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
-        [self presentViewController:loginViewController animated:YES completion:nil];
-    }
-
     [self setupInstagramDataSource];
+    //[self.instagramWebServices fetchMoreMedia];
 }
 
 -(void)setupTwitter
@@ -297,6 +293,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupTwitter];
+    [self setupInstagram];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -308,8 +306,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self setupTwitter];
-    [self setupInstagram];
+    if (![self.instagramWebServices hasAccessToken])
+    {
+        FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
