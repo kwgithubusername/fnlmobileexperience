@@ -36,7 +36,7 @@
             NSString *accessToken = [components lastObject];
             NSLog(@"ACCESS TOKEN = %@",accessToken);
             [[InstagramEngine sharedEngine] setAccessToken:accessToken];
-            NSLog(@"ready to load media");
+            //NSLog(@"ready to load media");
             [self.webServices checkForAccessTokenAndLoad];
             [self dismissViewControllerAnimated:YES completion:nil];
             

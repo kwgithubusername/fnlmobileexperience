@@ -41,8 +41,7 @@
 
 -(BOOL)hasAccessToken
 {
-    InstagramEngine *sharedEngine = [InstagramEngine sharedEngine];
-    return sharedEngine.accessToken ? YES : NO;
+    return [InstagramEngine sharedEngine].accessToken ? YES : NO;
 }
 
 -(void)checkForAccessTokenAndLoad
@@ -51,25 +50,6 @@
     {
         [self fetchMoreMedia];
     }
-}
-
--(BOOL)shouldLoadRequest:(NSURLRequest *)request
-{
-    NSString *URLString = [request.URL absoluteString];
-    
-    if ([URLString hasPrefix:[[InstagramEngine sharedEngine] appRedirectURL]])
-    {
-        NSString *delimiter = @"access_token=";
-        NSArray *components = [URLString componentsSeparatedByString:delimiter];
-        if (components.count > 1) {
-            NSString *accessToken = [components lastObject];
-            NSLog(@"ACCESS TOKEN = %@",accessToken);
-            [[InstagramEngine sharedEngine] setAccessToken:accessToken];
-            NSLog(@"ready to load media");
-        }
-        return NO;
-    }
-    return YES;
 }
 
 -(InstagramUser *)loadInstagramUserInfo
