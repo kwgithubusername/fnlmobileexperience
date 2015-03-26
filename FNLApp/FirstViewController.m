@@ -46,6 +46,10 @@
         });
     });
 }
+- (IBAction)commentButtonTapped:(UIButton *)sender
+{
+    
+}
 - (IBAction)likeButtonTapped:(UIButton *)sender
 {
     FLFInstagramTableViewCell *cell = (FLFInstagramTableViewCell *)sender.superview.superview;

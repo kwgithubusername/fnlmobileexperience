@@ -132,7 +132,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RiZ-le-uBS">
-                                                    <rect key="frame" x="8" y="19" width="100" height="100"/>
+                                                    <rect key="frame" x="8" y="18" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="JRA-gU-MUb"/>
                                                         <constraint firstAttribute="height" constant="100" id="wf5-nn-fnH"/>
@@ -152,9 +152,20 @@
                                                         <action selector="likeButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pjn-Y3-MEo"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ba-dJH">
+                                                    <rect key="frame" x="530" y="92" width="30" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="💬">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="commentButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6H3-wR-8dD"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="8" id="2jf-vy-RBV"/>
+                                                <constraint firstItem="Wzw-Ba-dJH" firstAttribute="top" secondItem="G2m-7z-Owy" secondAttribute="bottom" constant="8" symbolic="YES" id="2ym-DK-Fcc"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="4wN-4k-sXe"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="top" secondItem="Ong-gM-d7w" secondAttribute="topMargin" id="7JJ-g3-edk"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="9KM-UV-zPr"/>
@@ -165,6 +176,7 @@
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" constant="0.5" id="brR-BT-Mu8"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="leading" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="frg-Jf-sYZ"/>
                                                 <constraint firstAttribute="centerX" secondItem="hUZ-PR-f3B" secondAttribute="centerX" constant="-112.5" id="gIz-tI-JNl"/>
+                                                <constraint firstItem="Wzw-Ba-dJH" firstAttribute="leading" secondItem="G2m-7z-Owy" secondAttribute="leading" id="h16-pl-Zqa"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" id="o6o-1j-zQw"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="59" id="uRI-rU-krm"/>
                                             </constraints>
@@ -215,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-330"/>
+            <point key="canvasLocation" x="750" y="-331"/>
         </scene>
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
