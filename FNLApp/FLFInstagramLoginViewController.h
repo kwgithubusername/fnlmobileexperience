@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FLFInstagramWebServices.h"
 @interface FLFInstagramLoginViewController : UIViewController <UIWebViewDelegate>
-
+@property (nonatomic) UIViewController *mainViewController;
 -(id)initWithWebServices:(FLFInstagramWebServices *)webServices;
 
 @end

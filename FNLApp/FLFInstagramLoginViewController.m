@@ -38,8 +38,11 @@
             [[InstagramEngine sharedEngine] setAccessToken:accessToken];
             //NSLog(@"ready to load media");
             [self.webServices checkForAccessTokenAndLoad];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
+             
+             UIViewController *viewController = [self.mainViewController.childViewControllers lastObject];
+             [viewController willMoveToParentViewController:nil];
+             [viewController.view removeFromSuperview];
+             [viewController removeFromParentViewController];
         }
         return NO;
     }
@@ -50,7 +53,8 @@
 {
     [super viewDidLayoutSubviews];
     self.view.backgroundColor = [UIColor grayColor];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.size.height/3, self.view.frame.size.width,self.view.frame.size.height*0.38)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+                          //CGRectMake(self.view.frame.origin.x, self.view.frame.size.height/3, self.view.frame.size.width,self.view.frame.size.height*0.38)];
     webView.delegate = self;
     [self.view addSubview:webView];
     [webView loadRequest:[NSURLRequest requestWithURL:[self.webServices setupAccessToken]]];

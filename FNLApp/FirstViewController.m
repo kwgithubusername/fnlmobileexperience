@@ -313,7 +313,14 @@
     if (![self.instagramWebServices hasAccessToken])
     {
         FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
-        [self presentViewController:loginViewController animated:YES completion:nil];
+        loginViewController.mainViewController = self;
+        UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
+        loginViewController.view.frame = contentView.frame;
+        [self.view addSubview:loginViewController.view];
+        [self addChildViewController:loginViewController];
+        [loginViewController didMoveToParentViewController:self];
+        
+        //[self presentViewController:loginViewController animated:YES completion:nil];
     }
 }
 
