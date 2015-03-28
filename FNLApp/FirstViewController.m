@@ -16,6 +16,7 @@
 #import "FLFInstagramTableViewCell.h"
 #import "FLFInstagramWebServices.h"
 #import "FLFInstagramLoginViewController.h"
+#import "FLFInstagramCommentViewController.h"
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -48,6 +49,13 @@
 }
 - (IBAction)commentButtonTapped:(UIButton *)sender
 {
+    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices];
+    commentViewController.mainViewController = self;
+    UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
+    commentViewController.view.frame = contentView.frame;
+    [self.view addSubview:commentViewController.view];
+    [self addChildViewController:commentViewController];
+    [commentViewController didMoveToParentViewController:self];
     
 }
 - (IBAction)likeButtonTapped:(UIButton *)sender
