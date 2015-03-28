@@ -14,17 +14,20 @@
 @property (nonatomic) UIImage *image;
 @property (nonatomic) UITextField *textField;
 @property (nonatomic) UIButton *sendButton;
+@property (nonatomic) UIButton *closeButton;
 @property (nonatomic) BOOL viewsCreated;
+@property (nonatomic) NSString *captionString;
 @end
 
 @implementation FLFInstagramCommentViewController
 
--(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image
+-(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image withCaptionString:(NSString *)captionString
 {
     self = [super init];
     if (self)
     {
         self.webServices = webServices;
+        self.captionString = captionString;
         self.image = image;
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -50,6 +53,37 @@
 -(void)postComment
 {
     
+}
+
+#pragma mark - Create Views -
+
+-(void)createCaptionLabel
+{
+    KILabel *captionLabel = [[KILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    captionLabel.text = self.captionString;
+    captionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    captionLabel.font = [UIFont systemFontOfSize:14];
+    captionLabel.numberOfLines = 7;
+    captionLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:captionLabel];
+    
+    NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : captionLabel, @"textField" : self.textField, @"sendButton" : self.sendButton};
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:@"V:[closeButton]-[captionLabel]"
+                              options:0
+                              metrics:nil
+                               views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:[captionLabel(100)]"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:[imageView]-8-[captionLabel]-16-|"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
 }
 
 -(void)createImageView
@@ -81,6 +115,7 @@
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(imageView)]];
     imageView.image = self.image;
+    self.imageView = imageView;
 }
 
 -(void)createTextField
@@ -110,7 +145,7 @@
                                metrics:nil
                                views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[textField(50)]"
+                               constraintsWithVisualFormat:@"V:[textField(31)]"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
@@ -132,7 +167,7 @@
     closeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:closeButton];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:|-16-[closeButton]"
+                               constraintsWithVisualFormat:@"V:|-8-[closeButton]"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(closeButton)]];
@@ -146,6 +181,7 @@
     [closeButton addTarget:self
                action:@selector(closeWindow)
      forControlEvents:UIControlEventTouchUpInside];
+    self.closeButton = closeButton;
 }
 
 -(void)createSendButton
@@ -193,6 +229,7 @@
         [self createCloseButton];
         [self createImageView];
         [self createTextField];
+        [self createCaptionLabel];
         self.viewsCreated = YES;
     }
 

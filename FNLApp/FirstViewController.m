@@ -50,8 +50,9 @@
 - (IBAction)commentButtonTapped:(UIButton *)sender
 {
     FLFInstagramTableViewCell *cell = (FLFInstagramTableViewCell *)sender.superview.superview;
+    NSString *captionString = cell.captionLabel.text;
     UIImage *image = cell.photoView.image;
-    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices andImage:(UIImage *)image];
+    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices andImage:(UIImage *)image withCaptionString:captionString];
     commentViewController.mainViewController = self;
     UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
     commentViewController.view.frame = contentView.frame;
