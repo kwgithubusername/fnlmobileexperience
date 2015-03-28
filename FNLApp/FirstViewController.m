@@ -49,10 +49,16 @@
 }
 - (IBAction)commentButtonTapped:(UIButton *)sender
 {
-    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices];
+    FLFInstagramTableViewCell *cell = (FLFInstagramTableViewCell *)sender.superview.superview;
+    UIImage *image = cell.photoView.image;
+    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices andImage:(UIImage *)image];
     commentViewController.mainViewController = self;
     UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
     commentViewController.view.frame = contentView.frame;
+    
+    //NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
+    //InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
+    
     [self.view addSubview:commentViewController.view];
     [self addChildViewController:commentViewController];
     [commentViewController didMoveToParentViewController:self];
