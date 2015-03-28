@@ -12,6 +12,9 @@
 @property (nonatomic) FLFInstagramWebServices *webServices;
 @property (nonatomic) UIImageView *imageView;
 @property (nonatomic) UIImage *image;
+@property (nonatomic) UITextField *textField;
+@property (nonatomic) UIButton *sendButton;
+@property (nonatomic) BOOL viewsCreated;
 @end
 
 @implementation FLFInstagramCommentViewController
@@ -80,30 +83,68 @@
     imageView.image = self.image;
 }
 
+-(void)createTextField
+{
+    NSLog(@"creating textField");
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,200,40)];
+    
+    NSDictionary *viewsDictionary = @{ @"sendButton" : self.sendButton, @"textField" : textField };
+    
+    textField.translatesAutoresizingMaskIntoConstraints = NO;
+    //textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [self.view addSubview:textField];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:[textField]-16-|"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:[textField]-8-[sendButton]"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:[textField(200)]"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:[textField(50)]"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    [self.view bringSubviewToFront:textField];
+    textField.placeholder = @"Add comment";
+    textField.userInteractionEnabled = YES;
+    self.textField = textField;
+}
+
 -(void)createCloseButton
 {
     NSLog(@"creating close button");
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //CGSize viewBoundsSize = self.view.bounds.size;
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    [button sizeToFit];
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton sizeToFit];
     
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:button];
+    closeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:closeButton];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:|-16-[button]"
+                               constraintsWithVisualFormat:@"V:|-16-[closeButton]"
                                options:0
                                metrics:nil
-                               views:NSDictionaryOfVariableBindings(button)]];
+                               views:NSDictionaryOfVariableBindings(closeButton)]];
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[button]-16-|"
+                               constraintsWithVisualFormat:@"H:[closeButton]-16-|"
                                options:0
                                metrics:nil
-                               views:NSDictionaryOfVariableBindings(button)]];
+                               views:NSDictionaryOfVariableBindings(closeButton)]];
     //IBAction
-    [button addTarget:self
+    [closeButton addTarget:self
                action:@selector(closeWindow)
      forControlEvents:UIControlEventTouchUpInside];
 }
@@ -111,29 +152,30 @@
 -(void)createSendButton
 {
     NSLog(@"creating send button");
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [button setTitle:@"Send" forState:UIControlStateNormal];
-    [button sizeToFit];
+    [sendButton setTitle:@"Send" forState:UIControlStateNormal];
+    [sendButton sizeToFit];
     
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:button];
+    sendButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:sendButton];
 
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[button]-16-|"
+                               constraintsWithVisualFormat:@"V:[sendButton]-16-|"
                                options:0
                                metrics:nil
-                               views:NSDictionaryOfVariableBindings(button)]];
+                               views:NSDictionaryOfVariableBindings(sendButton)]];
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[button]-16-|"
+                               constraintsWithVisualFormat:@"H:[sendButton]-16-|"
                                options:0
                                metrics:nil
-                               views:NSDictionaryOfVariableBindings(button)]];
+                               views:NSDictionaryOfVariableBindings(sendButton)]];
     //IBAction
-    [button addTarget:self
+    [sendButton addTarget:self
                   action:@selector(postComment)
         forControlEvents:UIControlEventTouchUpInside];
+    self.sendButton = sendButton;
 }
 
 - (void)viewDidLoad {
@@ -144,10 +186,17 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self removeSubviews];
-    [self createSendButton];
-    [self createCloseButton];
-    [self createImageView];
+    
+    if (!self.viewsCreated)
+    {
+        [self removeSubviews];
+        [self createSendButton];
+        [self createCloseButton];
+        [self createImageView];
+        [self createTextField];
+        self.viewsCreated = YES;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
