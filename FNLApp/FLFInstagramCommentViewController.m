@@ -60,11 +60,12 @@
 -(void)createCaptionLabel
 {
     KILabel *captionLabel = [[KILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    captionLabel.adjustsFontSizeToFitWidth = YES;
+    captionLabel.font = [UIFont systemFontOfSize:14];
     captionLabel.text = self.captionString;
     captionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    captionLabel.font = [UIFont systemFontOfSize:14];
-    captionLabel.numberOfLines = 7;
-    captionLabel.adjustsFontSizeToFitWidth = YES;
+    captionLabel.numberOfLines = 10;
+    
     [self.view addSubview:captionLabel];
     
     NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : captionLabel, @"textField" : self.textField, @"sendButton" : self.sendButton};
@@ -90,14 +91,15 @@
 {
     NSLog(@"creating imageView");
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : imageView};
     
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:imageView];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:|-16-[imageView]"
+                               constraintsWithVisualFormat:@"V:[closeButton]-0-[imageView]"
                                options:0
                                metrics:nil
-                               views:NSDictionaryOfVariableBindings(imageView)]];
+                               views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"H:|-16-[imageView]"
@@ -167,7 +169,7 @@
     closeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:closeButton];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:|-8-[closeButton]"
+                               constraintsWithVisualFormat:@"V:|-0-[closeButton]"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(closeButton)]];
