@@ -99,7 +99,6 @@
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
-    
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"H:[textField]-8-[sendButton]"
                                options:0
