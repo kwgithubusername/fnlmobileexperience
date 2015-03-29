@@ -64,8 +64,6 @@
 -(void)createCommentTableView
 {
     self.instagramTableView = [[UITableView alloc] initWithFrame:CGRectZero];
-    self.instagramTableView.estimatedRowHeight = 44;
-    self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
     [self setupInstagramDataSource];
     self.instagramTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.instagramTableView];
@@ -78,10 +76,14 @@
                                metrics:nil
                                views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|-16-[tableView]-16-|"
+                               constraintsWithVisualFormat:@"H:|-[tableView]-|"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
+    [self.instagramTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.instagramTableView.numberOfSections)] withRowAnimation:UITableViewRowAnimationNone];
+    [self.instagramTableView reloadData];
+    self.instagramTableView.estimatedRowHeight = 44;
+    self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)setupInstagramDataSource
@@ -188,7 +190,6 @@
     NSDictionary *viewsDictionary = @{ @"sendButton" : self.sendButton, @"textField" : textField };
     
     textField.translatesAutoresizingMaskIntoConstraints = NO;
-    //textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:textField];
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"V:[textField]-8-|"
@@ -200,11 +201,6 @@
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
-//    [self.view addConstraints:[NSLayoutConstraint
-//                               constraintsWithVisualFormat:@"H:[textField(200)]"
-//                               options:0
-//                               metrics:nil
-//                               views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"V:[textField(31)]"
                                options:0
@@ -221,7 +217,6 @@
     NSLog(@"creating close button");
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    //CGSize viewBoundsSize = self.view.bounds.size;
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
     [closeButton sizeToFit];
     
@@ -304,7 +299,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.instagramTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.instagramTableView.numberOfSections)] withRowAnimation:UITableViewRowAnimationNone];
+
 }
 
 - (void)didReceiveMemoryWarning {
