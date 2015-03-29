@@ -44,7 +44,10 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.willDisplayCellBlock(indexPath);
+    if (self.willDisplayCellBlock)
+    {
+        self.willDisplayCellBlock(indexPath);
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

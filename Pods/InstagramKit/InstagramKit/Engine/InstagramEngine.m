@@ -210,7 +210,6 @@ typedef enum
     }
     
     NSString *percentageEscapedPath = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"path is %@", percentageEscapedPath);
     [self.operationManager GET:percentageEscapedPath
         parameters:params
            success:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -7,7 +7,8 @@
 //
 
 #import "FLFInstagramCommentViewController.h"
-
+#import "FLFTableViewDataSource.h"
+#import "FLFInstagramCommentTableViewCell.h"
 @interface FLFInstagramCommentViewController ()
 @property (nonatomic) FLFInstagramWebServices *webServices;
 @property (nonatomic) UIImageView *imageView;
@@ -16,18 +17,21 @@
 @property (nonatomic) UIButton *sendButton;
 @property (nonatomic) UIButton *closeButton;
 @property (nonatomic) BOOL viewsCreated;
-@property (nonatomic) NSString *captionString;
+@property (nonatomic) UILabel *captionLabel;
+@property (nonatomic) InstagramMedia *media;
+@property (nonatomic) FLFTableViewDataSource *instagramDataSource;
+@property (nonatomic) UITableView *instagramTableView;
 @end
 
 @implementation FLFInstagramCommentViewController
 
--(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image withCaptionString:(NSString *)captionString
+-(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image withInstagramMedia:(InstagramMedia *)media
 {
     self = [super init];
     if (self)
     {
         self.webServices = webServices;
-        self.captionString = captionString;
+        self.media = media;
         self.image = image;
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -57,12 +61,67 @@
 
 #pragma mark - Create Views -
 
+-(void)createCommentTableView
+{
+    self.instagramTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,50,50)];
+    [self setupInstagramDataSource];
+    self.instagramTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.instagramTableView];
+    
+    NSDictionary *viewsDictionary = @{ @"tableView" : self.instagramTableView, @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : self.captionLabel, @"textField" : self.textField, @"sendButton" : self.sendButton};
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:[captionLabel]-8-[tableView]-8-[sendButton]"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|-16-[tableView]-16-|"
+                               options:0
+                               metrics:nil
+                               views:viewsDictionary]];
+}
+
+-(void)setupInstagramDataSource
+{
+    
+    __weak FLFInstagramCommentViewController *weakSelf = self;
+    
+    FLFInstagramCommentTableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^FLFInstagramCommentTableViewCell *(NSIndexPath *indexPath, UITableView *tableView)
+    {
+        InstagramComment *instagramComment = weakSelf.media.comments[indexPath.row];
+        
+        NSString *usernameString = instagramComment.user.username;
+        NSString *commentString = instagramComment.text;
+            
+        FLFInstagramCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
+        NSLog(@"reuseIdentifier is %@", commentCell.reuseIdentifier);
+        
+        if (commentCell == nil)
+        {
+            commentCell = [[FLFInstagramCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell" usernameString:usernameString commentString:commentString];
+        }
+        
+        NSLog(@"commentCell usernameString is %@", commentCell.usernameString);
+        return commentCell;
+    };
+    
+    NSInteger(^numberOfRowsInSectionBlock)() = ^NSInteger(){
+        return [weakSelf.media.comments count];
+    };
+    
+    self.instagramDataSource = [[FLFTableViewDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:nil];
+    self.instagramTableView.delegate = self.instagramDataSource;
+    self.instagramTableView.dataSource = self.instagramDataSource;
+}
+
+
 -(void)createCaptionLabel
 {
     KILabel *captionLabel = [[KILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     captionLabel.adjustsFontSizeToFitWidth = YES;
     captionLabel.font = [UIFont systemFontOfSize:14];
-    captionLabel.text = self.captionString;
+    captionLabel.text = self.media.caption.text;
     captionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     captionLabel.numberOfLines = 10;
     
@@ -85,6 +144,7 @@
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
+    self.captionLabel = captionLabel;
 }
 
 -(void)createImageView
@@ -232,6 +292,7 @@
         [self createImageView];
         [self createTextField];
         [self createCaptionLabel];
+        [self createCommentTableView];
         self.viewsCreated = YES;
     }
 

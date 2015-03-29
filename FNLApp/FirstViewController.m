@@ -50,9 +50,10 @@
 - (IBAction)commentButtonTapped:(UIButton *)sender
 {
     FLFInstagramTableViewCell *cell = (FLFInstagramTableViewCell *)sender.superview.superview;
-    NSString *captionString = cell.captionLabel.text;
+    NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
+    InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
     UIImage *image = cell.photoView.image;
-    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices andImage:(UIImage *)image withCaptionString:captionString];
+    FLFInstagramCommentViewController *commentViewController = [[FLFInstagramCommentViewController alloc] initWithWebServices:self.instagramWebServices andImage:(UIImage *)image withInstagramMedia:media];
     commentViewController.mainViewController = self;
     UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
     commentViewController.view.frame = contentView.frame;
@@ -265,7 +266,7 @@
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
         [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
-            NSLog(@"media is %@", media);
+            //NSLog(@"media is %@", media);
             UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
             instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
             dispatch_async(dispatch_get_main_queue(), ^{

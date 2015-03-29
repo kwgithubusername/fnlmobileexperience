@@ -10,7 +10,6 @@
 #import "FLFInstagramWebServices.h"
 @interface FLFInstagramCommentViewController : UIViewController
 @property (nonatomic) UIViewController *mainViewController;
--(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image
-       withCaptionString:(NSString *)captionString;
+-(id)initWithWebServices:(FLFInstagramWebServices *)webServices andImage:(UIImage *)image withInstagramMedia:(InstagramMedia *)media;
 
 @end
