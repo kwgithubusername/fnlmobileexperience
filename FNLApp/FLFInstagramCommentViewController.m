@@ -63,7 +63,9 @@
 
 -(void)createCommentTableView
 {
-    self.instagramTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,50,50)];
+    self.instagramTableView = [[UITableView alloc] initWithFrame:CGRectZero];
+    self.instagramTableView.estimatedRowHeight = 44;
+    self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
     [self setupInstagramDataSource];
     self.instagramTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.instagramTableView];
@@ -84,7 +86,6 @@
 
 -(void)setupInstagramDataSource
 {
-    
     __weak FLFInstagramCommentViewController *weakSelf = self;
     
     FLFInstagramCommentTableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^FLFInstagramCommentTableViewCell *(NSIndexPath *indexPath, UITableView *tableView)
@@ -95,14 +96,12 @@
         NSString *commentString = instagramComment.text;
             
         FLFInstagramCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
-        NSLog(@"reuseIdentifier is %@", commentCell.reuseIdentifier);
         
         if (commentCell == nil)
         {
             commentCell = [[FLFInstagramCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell" usernameString:usernameString commentString:commentString];
         }
         
-        NSLog(@"commentCell usernameString is %@", commentCell.usernameString);
         return commentCell;
     };
     
@@ -118,7 +117,7 @@
 
 -(void)createCaptionLabel
 {
-    KILabel *captionLabel = [[KILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    KILabel *captionLabel = [[KILabel alloc] initWithFrame:CGRectZero];
     captionLabel.adjustsFontSizeToFitWidth = YES;
     captionLabel.font = [UIFont systemFontOfSize:14];
     captionLabel.text = self.media.caption.text;
@@ -140,7 +139,7 @@
                                metrics:nil
                                views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[imageView]-8-[captionLabel]-16-|"
+                               constraintsWithVisualFormat:@"H:[imageView]-8-[captionLabel]-8-|"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
@@ -150,7 +149,7 @@
 -(void)createImageView
 {
     NSLog(@"creating imageView");
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : imageView};
     
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -162,7 +161,7 @@
                                views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|-16-[imageView]"
+                               constraintsWithVisualFormat:@"H:|-8-[imageView]"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(imageView)]];
@@ -184,7 +183,7 @@
 {
     NSLog(@"creating textField");
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,200,40)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
     
     NSDictionary *viewsDictionary = @{ @"sendButton" : self.sendButton, @"textField" : textField };
     
@@ -192,20 +191,20 @@
     //textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:textField];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[textField]-16-|"
+                               constraintsWithVisualFormat:@"V:[textField]-8-|"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[textField]-8-[sendButton]"
+                               constraintsWithVisualFormat:@"H:|-8-[textField]-8-[sendButton]"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[textField(200)]"
-                               options:0
-                               metrics:nil
-                               views:viewsDictionary]];
+//    [self.view addConstraints:[NSLayoutConstraint
+//                               constraintsWithVisualFormat:@"H:[textField(200)]"
+//                               options:0
+//                               metrics:nil
+//                               views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint
                                constraintsWithVisualFormat:@"V:[textField(31)]"
                                options:0
@@ -235,7 +234,7 @@
                                views:NSDictionaryOfVariableBindings(closeButton)]];
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[closeButton]-16-|"
+                               constraintsWithVisualFormat:@"H:[closeButton]-8-|"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(closeButton)]];
@@ -258,13 +257,18 @@
     [self.view addSubview:sendButton];
 
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[sendButton]-16-|"
+                               constraintsWithVisualFormat:@"V:[sendButton]-8-|"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(sendButton)]];
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[sendButton]-16-|"
+                               constraintsWithVisualFormat:@"H:[sendButton]-8-|"
+                               options:0
+                               metrics:nil
+                               views:NSDictionaryOfVariableBindings(sendButton)]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:[sendButton(50)]"
                                options:0
                                metrics:nil
                                views:NSDictionaryOfVariableBindings(sendButton)]];
@@ -295,7 +299,12 @@
         [self createCommentTableView];
         self.viewsCreated = YES;
     }
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.instagramTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.instagramTableView.numberOfSections)] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)didReceiveMemoryWarning {
