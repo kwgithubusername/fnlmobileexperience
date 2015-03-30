@@ -80,10 +80,9 @@
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
-    [self.instagramTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.instagramTableView.numberOfSections)] withRowAnimation:UITableViewRowAnimationNone];
-    [self.instagramTableView reloadData];
     self.instagramTableView.estimatedRowHeight = 44;
     self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
+
 }
 
 -(void)setupInstagramDataSource
@@ -299,7 +298,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.instagramTableView reloadData];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
