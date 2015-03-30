@@ -22,5 +22,6 @@
 -(NSURL *)setupAccessToken;
 -(void)checkForAccessTokenAndLoad;
 -(BOOL)hasAccessToken;
+-(NSArray *)getMediaComments:(InstagramMedia *)media;
 
 @end

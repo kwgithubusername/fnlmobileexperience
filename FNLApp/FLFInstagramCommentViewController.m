@@ -21,6 +21,7 @@
 @property (nonatomic) InstagramMedia *media;
 @property (nonatomic) FLFTableViewDataSource *instagramDataSource;
 @property (nonatomic) UITableView *instagramTableView;
+@property (nonatomic) NSMutableArray *commentsMutableArray;
 @end
 
 @implementation FLFInstagramCommentViewController
@@ -56,7 +57,19 @@
 
 -(void)postComment
 {
+    [self.commentsMutableArray removeAllObjects];
     
+    __block NSMutableArray *commentsMutableArray = [[NSMutableArray alloc] init];
+    
+    [[InstagramEngine sharedEngine] getMedia:self.media.Id withSuccess:^(InstagramMedia *media) {
+        [commentsMutableArray addObjectsFromArray:media.comments];
+        NSLog(@"got comments");
+    } failure:^(NSError *error) {
+        NSLog(@"failed to get comments");
+    }];
+    
+    [self.commentsMutableArray addObjectsFromArray:commentsMutableArray];
+    [self.instagramTableView reloadData];
 }
 
 #pragma mark - Create Views -
@@ -91,10 +104,20 @@
     
     FLFInstagramCommentTableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^FLFInstagramCommentTableViewCell *(NSIndexPath *indexPath, UITableView *tableView)
     {
-        InstagramComment *instagramComment = weakSelf.media.comments[indexPath.row];
+        InstagramComment *comment;
         
-        NSString *usernameString = instagramComment.user.username;
-        NSString *commentString = instagramComment.text;
+        if ([self.commentsMutableArray count] != 0)
+        {
+            comment = self.commentsMutableArray[indexPath.row];
+        }
+        else
+        {
+            comment = weakSelf.media.comments[indexPath.row];
+        }
+        //InstagramComment *instagramComment = weakSelf.media.comments[indexPath.row];
+        
+        NSString *usernameString = comment.user.username;
+        NSString *commentString = comment.text;
             
         FLFInstagramCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
         
@@ -275,6 +298,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.commentsMutableArray = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
 }
 

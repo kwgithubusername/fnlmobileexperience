@@ -266,7 +266,7 @@
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
         [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
-            //NSLog(@"media is %@", media);
+            NSLog(@"media is %@", media);
             UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
             instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
             dispatch_async(dispatch_get_main_queue(), ^{
