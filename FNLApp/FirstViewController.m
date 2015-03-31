@@ -331,11 +331,16 @@
     self.videoPlayer.view.tag = 101;
     [self.view bringSubviewToFront:self.videoPlayer.view];
     [self.videoPlayer play];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:self.videoPlayer queue:nil usingBlock:^(NSNotification *note)
+     {
+        [self removeVideoPlayers];
+    ;}];
 }
 
 -(void)removeVideoPlayers
 {
-    for (UIView *view in self.instagramTableView.subviews)
+    for (UIView *view in self.view.subviews)
     {
         if (view.tag == 101)
         {[view removeFromSuperview];};
