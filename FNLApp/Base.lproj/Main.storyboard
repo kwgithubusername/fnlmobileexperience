@@ -34,7 +34,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tweet" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eC7-lr-jaQ" customClass="KILabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tweet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eC7-lr-jaQ" customClass="KILabel">
                                                     <rect key="frame" x="0.0" y="28" width="560" height="110"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="tG3-nl-pMD"/>
@@ -173,7 +173,7 @@
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="H2p-Pn-1s8"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" constant="-30" id="Lin-r7-bpA"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="leading" secondItem="Ong-gM-d7w" secondAttribute="leadingMargin" id="SZt-hP-uxO"/>
-                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" constant="0.5" id="brR-BT-Mu8"/>
+                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" id="brR-BT-Mu8"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="leading" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="frg-Jf-sYZ"/>
                                                 <constraint firstAttribute="centerX" secondItem="hUZ-PR-f3B" secondAttribute="centerX" constant="-112.5" id="gIz-tI-JNl"/>
                                                 <constraint firstItem="Wzw-Ba-dJH" firstAttribute="leading" secondItem="G2m-7z-Owy" secondAttribute="leading" id="h16-pl-Zqa"/>

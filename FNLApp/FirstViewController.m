@@ -17,6 +17,7 @@
 #import "FLFInstagramWebServices.h"
 #import "FLFInstagramLoginViewController.h"
 #import "FLFInstagramCommentViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -28,12 +29,12 @@
 @property (nonatomic) FLFTableViewDataSource *instagramDataSource;
 @property (nonatomic) FLFTwitterWebServices *twitterWebServices;
 @property (nonatomic) FLFInstagramWebServices *instagramWebServices;
+@property (nonatomic) MPMoviePlayerController *videoPlayer;
+@property (nonatomic) int tableViewRowOfCurrentVideoPlayingInt;
 
 @end
 
 @implementation FirstViewController
-
-
 
 -(void)showMBProgressHUDSuccessWithString:(NSString *)string
 {
@@ -265,6 +266,14 @@
         
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
+        if (instagramObject.isVideo)
+        {
+            UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
+            instagramCell.photoView.tag = indexPath.row;
+            instagramCell.photoView.userInteractionEnabled = YES;
+            [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
+        }
+        
         [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
             NSLog(@"media is %@", media);
             UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
@@ -295,11 +304,48 @@
     self.instagramTableView.dataSource = self.instagramDataSource;
 }
 
+-(void)instagramVideoTapped:(UIGestureRecognizer *)sender
+{
+    NSLog(@"video tapped");
+    if (self.videoPlayer.playbackState == MPMoviePlaybackStatePlaying && self.tableViewRowOfCurrentVideoPlayingInt == sender.view.tag)
+    {
+        [self.videoPlayer pause];
+    }
+    else
+    {
+        [self playInstagramVideo:sender];
+    }
+}
+
+-(void)playInstagramVideo:(UIGestureRecognizer *)sender
+{
+    [self removeVideoPlayers];
+    self.tableViewRowOfCurrentVideoPlayingInt = (int)sender.view.tag;
+    InstagramMedia *mediaToPlay = self.instagramWebServices.mediaMutableArray[sender.view.tag];
+    NSURL *videoURL = mediaToPlay.standardResolutionVideoURL;
+    self.videoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
+    [self.videoPlayer prepareToPlay];
+    CGSize viewFrameSize = self.view.frame.size;
+    [self.view addSubview:self.videoPlayer.view];
+    self.videoPlayer.view.frame = CGRectMake(viewFrameSize.width/6, viewFrameSize.height/6, viewFrameSize.width*2/3, viewFrameSize.height*2/3);
+    self.videoPlayer.view.tag = 101;
+    [self.view bringSubviewToFront:self.videoPlayer.view];
+    [self.videoPlayer play];
+}
+
+-(void)removeVideoPlayers
+{
+    for (UIView *view in self.instagramTableView.subviews)
+    {
+        if (view.tag == 101)
+        {[view removeFromSuperview];};
+    }
+}
+
 - (void)setupInstagram
 {
     self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
     [self setupInstagramDataSource];
-    //[self.instagramWebServices fetchMoreMedia];
 }
 
 -(void)setupTwitter
@@ -318,11 +364,6 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -335,14 +376,7 @@
         [self.view addSubview:loginViewController.view];
         [self addChildViewController:loginViewController];
         [loginViewController didMoveToParentViewController:self];
-        
-        //[self presentViewController:loginViewController animated:YES completion:nil];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

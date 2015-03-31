@@ -64,7 +64,7 @@
     self.commentLabel.font = [UIFont systemFontOfSize:12];
     self.commentLabel.text = self.commentString;
     self.commentLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.commentLabel.numberOfLines = 5;
+    self.commentLabel.numberOfLines = 0;
     
     [self.contentView addSubview:self.commentLabel];
     
