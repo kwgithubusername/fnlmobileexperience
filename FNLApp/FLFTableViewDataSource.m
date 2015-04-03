@@ -25,9 +25,9 @@
     self = [super init];
     if (self)
     {
-        self.cellForRowAtIndexPathBlock = aCellForRowAtIndexPathBlock;
-        self.numberOfRowsInSectionBlock = aNumberOfRowsInSectionBlock;
-        self.willDisplayCellBlock = aWillDisplayCellBlock;
+        self.cellForRowAtIndexPathBlock = [aCellForRowAtIndexPathBlock copy];
+        self.numberOfRowsInSectionBlock = [aNumberOfRowsInSectionBlock copy];
+        self.willDisplayCellBlock = [aWillDisplayCellBlock copy];
     }
     return self;
 }

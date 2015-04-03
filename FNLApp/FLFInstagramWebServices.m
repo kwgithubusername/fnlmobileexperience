@@ -43,16 +43,6 @@
 {
     __block NSMutableArray *commentsMutableArray = [[NSMutableArray alloc] init];
     
-//    [[InstagramEngine sharedEngine] getCommentsOnMedia:media withSuccess:^(NSArray *comments) {
-//        [self.commentsMutableArray addObjectsFromArray:comments];
-//        NSLog(@"got comments");
-//    } failure:^(NSError *error) {
-//        NSLog(@"failed to get comments");
-//    }];
-//    NSLog(@"commentsarray is %@",self.commentsMutableArray);
-    
-    //__block NSMutableArray *commentsMutableArray = [[NSMutableArray alloc] init];
-    
     [[InstagramEngine sharedEngine] getMedia:media.Id withSuccess:^(InstagramMedia *media) {
         [commentsMutableArray addObjectsFromArray:media.comments];
         NSLog(@"got comments");

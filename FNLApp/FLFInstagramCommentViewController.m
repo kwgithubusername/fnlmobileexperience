@@ -59,6 +59,12 @@
 {
     [self.commentsMutableArray removeAllObjects];
     
+    [[InstagramEngine sharedEngine] createComment:self.textField.text onMedia:self.media withSuccess:^{
+        NSLog(@"posted comment");
+    } failure:^(NSError *error) {
+        NSLog(@"failed to post comment");
+    }];
+    
     __block NSMutableArray *commentsMutableArray = [[NSMutableArray alloc] init];
     
     [[InstagramEngine sharedEngine] getMedia:self.media.Id withSuccess:^(InstagramMedia *media) {
