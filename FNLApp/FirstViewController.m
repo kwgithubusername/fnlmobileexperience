@@ -31,6 +31,8 @@
 @property (nonatomic) FLFInstagramWebServices *instagramWebServices;
 @property (nonatomic) MPMoviePlayerController *videoPlayer;
 @property (nonatomic) int tableViewRowOfCurrentVideoPlayingInt;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navBarTitleItem;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 
 @end
 
@@ -323,14 +325,7 @@
     self.tableViewRowOfCurrentVideoPlayingInt = (int)sender.view.tag;
     InstagramMedia *mediaToPlay = self.instagramWebServices.mediaMutableArray[sender.view.tag];
     NSURL *videoURL = mediaToPlay.standardResolutionVideoURL;
-    self.videoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
-    [self.videoPlayer prepareToPlay];
-    CGSize viewFrameSize = self.view.frame.size;
-    [self.view addSubview:self.videoPlayer.view];
-    self.videoPlayer.view.frame = CGRectMake(viewFrameSize.width/6, viewFrameSize.height/6, viewFrameSize.width*2/3, viewFrameSize.height*2/3);
-    self.videoPlayer.view.tag = 101;
-    [self.view bringSubviewToFront:self.videoPlayer.view];
-    [self.videoPlayer play];
+    [self setupVideoPlayerWithURL:videoURL];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:self.videoPlayer queue:nil usingBlock:^(NSNotification *note)
      {
@@ -338,12 +333,53 @@
     ;}];
 }
 
+-(void)setupVideoPlayerWithURL:(NSURL *)videoURL
+{
+    [self setupNavbarGestureRecognizer];
+    self.videoPlayer = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
+    [self.videoPlayer prepareToPlay];
+    CGSize viewFrameSize = self.view.frame.size;
+
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
+                           forView:self.videoPlayer.view
+                             cache:YES];
+    
+    [self.view addSubview:self.videoPlayer.view];
+    self.videoPlayer.view.frame = CGRectMake(viewFrameSize.width/6, viewFrameSize.height/6, viewFrameSize.width*2/3, viewFrameSize.height*2/3);
+    self.videoPlayer.view.tag = 101;
+    [self.videoPlayer play];
+    [UIView commitAnimations];
+}
+
+- (void)setupNavbarGestureRecognizer
+{
+    // recognise taps on navigation bar to hide
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeVideoPlayers)];
+    gestureRecognizer.numberOfTapsRequired = 1;
+    // create a view which covers most of the tap bar to
+    // manage the gestures - if we use the navigation bar
+    // it interferes with the nav buttons
+    CGRect frame = self.navBar.frame;
+    UIView *navBarTapView = [[UIView alloc] initWithFrame:frame];
+    [self.navBar addSubview:navBarTapView];
+    [navBarTapView setUserInteractionEnabled:YES];
+    [navBarTapView addGestureRecognizer:gestureRecognizer];
+    navBarTapView.tag = 999;
+    self.navBarTitleItem.title = @"Tap here to dismiss video";
+}
+
 -(void)removeVideoPlayers
 {
     for (UIView *view in self.view.subviews)
     {
-        if (view.tag == 101)
-        {[view removeFromSuperview];};
+        if (view.tag == 101 || view.tag == 999)
+        {
+            [self.videoPlayer stop];
+            [view removeFromSuperview];
+            self.navBarTitleItem.title = @"FunLyfe";
+        }
     }
 }
 
@@ -364,9 +400,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupBackground];
     [self setupTwitter];
     [self setupInstagram];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)setupBackground
+{
+    self.view.backgroundColor = [UIColor grayColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -118,13 +118,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVN-XE-n60">
-                                                    <rect key="frame" x="0.0" y="11" width="560" height="15"/>
+                                                    <rect key="frame" x="16" y="11" width="528" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tweet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eC7-lr-jaQ" customClass="KILabel">
-                                                    <rect key="frame" x="0.0" y="28" width="560" height="110"/>
+                                                    <rect key="frame" x="16" y="28" width="536" height="110"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="tG3-nl-pMD"/>
                                                     </constraints>
@@ -177,8 +177,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LVN-XE-n60" firstAttribute="top" secondItem="CJV-GH-BJJ" secondAttribute="topMargin" constant="3" id="4xJ-iu-9SH"/>
-                                                <constraint firstItem="eC7-lr-jaQ" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="-8" id="HUA-u1-Ow4"/>
-                                                <constraint firstItem="eC7-lr-jaQ" firstAttribute="trailing" secondItem="CJV-GH-BJJ" secondAttribute="trailingMargin" id="HtG-DQ-94U"/>
+                                                <constraint firstItem="eC7-lr-jaQ" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="8" id="HUA-u1-Ow4"/>
+                                                <constraint firstItem="eC7-lr-jaQ" firstAttribute="trailing" secondItem="CJV-GH-BJJ" secondAttribute="trailingMargin" constant="-8" id="HtG-DQ-94U"/>
                                                 <constraint firstItem="UCD-bV-hCQ" firstAttribute="top" secondItem="hdb-SC-T3E" secondAttribute="top" id="LTz-S0-yIV"/>
                                                 <constraint firstItem="hdb-SC-T3E" firstAttribute="top" secondItem="t35-b5-VRR" secondAttribute="top" id="QrM-cZ-34H"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="eC7-lr-jaQ" secondAttribute="bottom" id="SDb-f5-gke"/>
@@ -191,7 +191,7 @@
                                                 <constraint firstAttribute="centerX" secondItem="LVN-XE-n60" secondAttribute="centerX" constant="4" id="rjw-vR-yP6"/>
                                                 <constraint firstItem="hdb-SC-T3E" firstAttribute="baseline" secondItem="t35-b5-VRR" secondAttribute="baseline" id="uq6-Ck-AhC"/>
                                                 <constraint firstItem="t35-b5-VRR" firstAttribute="leading" secondItem="hdb-SC-T3E" secondAttribute="trailing" constant="2" id="vaO-fs-gKY"/>
-                                                <constraint firstItem="LVN-XE-n60" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="-8" id="wfp-BI-BSf"/>
+                                                <constraint firstItem="LVN-XE-n60" firstAttribute="leading" secondItem="CJV-GH-BJJ" secondAttribute="leadingMargin" constant="8" id="wfp-BI-BSf"/>
                                                 <constraint firstItem="hdb-SC-T3E" firstAttribute="top" secondItem="CJV-GH-BJJ" secondAttribute="top" id="zBb-vq-Hmf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -241,6 +241,8 @@
                     <tabBarItem key="tabBarItem" title="Social" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="instagramTableView" destination="cGz-le-s5T" id="ZTJ-WE-u97"/>
+                        <outlet property="navBar" destination="hxC-4y-dBX" id="ybA-0H-S7A"/>
+                        <outlet property="navBarTitleItem" destination="kHp-qC-zPW" id="6lg-7G-gws"/>
                         <outlet property="twitterTableView" destination="BDz-rN-EiO" id="OAZ-ns-Rk9"/>
                     </connections>
                 </viewController>
