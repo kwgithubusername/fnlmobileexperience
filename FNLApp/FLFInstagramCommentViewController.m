@@ -13,8 +13,6 @@
 @property (nonatomic) FLFInstagramWebServices *webServices;
 @property (nonatomic) UIImageView *imageView;
 @property (nonatomic) UIImage *image;
-@property (nonatomic) UITextField *textField;
-@property (nonatomic) UIButton *sendButton;
 @property (nonatomic) UIButton *closeButton;
 @property (nonatomic) BOOL viewsCreated;
 @property (nonatomic) UILabel *captionLabel;
@@ -55,29 +53,6 @@
     [viewController removeFromParentViewController];
 }
 
--(void)postComment
-{
-    [self.commentsMutableArray removeAllObjects];
-    
-    [[InstagramEngine sharedEngine] createComment:self.textField.text onMedia:self.media withSuccess:^{
-        NSLog(@"posted comment");
-    } failure:^(NSError *error) {
-        NSLog(@"failed to post comment");
-    }];
-    
-    __block NSMutableArray *commentsMutableArray = [[NSMutableArray alloc] init];
-    
-    [[InstagramEngine sharedEngine] getMedia:self.media.Id withSuccess:^(InstagramMedia *media) {
-        [commentsMutableArray addObjectsFromArray:media.comments];
-        NSLog(@"got comments");
-    } failure:^(NSError *error) {
-        NSLog(@"failed to get comments");
-    }];
-    
-    [self.commentsMutableArray addObjectsFromArray:commentsMutableArray];
-    [self.instagramTableView reloadData];
-}
-
 #pragma mark - Create Views -
 
 -(void)createCommentTableView
@@ -87,10 +62,10 @@
     self.instagramTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.instagramTableView];
     
-    NSDictionary *viewsDictionary = @{ @"tableView" : self.instagramTableView, @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : self.captionLabel, @"textField" : self.textField, @"sendButton" : self.sendButton};
+    NSDictionary *viewsDictionary = @{ @"tableView" : self.instagramTableView, @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : self.captionLabel};
     
     [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[captionLabel]-8-[tableView]-8-[sendButton]"
+                               constraintsWithVisualFormat:@"V:[captionLabel]-8-[tableView]-8-|"
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
@@ -156,7 +131,7 @@
     
     [self.view addSubview:captionLabel];
     
-    NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : captionLabel, @"textField" : self.textField, @"sendButton" : self.sendButton};
+    NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : self.imageView, @"captionLabel" : captionLabel};
     
     [self.view addConstraints:[NSLayoutConstraint
                               constraintsWithVisualFormat:@"V:[closeButton]-[captionLabel]"
@@ -209,37 +184,6 @@
     self.imageView = imageView;
 }
 
--(void)createTextField
-{
-    NSLog(@"creating textField");
-    
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
-    
-    NSDictionary *viewsDictionary = @{ @"sendButton" : self.sendButton, @"textField" : textField };
-    
-    textField.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:textField];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[textField]-8-|"
-                               options:0
-                               metrics:nil
-                               views:viewsDictionary]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:|-8-[textField]-8-[sendButton]"
-                               options:0
-                               metrics:nil
-                               views:viewsDictionary]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[textField(31)]"
-                               options:0
-                               metrics:nil
-                               views:viewsDictionary]];
-    [self.view bringSubviewToFront:textField];
-    textField.placeholder = @"Add comment";
-    textField.userInteractionEnabled = YES;
-    self.textField = textField;
-}
-
 -(void)createCloseButton
 {
     NSLog(@"creating close button");
@@ -268,40 +212,6 @@
     self.closeButton = closeButton;
 }
 
--(void)createSendButton
-{
-    NSLog(@"creating send button");
-    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [sendButton setTitle:@"Send" forState:UIControlStateNormal];
-    [sendButton sizeToFit];
-    
-    sendButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:sendButton];
-
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"V:[sendButton]-8-|"
-                               options:0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(sendButton)]];
-    
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[sendButton]-8-|"
-                               options:0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(sendButton)]];
-    [self.view addConstraints:[NSLayoutConstraint
-                               constraintsWithVisualFormat:@"H:[sendButton(50)]"
-                               options:0
-                               metrics:nil
-                               views:NSDictionaryOfVariableBindings(sendButton)]];
-    //IBAction
-    [sendButton addTarget:self
-                  action:@selector(postComment)
-        forControlEvents:UIControlEventTouchUpInside];
-    self.sendButton = sendButton;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.commentsMutableArray = [[NSMutableArray alloc] init];
@@ -315,10 +225,8 @@
     if (!self.viewsCreated)
     {
         [self removeSubviews];
-        [self createSendButton];
         [self createCloseButton];
         [self createImageView];
-        [self createTextField];
         [self createCaptionLabel];
         [self createCommentTableView];
         self.viewsCreated = YES;
