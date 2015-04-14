@@ -34,6 +34,7 @@
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
 		9E9CE3B61AC84A17006D265A /* FLFInstagramCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CE3B51AC84A17006D265A /* FLFInstagramCommentTableViewCell.m */; };
 		9EA5CF721ACA109100512E00 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA5CF711ACA109100512E00 /* MediaPlayer.framework */; };
+		9EA711BC1ADCB73500BDC997 /* playIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA711BB1ADCB73500BDC997 /* playIcon.png */; };
 		9EBAA9311AC0DA4400D214BB /* FLFInstagramLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */; };
 		9ECB99441ABBB0520016A28D /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB99431ABBB0520016A28D /* favorite.png */; };
 		9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994A1ABBB0730016A28D /* favorite_on.png */; };
@@ -203,6 +204,7 @@
 		9E9CE3B41AC84A17006D265A /* FLFInstagramCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramCommentTableViewCell.h; sourceTree = "<group>"; };
 		9E9CE3B51AC84A17006D265A /* FLFInstagramCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramCommentTableViewCell.m; sourceTree = "<group>"; };
 		9EA5CF711ACA109100512E00 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9EA711BB1ADCB73500BDC997 /* playIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playIcon.png; sourceTree = "<group>"; };
 		9EBAA92F1AC0DA4400D214BB /* FLFInstagramLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramLoginViewController.h; sourceTree = "<group>"; };
 		9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramLoginViewController.m; sourceTree = "<group>"; };
 		9ECB99431ABBB0520016A28D /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				9ECB994C1ABBB0990016A28D /* reply.png */,
 				9ECB994D1ABBB0990016A28D /* retweet_on.png */,
 				9ECB994E1ABBB0990016A28D /* retweet.png */,
+				9EA711BB1ADCB73500BDC997 /* playIcon.png */,
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
@@ -612,6 +615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EA711BC1ADCB73500BDC997 /* playIcon.png in Resources */,
 				9E20C2001A83BD8000DFCD93 /* Main.storyboard in Resources */,
 				9ECB99511ABBB0990016A28D /* retweet.png in Resources */,
 				9ECB99441ABBB0520016A28D /* favorite.png in Resources */,

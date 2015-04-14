@@ -202,9 +202,7 @@
     
     UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
         
-        FLFTwitterTableViewCell *twitterCell = [[FLFTwitterTableViewCell alloc] init];
-        
-        twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
+        FLFTwitterTableViewCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"twitterCell"];
     
         NSDictionary *twitterFeedDictionary = weakSelf.twitterWebServices.twitterFeedMutableArray[indexPath.row];
         
@@ -256,9 +254,7 @@
     
     UITableViewCell *(^cellForRowAtIndexPathBlock)(NSIndexPath *indexPath, UITableView *tableView) = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView){
         
-        FLFInstagramTableViewCell *instagramCell = [[FLFInstagramTableViewCell alloc] init];
-        
-        instagramCell = [tableView dequeueReusableCellWithIdentifier:@"instagramCell"];
+        FLFInstagramTableViewCell *instagramCell = [tableView dequeueReusableCellWithIdentifier:@"instagramCell"];
         
         InstagramMedia *instagramObject = weakSelf.instagramWebServices.mediaMutableArray[indexPath.row];
         
@@ -270,6 +266,10 @@
         
         if (instagramObject.isVideo)
         {
+            UIImageView *playButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(69, 1, 30, 30)];
+            [instagramCell.photoView addSubview:playButtonImageView];
+            playButtonImageView.image = [UIImage imageNamed:@"playIcon.png"];
+            playButtonImageView.alpha = 0.5;
             UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
             instagramCell.photoView.tag = indexPath.row;
             instagramCell.photoView.userInteractionEnabled = YES;
