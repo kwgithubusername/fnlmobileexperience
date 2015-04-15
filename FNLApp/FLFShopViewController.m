@@ -11,7 +11,36 @@
 @end
 
 @implementation FLFShopViewController
+- (IBAction)backButtonTapped:(UIBarButtonItem *)sender
+{
+    if (self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
+}
 
+- (IBAction)forwardButtonTapped:(UIBarButtonItem *)sender
+{
+    if (self.webView.canGoForward)
+    {
+        [self.webView goForward];
+    }
+}
+
+- (IBAction)homeButtonTapped:(UIBarButtonItem *)sender
+{
+    //[self startSpinner];
+    NSURL *url = [NSURL URLWithString:@"http://www.thefunlyfe.com"];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
+    [downloadTask resume];
+}
+
+- (IBAction)refreshButtonTapped:(UIBarButtonItem *)sender
+{
+    [self.webView reload];
+}
 
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
@@ -23,16 +52,6 @@
 {
     //[self startSpinner];
     NSURL *url = [NSURL URLWithString:URLString];
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
-    [downloadTask resume];
-}
-
--(IBAction)homeButtonTapped:(UIBarButtonItem *)sender
-{
-    //[self startSpinner];
-    NSURL *url = [NSURL URLWithString:@"http://www.thefunlyfe.com"];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
