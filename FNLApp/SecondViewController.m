@@ -8,12 +8,77 @@
 
 #import "SecondViewController.h"
 #import "SCUI.h"
+#import "FLFMusicCollectionViewDataSource.h"
+
 @interface SecondViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) int currentTrackInt;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) FLFMusicCollectionViewDataSource *dataSource;
 @end
 
 @implementation SecondViewController
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
+    {
+        [self.audioPlayer play];
+        return;
+    }
+    
+    if (self.audioPlayer.playing)
+    {
+        [self.audioPlayer pause];
+    }
+    
+    if (!self.audioPlayer || self.currentTrackInt != indexPath.row)
+    {
+        NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
+        NSString *streamURL = [track objectForKey:@"stream_url"];
+        
+        SCAccount *account = [SCSoundCloud account];
+        
+        [SCRequest performMethod:SCRequestMethodGET
+                      onResource:[NSURL URLWithString:streamURL]
+                 usingParameters:nil
+                     withAccount:account
+          sendingProgressHandler:nil
+                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                     NSError *playerError;
+                     self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+                     [self.audioPlayer prepareToPlay];
+                     [self.audioPlayer play];
+                 }];
+        self.currentTrackInt = (int)indexPath.row;
+    }
+}
+
+-(void)setupDataSource
+{
+    __weak SecondViewController *weakSelf = self;
+    
+    UICollectionViewCell *(^cellForItemAtIndexPathBlock)(NSIndexPath *indexPath, UICollectionView *collectionView) = ^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView)
+    {
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        NSDictionary *track = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
+        NSLog(@"trackis %@", track);
+        UILabel *label = (UILabel *)[cell viewWithTag:100];
+        label.textColor = [UIColor whiteColor];
+        label.text = [track objectForKey:@"title"];;
+        return cell;
+    };
+    
+    NSInteger(^numberOfItemsInSectionBlock)() = ^NSInteger(){
+        return [weakSelf.tracksArray count];
+    };
+    
+    self.dataSource = [[FLFMusicCollectionViewDataSource alloc] initWithCellForItemAtIndexPathBlock:cellForItemAtIndexPathBlock
+        NumberOfItemsInSectionBlock:numberOfItemsInSectionBlock];
+    self.collectionView.dataSource = self.dataSource;
+    self.collectionView.delegate = self;
+}
+
 - (void)getTracks
 {
     SCAccount *account = [SCSoundCloud account];
@@ -39,7 +104,7 @@
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             self.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
             NSLog(@"json response is %@", jsonResponse);
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
         }
     };
     

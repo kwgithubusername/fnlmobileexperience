@@ -32,6 +32,7 @@
 		9E20C26A1A83C31500DFCD93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C2691A83C31500DFCD93 /* QuartzCore.framework */; };
 		9E20C26C1A83C31A00DFCD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C26B1A83C31A00DFCD93 /* Security.framework */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
+		9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */; };
 		9E9CE3B61AC84A17006D265A /* FLFInstagramCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CE3B51AC84A17006D265A /* FLFInstagramCommentTableViewCell.m */; };
 		9EA5CF721ACA109100512E00 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA5CF711ACA109100512E00 /* MediaPlayer.framework */; };
 		9EA711BC1ADCB73500BDC997 /* playIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA711BB1ADCB73500BDC997 /* playIcon.png */; };
@@ -201,6 +202,8 @@
 		9E20C2691A83C31500DFCD93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E20C26B1A83C31A00DFCD93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
+		9E74BAD51ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFMusicCollectionViewDataSource.h; sourceTree = "<group>"; };
+		9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFMusicCollectionViewDataSource.m; sourceTree = "<group>"; };
 		9E9CE3B41AC84A17006D265A /* FLFInstagramCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramCommentTableViewCell.h; sourceTree = "<group>"; };
 		9E9CE3B51AC84A17006D265A /* FLFInstagramCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramCommentTableViewCell.m; sourceTree = "<group>"; };
 		9EA5CF711ACA109100512E00 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -350,6 +353,8 @@
 				9ED693D41ABE56A400EA60CF /* FLFInstagramTableViewCell.m */,
 				9E20C1FB1A83BD8000DFCD93 /* SecondViewController.h */,
 				9E20C1FC1A83BD8000DFCD93 /* SecondViewController.m */,
+				9E74BAD51ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.h */,
+				9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */,
 				9ECF7DB31AA1536E009A3DC2 /* FLFShopViewController.h */,
 				9ECF7DB41AA1536E009A3DC2 /* FLFShopViewController.m */,
 				9ED091071AB5CD59004E3770 /* KILabel.h */,
@@ -682,6 +687,7 @@
 				9ED091091AB5CD59004E3770 /* KILabel.m in Sources */,
 				9E20C1F71A83BD8000DFCD93 /* AppDelegate.m in Sources */,
 				9ECF7DB51AA1536E009A3DC2 /* FLFShopViewController.m in Sources */,
+				9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */,
 				9EF3238C1AC61A6D0011522D /* FLFInstagramCommentViewController.m in Sources */,
 				9E20C1FA1A83BD8000DFCD93 /* FirstViewController.m in Sources */,
 				9E9CE3B61AC84A17006D265A /* FLFInstagramCommentTableViewCell.m in Sources */,
