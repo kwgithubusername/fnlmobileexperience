@@ -262,39 +262,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="v1a-WJ-78F">
-                                <rect key="frame" x="325" y="243" width="300" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackCell" textLabel="pQi-JC-xcB" style="IBUITableViewCellStyleDefault" id="rOR-OZ-NV0">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rOR-OZ-NV0" id="ynt-QS-sg4">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pQi-JC-xcB">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="zoW-kg-DbY"/>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="AdQ-zj-qo5"/>
-                                </connections>
-                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZj-Fb-We2">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="FunLyfe" id="FyV-JL-5pe"/>
                                 </items>
                             </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
-                                <rect key="frame" x="16" y="80" width="300" height="300"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
+                                <rect key="frame" x="0.0" y="64" width="600" height="435"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yfh-0c-7PM">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -312,7 +287,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-hC-PGR">
                                                     <rect key="frame" x="29" y="39" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -325,10 +300,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vJ-M0-Mqv">
+                                <rect key="frame" x="277" y="513" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0Wz-jD-Ohp" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="44" id="2np-dT-t1K"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="4vJ-M0-Mqv" secondAttribute="bottom" constant="8" id="37H-r5-fA7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Wz-jD-Ohp" secondAttribute="trailing" constant="-16" id="4uN-73-LTm"/>
+                            <constraint firstAttribute="centerX" secondItem="4vJ-M0-Mqv" secondAttribute="centerX" id="5by-Ml-Xcf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xZj-Fb-We2" secondAttribute="trailing" constant="-16" id="NL3-mv-fPm"/>
+                            <constraint firstItem="4vJ-M0-Mqv" firstAttribute="top" secondItem="0Wz-jD-Ohp" secondAttribute="bottom" constant="14" id="cbH-Jy-Spt"/>
+                            <constraint firstItem="0Wz-jD-Ohp" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="h4W-bo-Hsi"/>
                             <constraint firstItem="xZj-Fb-We2" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="oc8-XL-Qyh"/>
                             <constraint firstItem="xZj-Fb-We2" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="uxK-d8-RiP"/>
                         </constraints>
@@ -336,7 +323,6 @@
                     <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
-                        <outlet property="tableView" destination="v1a-WJ-78F" id="U4w-ts-wws"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

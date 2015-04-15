@@ -11,7 +11,6 @@
 #import "FLFMusicCollectionViewDataSource.h"
 
 @interface SecondViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) int currentTrackInt;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) FLFMusicCollectionViewDataSource *dataSource;
@@ -19,8 +18,9 @@
 
 @implementation SecondViewController
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"track tapped");
     if (!self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
     {
         [self.audioPlayer play];
@@ -60,17 +60,16 @@
     
     UICollectionViewCell *(^cellForItemAtIndexPathBlock)(NSIndexPath *indexPath, UICollectionView *collectionView) = ^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView)
     {
-        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
         NSDictionary *track = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
         NSLog(@"trackis %@", track);
         UILabel *label = (UILabel *)[cell viewWithTag:100];
-        label.textColor = [UIColor whiteColor];
         label.text = [track objectForKey:@"title"];;
         return cell;
     };
     
     NSInteger(^numberOfItemsInSectionBlock)() = ^NSInteger(){
-        return [weakSelf.tracksArray count];
+        return [[weakSelf.tracksArray firstObject] count];
     };
     
     self.dataSource = [[FLFMusicCollectionViewDataSource alloc] initWithCellForItemAtIndexPathBlock:cellForItemAtIndexPathBlock
@@ -104,6 +103,7 @@
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             self.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
             NSLog(@"json response is %@", jsonResponse);
+            [self setupDataSource];
             [self.collectionView reloadData];
         }
     };
@@ -115,66 +115,6 @@
                  withAccount:account
       sendingProgressHandler:nil
              responseHandler:handler];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView
-                             dequeueReusableCellWithIdentifier:@"trackCell"];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:@"trackCell"];
-    }
-    
-    NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
-    NSLog(@"trackis %@", track);
-    cell.textLabel.text = [track objectForKey:@"title"];
-    
-    return cell;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[self.tracksArray firstObject] count];
-}
-
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (!self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
-    {
-        [self.audioPlayer play];
-        return;
-    }
-    
-    if (self.audioPlayer.playing)
-    {
-        [self.audioPlayer pause];
-    }
-    
-    if (!self.audioPlayer || self.currentTrackInt != indexPath.row)
-    {
-        NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
-        NSString *streamURL = [track objectForKey:@"stream_url"];
-        
-        SCAccount *account = [SCSoundCloud account];
-        
-        [SCRequest performMethod:SCRequestMethodGET
-                      onResource:[NSURL URLWithString:streamURL]
-                 usingParameters:nil
-                     withAccount:account
-          sendingProgressHandler:nil
-                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                     NSError *playerError;
-                     self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
-                     [self.audioPlayer prepareToPlay];
-                     [self.audioPlayer play];
-                 }];
-        self.currentTrackInt = (int)indexPath.row;
-    }
 }
 
 - (void)viewDidLoad {
