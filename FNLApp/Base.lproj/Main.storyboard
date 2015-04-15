@@ -360,11 +360,16 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mwv-QD-AdS">
+                                <rect key="frame" x="290" y="276" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="e6v-9o-9i0" secondAttribute="bottom" id="CXX-WX-CF0"/>
                             <constraint firstItem="A6N-rq-8HS" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" constant="-16" id="ELI-Cs-QmU"/>
+                            <constraint firstAttribute="centerY" secondItem="mwv-QD-AdS" secondAttribute="centerY" constant="5.5" id="ER8-ry-9tr"/>
                             <constraint firstItem="e6v-9o-9i0" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="IpO-pm-a6C"/>
                             <constraint firstItem="9Nf-DC-JYu" firstAttribute="top" secondItem="A6N-rq-8HS" secondAttribute="bottom" id="LPx-Nj-6c7"/>
                             <constraint firstItem="9Nf-DC-JYu" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" constant="-16" id="QE3-Ju-xDJ"/>
@@ -374,6 +379,7 @@
                             <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="ggg-4P-1fe"/>
                             <constraint firstItem="txJ-C1-6uW" firstAttribute="top" secondItem="A6N-rq-8HS" secondAttribute="bottom" id="hja-k4-DEH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Nf-DC-JYu" secondAttribute="trailing" constant="-16" id="kR9-6V-nrG"/>
+                            <constraint firstAttribute="centerX" secondItem="mwv-QD-AdS" secondAttribute="centerX" constant="-8.5" id="t3x-OA-Tx9"/>
                             <constraint firstItem="txJ-C1-6uW" firstAttribute="top" secondItem="9Nf-DC-JYu" secondAttribute="bottom" id="vnI-Hq-W1F"/>
                         </constraints>
                         <variation key="default">
@@ -385,6 +391,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
                     <connections>
+                        <outlet property="spinner" destination="mwv-QD-AdS" id="E5m-0p-bSL"/>
                         <outlet property="webView" destination="A6N-rq-8HS" id="Jzb-7R-kop"/>
                     </connections>
                 </viewController>

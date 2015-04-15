@@ -8,9 +8,11 @@
 
 #import "FLFShopViewController.h"
 @interface FLFShopViewController ()
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
 @implementation FLFShopViewController
+
 - (IBAction)backButtonTapped:(UIBarButtonItem *)sender
 {
     if (self.webView.canGoBack)
@@ -29,7 +31,6 @@
 
 - (IBAction)homeButtonTapped:(UIBarButtonItem *)sender
 {
-    //[self startSpinner];
     NSURL *url = [NSURL URLWithString:@"http://www.thefunlyfe.com"];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
@@ -42,15 +43,24 @@
     [self.webView reload];
 }
 
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.spinner startAnimating];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.spinner stopAnimating];
+}
+
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
     [self.webView loadData:[NSData dataWithContentsOfURL:location] MIMEType:downloadTask.response.MIMEType textEncodingName:downloadTask.response.textEncodingName baseURL:downloadTask.response.URL];
-    //[self.spinner stopAnimating];
+    [self.spinner stopAnimating];
 }
 
 -(void)loadWebpageWithURLString:(NSString *)URLString
 {
-    //[self startSpinner];
     NSURL *url = [NSURL URLWithString:URLString];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
