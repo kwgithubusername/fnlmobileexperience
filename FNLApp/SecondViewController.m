@@ -8,6 +8,7 @@
 
 #import "SecondViewController.h"
 #import "SCUI.h"
+#import "FLFMusicTrackCollectionViewCell.h"
 #import "FLFMusicCollectionViewDataSource.h"
 
 @interface SecondViewController ()
@@ -21,7 +22,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"track tapped");
-    if (!self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
+    if (self.audioPlayer && !self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
     {
         [self.audioPlayer play];
         return;
@@ -60,11 +61,10 @@
     
     UICollectionViewCell *(^cellForItemAtIndexPathBlock)(NSIndexPath *indexPath, UICollectionView *collectionView) = ^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView)
     {
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
+        FLFMusicTrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
         NSDictionary *track = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
         NSLog(@"trackis %@", track);
-        UILabel *label = (UILabel *)[cell viewWithTag:100];
-        label.text = [track objectForKey:@"title"];;
+        cell.trackNameLabel.text = [track objectForKey:@"title"];
         return cell;
     };
     
@@ -119,6 +119,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.collectionView.allowsSelection = YES;
     [self getTracks];
     // Do any additional setup after loading the view, typically from a nib.
 }

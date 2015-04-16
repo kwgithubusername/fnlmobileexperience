@@ -196,6 +196,8 @@
     }
 }
 
+#pragma mark - Data source -
+
 -(void)setupTwitterDataSource
 {
     __weak FirstViewController *weakSelf = self;
@@ -306,6 +308,23 @@
     self.instagramTableView.dataSource = self.instagramDataSource;
 }
 
+- (void)setupInstagram
+{
+    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
+    [self setupInstagramDataSource];
+}
+
+-(void)setupTwitter
+{
+    self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
+    [self.twitterWebServices loadTwitter];
+    [self setupTwitterDataSource];
+    self.twitterTableView.estimatedRowHeight = 44;
+    self.twitterTableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+#pragma mark - Instagram Video -
+
 -(void)instagramVideoTapped:(UIGestureRecognizer *)sender
 {
     NSLog(@"video tapped");
@@ -383,20 +402,7 @@
     }
 }
 
-- (void)setupInstagram
-{
-    self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
-    [self setupInstagramDataSource];
-}
-
--(void)setupTwitter
-{
-    self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
-    [self.twitterWebServices loadTwitter];
-    [self setupTwitterDataSource];
-    self.twitterTableView.estimatedRowHeight = 44;
-    self.twitterTableView.rowHeight = UITableViewAutomaticDimension;
-}
+#pragma mark - View and background -
 
 - (void)viewDidLoad {
     [super viewDidLoad];
