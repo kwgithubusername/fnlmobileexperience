@@ -10,14 +10,22 @@
 #import "SCUI.h"
 #import "FLFMusicTrackCollectionViewCell.h"
 #import "FLFMusicCollectionViewDataSource.h"
+#import "FLFMusicWebServices.h"
 
 @interface SecondViewController ()
 @property (nonatomic) int currentTrackInt;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) FLFMusicCollectionViewDataSource *dataSource;
+@property (nonatomic) FLFMusicWebServices *webServices;
 @end
 
 @implementation SecondViewController
+
+-(FLFMusicWebServices *)webServices
+{
+    if (!_webServices) _webServices = [[FLFMusicWebServices alloc] init];
+    return _webServices;
+}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -117,10 +125,24 @@
              responseHandler:handler];
 }
 
+-(void)getMusic
+{
+    __weak SecondViewController *weakSelf = self;
+    
+    void (^getTracksCompletionBlock)(id jsonResponse) = ^void(id jsonResponse){
+        weakSelf.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
+        [weakSelf setupDataSource];
+        [weakSelf.collectionView reloadData];
+    };
+    
+    self.webServices = [[FLFMusicWebServices alloc] initWithCompletionBlock:getTracksCompletionBlock];
+    [self.webServices getTracks];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.allowsSelection = YES;
-    [self getTracks];
+    [self getMusic];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
