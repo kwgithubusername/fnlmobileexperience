@@ -70,9 +70,11 @@
     UICollectionViewCell *(^cellForItemAtIndexPathBlock)(NSIndexPath *indexPath, UICollectionView *collectionView) = ^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView)
     {
         FLFMusicTrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
-        NSDictionary *track = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
-        NSLog(@"trackis %@", track);
-        cell.trackNameLabel.text = [track objectForKey:@"title"];
+        NSDictionary *trackDictionary = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
+        NSLog(@"trackis %@", trackDictionary);
+        cell.trackNameLabel.text = [trackDictionary objectForKey:@"title"];
+        NSURL *trackArtworkImageURL = [NSURL URLWithString:trackDictionary[@"artwork_url"]];
+        [weakSelf.webServices loadImageIntoCell:cell withURL:trackArtworkImageURL];
         return cell;
     };
     

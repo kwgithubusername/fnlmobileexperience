@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FLFMusicTrackCollectionViewCell.h"
 
 typedef void (^GetTracksCompletionBlock)(id jsonResponse);
 
 @interface FLFMusicWebServices : NSObject
 
 -(id)initWithCompletionBlock:(GetTracksCompletionBlock)aGetTracksCompletionBlock;
-
+-(void)loadImageIntoCell:(FLFMusicTrackCollectionViewCell *)cell withURL:(NSURL *)URL;
 -(void)getTracks;
 @end

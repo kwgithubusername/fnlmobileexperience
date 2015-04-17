@@ -8,6 +8,7 @@
 
 #import "FLFMusicWebServices.h"
 #import "SCUI.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface FLFMusicWebServices ()
 @property (nonatomic, copy) GetTracksCompletionBlock getTracksCompletionBlock;
@@ -60,6 +61,22 @@
                  withAccount:account
       sendingProgressHandler:nil
              responseHandler:handler];
+}
+
+-(void)loadImageIntoCell:(FLFMusicTrackCollectionViewCell *)cell withURL:(NSURL *)URL
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    UIImage *placeholderImage = [[UIImage alloc] init];
+    
+    [cell.artworkImageView setImageWithURLRequest:request
+                          placeholderImage:placeholderImage
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       
+                                       //NSLog(@"setImageWithURLRequest executed");
+                                       cell.artworkImageView.image = image;
+                                       //cell.imageView.image = image;
+                                   }
+                                   failure:nil];
 }
 
 @end
