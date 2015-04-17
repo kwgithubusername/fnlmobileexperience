@@ -101,6 +101,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="hUZ-PR-f3B" id="ZAh-Rf-f88"/>
+                                            <outlet property="commentButton" destination="Wzw-Ba-dJH" id="coc-ch-T5M"/>
                                             <outlet property="likeButton" destination="G2m-7z-Owy" id="uqm-1u-ICb"/>
                                             <outlet property="photoView" destination="RiZ-le-uBS" id="WiD-Yz-Bes"/>
                                         </connections>

@@ -284,6 +284,8 @@
             instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
             dispatch_async(dispatch_get_main_queue(), ^{
                 instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
+                instagramCell.commentButton.enabled = media.commentCount > 0 ? YES:NO;
+                instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
             });
         } failure:^(NSError *error) {
             NSLog(@"Error getting media:%@", [error localizedDescription]);
