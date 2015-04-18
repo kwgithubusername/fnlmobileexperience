@@ -44,6 +44,7 @@
     SCRequestResponseHandler handler;
     handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
         NSError *jsonError = nil;
+#warning NSInvalidArgumentException reason 'data parameter is nil' when no internet connection
         NSJSONSerialization *jsonResponse = [NSJSONSerialization
                                              JSONObjectWithData:data
                                              options:0

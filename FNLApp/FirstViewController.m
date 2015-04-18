@@ -266,30 +266,32 @@
         
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
-        if (instagramObject.isVideo)
-        {
-            UIImageView *playButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(69, 1, 30, 30)];
-            [instagramCell.photoView addSubview:playButtonImageView];
-            playButtonImageView.image = [UIImage imageNamed:@"playMITLicensedInverted.png"];
-            playButtonImageView.alpha = 0.5;
-            UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
-            instagramCell.photoView.tag = indexPath.row;
-            instagramCell.photoView.userInteractionEnabled = YES;
-            [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
-        }
-        
         [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
-            NSLog(@"media is %@", media);
             UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
             instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
             dispatch_async(dispatch_get_main_queue(), ^{
                 instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
                 instagramCell.commentButton.enabled = media.commentCount > 0 ? YES:NO;
                 instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
+                NSLog(@"getting user like info");
             });
         } failure:^(NSError *error) {
             NSLog(@"Error getting media:%@", [error localizedDescription]);
         }];
+        
+        if (instagramObject.isVideo)
+        {
+            if (instagramCell.photoView.gestureRecognizers.count == 0)
+            {
+                UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
+                instagramCell.photoView.tag = indexPath.row;
+                instagramCell.photoView.userInteractionEnabled = YES;
+                [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
+                instagramCell.playButtonImageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
+                instagramCell.playButtonImageView.alpha = 0.5;
+                NSLog(@"numberOfGestureRecognizers: %lu", instagramCell.photoView.gestureRecognizers.count);
+            }
+        }
         
         return instagramCell;
     };

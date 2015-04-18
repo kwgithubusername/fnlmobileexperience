@@ -74,6 +74,13 @@
                                                         <action selector="commentButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6H3-wR-8dD"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JBd-PD-cAT">
+                                                    <rect key="frame" x="72" y="23" width="30" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="PMy-Dw-8I7"/>
+                                                        <constraint firstAttribute="width" constant="30" id="fFF-aB-LTh"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="8" id="2jf-vy-RBV"/>
@@ -84,7 +91,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="G2m-7z-Owy" secondAttribute="centerY" constant="-0.5" id="Djw-vY-IwW"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="bottom" secondItem="Ong-gM-d7w" secondAttribute="bottomMargin" id="H2p-Pn-1s8"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" constant="-30" id="Lin-r7-bpA"/>
+                                                <constraint firstItem="JBd-PD-cAT" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="-36" id="M2X-CF-APj"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="leading" secondItem="Ong-gM-d7w" secondAttribute="leadingMargin" id="SZt-hP-uxO"/>
+                                                <constraint firstItem="RiZ-le-uBS" firstAttribute="top" secondItem="JBd-PD-cAT" secondAttribute="bottom" constant="-34" id="ZgI-WY-WZ7"/>
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" id="brR-BT-Mu8"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="leading" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="frg-Jf-sYZ"/>
                                                 <constraint firstAttribute="centerX" secondItem="hUZ-PR-f3B" secondAttribute="centerX" constant="-112.5" id="gIz-tI-JNl"/>
@@ -107,6 +116,7 @@
                                             <outlet property="commentButton" destination="Wzw-Ba-dJH" id="coc-ch-T5M"/>
                                             <outlet property="likeButton" destination="G2m-7z-Owy" id="uqm-1u-ICb"/>
                                             <outlet property="photoView" destination="RiZ-le-uBS" id="WiD-Yz-Bes"/>
+                                            <outlet property="playButtonImageView" destination="JBd-PD-cAT" id="q2c-H4-U7q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -252,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-331"/>
+            <point key="canvasLocation" x="750" y="-337"/>
         </scene>
         <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
@@ -329,7 +339,7 @@
                                     <constraint firstAttribute="height" constant="50" id="k2h-9q-tGm"/>
                                     <constraint firstAttribute="width" constant="50" id="tAj-7u-0zv"/>
                                 </constraints>
-                                <state key="normal" image="playMITLicensedInverted.png">
+                                <state key="normal" image="playMITLicenseInverted.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -592,7 +602,7 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         <image name="first" width="30" height="30"/>
         <image name="fowardInvertedMITLicense.png" width="128" height="128"/>
         <image name="lightBubble75PercentMITLicense.png" width="128" height="128"/>
-        <image name="playMITLicensedInverted.png" width="128" height="128"/>
+        <image name="playMITLicenseInverted.png" width="128" height="128"/>
         <image name="reply.png" width="16" height="16"/>
         <image name="retweet.png" width="19" height="16"/>
         <image name="reverseInvertedMITLicense.png" width="128" height="128"/>
