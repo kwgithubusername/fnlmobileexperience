@@ -27,11 +27,33 @@
 
 - (IBAction)previousButtonTapped:(UIButton *)sender
 {
+    [self.audioPlayer pause];
     
+    if (self.currentTrackInt == 0)
+    {
+        self.currentTrackInt = (int)[[self.tracksArray firstObject] count]-1;
+    }
+    else
+    {
+        self.currentTrackInt--;
+    }
+    
+    [self playTrackAtIndex:self.currentTrackInt];
 }
 - (IBAction)nextButtonTapped:(UIButton *)sender
 {
+    [self.audioPlayer pause];
     
+    if (self.currentTrackInt == [[self.tracksArray firstObject] count]-1)
+    {
+        self.currentTrackInt = 0;
+    }
+    else
+    {
+        self.currentTrackInt++;
+    }
+    
+    [self playTrackAtIndex:self.currentTrackInt];
 }
 
 - (IBAction)playOrPauseButtonTapped:(UIButton *)sender
@@ -47,10 +69,6 @@
     }
     else
     {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            sender.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
-        });
-
         [self playTrack];
     }
 }
@@ -76,6 +94,10 @@
     {
         [self.audioPlayer play];
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.playOrPauseButton.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
+    });
 }
 
 -(void)playTrackAtIndex:(int)index
@@ -96,8 +118,24 @@
                  self.audioPlayer.volume = self.volumeControlHorizontalSlider.value;
                  [self.audioPlayer prepareToPlay];
                  [self.audioPlayer play];
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     self.playOrPauseButton.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
+                     self.currentTrackInt = index;
+                 });
              }];
-    self.currentTrackInt = index;
+    
+}
+
+-(void)setCurrentTrackInt:(int)currentTrackInt
+{
+    FLFMusicTrackCollectionViewCell *oldTrackCell = (FLFMusicTrackCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentTrackInt inSection:0]];
+    FLFMusicTrackCollectionViewCell *newTrackCell = (FLFMusicTrackCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:currentTrackInt inSection:0]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        oldTrackCell.trackNameLabel.textColor = [UIColor whiteColor];
+        newTrackCell.trackNameLabel.textColor = [UIColor greenColor];
+    });
+    
+    _currentTrackInt = currentTrackInt;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -108,9 +146,6 @@
     {
         [self.audioPlayer pause];
         [self playTrackAtIndex:(int)indexPath.row];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.playOrPauseButton.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
-        });
         return;
     }
     else
