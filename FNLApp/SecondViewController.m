@@ -17,14 +17,42 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) FLFMusicCollectionViewDataSource *dataSource;
 @property (nonatomic) FLFMusicWebServices *webServices;
+@property (weak, nonatomic) IBOutlet UIButton *playOrPauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UISlider *volumeControlHorizontalSlider;
 @end
 
 @implementation SecondViewController
 
-- (IBAction)playButtonTapped:(UIButton *)sender
+- (IBAction)previousButtonTapped:(UIButton *)sender
 {
     
+}
+- (IBAction)nextButtonTapped:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)playOrPauseButtonTapped:(UIButton *)sender
+{
+    BOOL isInPlayMode = self.audioPlayer.isPlaying;
+    if (isInPlayMode)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            sender.imageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
+        });
+        
+        [self.audioPlayer pause];
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            sender.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
+        });
+
+        [self playTrack];
+    }
 }
 
 - (IBAction)volumeControlHorizontalSliderMoved:(UISlider *)sender
@@ -38,40 +66,56 @@
     return _webServices;
 }
 
+-(void)playTrack
+{
+    if (!self.audioPlayer)
+    {
+        [self playTrackAtIndex:0];
+    }
+    else
+    {
+        [self.audioPlayer play];
+    }
+}
+
+-(void)playTrackAtIndex:(int)index
+{
+    NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:index];
+    NSString *streamURL = [track objectForKey:@"stream_url"];
+    
+    SCAccount *account = [SCSoundCloud account];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:streamURL]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                 NSError *playerError;
+                 self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+                 self.audioPlayer.volume = self.volumeControlHorizontalSlider.value;
+                 [self.audioPlayer prepareToPlay];
+                 [self.audioPlayer play];
+             }];
+    self.currentTrackInt = index;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"track tapped");
-    if (self.audioPlayer && !self.audioPlayer.playing && self.currentTrackInt == indexPath.row)
-    {
-        [self.audioPlayer play];
-        return;
-    }
-    
-    if (self.audioPlayer.playing)
-    {
-        [self.audioPlayer pause];
-    }
     
     if (!self.audioPlayer || self.currentTrackInt != indexPath.row)
     {
-        NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:indexPath.row];
-        NSString *streamURL = [track objectForKey:@"stream_url"];
-        
-        SCAccount *account = [SCSoundCloud account];
-        
-        [SCRequest performMethod:SCRequestMethodGET
-                      onResource:[NSURL URLWithString:streamURL]
-                 usingParameters:nil
-                     withAccount:account
-          sendingProgressHandler:nil
-                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                     NSError *playerError;
-                     self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
-                     self.audioPlayer.volume = self.volumeControlHorizontalSlider.value;
-                     [self.audioPlayer prepareToPlay];
-                     [self.audioPlayer play];
-                 }];
-        self.currentTrackInt = (int)indexPath.row;
+        [self.audioPlayer pause];
+        [self playTrackAtIndex:(int)indexPath.row];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.playOrPauseButton.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
+        });
+        return;
+    }
+    else
+    {
+        [self playOrPauseButtonTapped:self.playOrPauseButton];
     }
 }
 
@@ -100,43 +144,11 @@
     self.collectionView.delegate = self;
 }
 
-- (void)getTracks
+-(void)enableButtons
 {
-    SCAccount *account = [SCSoundCloud account];
-
-    if (account == nil) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Not Logged In"
-                              message:@"You must login first"
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    SCRequestResponseHandler handler;
-    handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSError *jsonError = nil;
-        NSJSONSerialization *jsonResponse = [NSJSONSerialization
-                                             JSONObjectWithData:data
-                                             options:0
-                                             error:&jsonError];
-        if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
-            self.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
-            NSLog(@"json response is %@", jsonResponse);
-            [self setupDataSource];
-            [self.collectionView reloadData];
-        }
-    };
-    
-    NSString *resourceURL = @"https://api.soundcloud.com/me/tracks.json";
-    [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:resourceURL]
-             usingParameters:nil
-                 withAccount:account
-      sendingProgressHandler:nil
-             responseHandler:handler];
+    self.playOrPauseButton.enabled = YES;
+    self.forwardButton.enabled = YES;
+    self.backButton.enabled = YES;
 }
 
 -(void)getMusic
@@ -147,6 +159,7 @@
         weakSelf.tracksArray = [[NSArray alloc] initWithObjects:jsonResponse, nil];
         [weakSelf setupDataSource];
         [weakSelf.collectionView reloadData];
+        [weakSelf enableButtons];
     };
     
     self.webServices = [[FLFMusicWebServices alloc] initWithCompletionBlock:getTracksCompletionBlock];

@@ -289,7 +289,6 @@
                 [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
                 instagramCell.playButtonImageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
                 instagramCell.playButtonImageView.alpha = 0.5;
-                NSLog(@"numberOfGestureRecognizers: %lu", instagramCell.photoView.gestureRecognizers.count);
             }
         }
         

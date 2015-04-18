@@ -333,7 +333,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vJ-M0-Mqv">
+                            <button opaque="NO" tag="200" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vJ-M0-Mqv">
                                 <rect key="frame" x="275" y="441" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="k2h-9q-tGm"/>
@@ -343,7 +343,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="1nY-Wt-YRa"/>
+                                    <action selector="playOrPauseButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="cx5-uu-YMe"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-DL-Bte">
@@ -352,7 +352,7 @@
                                     <action selector="volumeControlHorizontalSliderMoved:" destination="8rJ-Kc-sve" eventType="valueChanged" id="eHB-Dx-mnf"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-tJ-kj0">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-tJ-kj0">
                                 <rect key="frame" x="534" y="441" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Fes-jh-EMR"/>
@@ -362,8 +362,11 @@
                                 <state key="normal" image="fowardInvertedMITLicense.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="6FS-x2-xRJ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYb-sB-0Oa">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYb-sB-0Oa">
                                 <rect key="frame" x="16" y="441" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="cwX-V6-nTZ"/>
@@ -373,6 +376,9 @@
                                 <state key="normal" image="reverseInvertedMITLicense.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="previousButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="zw0-UQ-aiY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -403,7 +409,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="backButton" destination="EYb-sB-0Oa" id="ZH5-vy-E2R"/>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
+                        <outlet property="forwardButton" destination="VpJ-tJ-kj0" id="qBk-nR-Zx2"/>
+                        <outlet property="playOrPauseButton" destination="4vJ-M0-Mqv" id="pos-43-vuf"/>
                         <outlet property="volumeControlHorizontalSlider" destination="c9f-DL-Bte" id="xX5-qr-SMZ"/>
                     </connections>
                 </viewController>
