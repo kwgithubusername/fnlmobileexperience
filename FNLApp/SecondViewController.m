@@ -22,6 +22,11 @@
 
 @implementation SecondViewController
 
+- (IBAction)playButtonTapped:(UIButton *)sender
+{
+    
+}
+
 - (IBAction)volumeControlHorizontalSliderMoved:(UISlider *)sender
 {
     self.audioPlayer.volume = sender.value;

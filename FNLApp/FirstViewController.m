@@ -270,7 +270,7 @@
         {
             UIImageView *playButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(69, 1, 30, 30)];
             [instagramCell.photoView addSubview:playButtonImageView];
-            playButtonImageView.image = [UIImage imageNamed:@"playIcon.png"];
+            playButtonImageView.image = [UIImage imageNamed:@"playMITLicensedInverted.png"];
             playButtonImageView.alpha = 0.5;
             UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
             instagramCell.photoView.tag = indexPath.row;
