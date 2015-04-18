@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qEL-fN-T6r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--FunLyfe-->
+        <!--Social-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxC-4y-dBX">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="FunLyfe" id="kHp-qC-zPW"/>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="137" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGz-le-s5T">
                                 <rect key="frame" x="16" y="74" width="568" height="231"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,10 +210,13 @@
                         <constraints>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="49a-Om-rVo"/>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="centerX" secondItem="BDz-rN-EiO" secondAttribute="centerX" id="7RK-CI-aAY"/>
+                            <constraint firstItem="hxC-4y-dBX" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="FyG-Et-iF4"/>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="top" secondItem="BDz-rN-EiO" secondAttribute="bottom" constant="8" id="IKG-xP-nAt"/>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="width" secondItem="BDz-rN-EiO" secondAttribute="width" id="MG1-JH-YMe"/>
+                            <constraint firstItem="cGz-le-s5T" firstAttribute="top" secondItem="hxC-4y-dBX" secondAttribute="bottom" constant="10" id="NVL-Zh-VRl"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="P1X-qz-dOd"/>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="height" secondItem="BDz-rN-EiO" secondAttribute="height" id="QQp-z1-K1k"/>
+                            <constraint firstItem="hxC-4y-dBX" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="S1a-HP-fcF"/>
                             <constraint firstItem="cGz-le-s5T" firstAttribute="centerX" secondItem="BDz-rN-EiO" secondAttribute="centerX" id="V8d-TX-I3b"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="dEo-4w-Lgv"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="BDz-rN-EiO" secondAttribute="bottom" constant="8" id="dGk-wI-Dgp"/>
@@ -216,7 +225,7 @@
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="top" secondItem="cGz-le-s5T" secondAttribute="bottom" constant="8" id="icx-yV-4kq"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="cGz-le-s5T" secondAttribute="bottom" constant="8" id="lfY-mi-Jt1"/>
                             <constraint firstItem="BDz-rN-EiO" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="mkL-qc-uFL"/>
-                            <constraint firstItem="cGz-le-s5T" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="10" id="nXB-0L-JK7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hxC-4y-dBX" secondAttribute="trailing" constant="-16" id="uSY-3g-QK5"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -231,9 +240,10 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Social" image="first" id="acW-dT-cKf"/>
-                    <navigationItem key="navigationItem" title="FunLyfe" id="3TB-W8-L9o"/>
                     <connections>
                         <outlet property="instagramTableView" destination="cGz-le-s5T" id="ZTJ-WE-u97"/>
+                        <outlet property="navBar" destination="hxC-4y-dBX" id="ybA-0H-S7A"/>
+                        <outlet property="navBarTitleItem" destination="kHp-qC-zPW" id="6lg-7G-gws"/>
                         <outlet property="twitterTableView" destination="BDz-rN-EiO" id="OAZ-ns-Rk9"/>
                     </connections>
                 </viewController>
@@ -241,7 +251,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-331"/>
         </scene>
-        <!--FunLyfe-->
+        <!--Listen-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController">
@@ -253,6 +263,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZj-Fb-We2">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="FunLyfe" id="FyV-JL-5pe"/>
+                                </items>
+                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
                                 <rect key="frame" x="0.0" y="64" width="600" height="363"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yfh-0c-7PM">
@@ -356,23 +372,23 @@
                             <constraint firstItem="c9f-DL-Bte" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="B4z-QX-2zp"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="c9f-DL-Bte" secondAttribute="bottom" constant="8" id="Ez9-MG-0yf"/>
                             <constraint firstItem="c9f-DL-Bte" firstAttribute="top" secondItem="EYb-sB-0Oa" secondAttribute="bottom" constant="22" id="IkM-Xn-9Qf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xZj-Fb-We2" secondAttribute="trailing" constant="-16" id="NL3-mv-fPm"/>
                             <constraint firstItem="EYb-sB-0Oa" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="Us0-al-or2"/>
                             <constraint firstItem="c9f-DL-Bte" firstAttribute="top" secondItem="VpJ-tJ-kj0" secondAttribute="bottom" constant="22" id="V82-SC-Aqr"/>
                             <constraint firstItem="c9f-DL-Bte" firstAttribute="top" secondItem="4vJ-M0-Mqv" secondAttribute="bottom" constant="22" id="cLq-lx-ODo"/>
                             <constraint firstItem="4vJ-M0-Mqv" firstAttribute="top" secondItem="0Wz-jD-Ohp" secondAttribute="bottom" constant="14" id="cbH-Jy-Spt"/>
-                            <constraint firstItem="0Wz-jD-Ohp" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="fit-ws-NXn"/>
                             <constraint firstItem="0Wz-jD-Ohp" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="h4W-bo-Hsi"/>
+                            <constraint firstItem="xZj-Fb-We2" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="oc8-XL-Qyh"/>
                             <constraint firstItem="VpJ-tJ-kj0" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="rcS-BY-QPf"/>
+                            <constraint firstItem="xZj-Fb-We2" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="uxK-d8-RiP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="2np-dT-t1K"/>
                                 <exclude reference="37H-r5-fA7"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
-                    <navigationItem key="navigationItem" title="FunLyfe" id="BJP-bS-Uvg"/>
                     <connections>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
                         <outlet property="volumeControlHorizontalSlider" destination="c9f-DL-Bte" id="xX5-qr-SMZ"/>
@@ -382,7 +398,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--FunLyfe-->
+        <!--Shop-->
         <scene sceneID="ULD-Q3-M9a">
             <objects>
                 <viewController id="BRh-wL-Saa" customClass="FLFShopViewController" sceneMemberID="viewController">
@@ -398,6 +414,18 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6v-9o-9i0">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="FunLyfe" id="f99-Q3-tAo">
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="Dq2-In-7O7">
+                                            <connections>
+                                                <segue destination="hf5-09-FTs" kind="show" id="NGP-WX-4We"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Nf-DC-JYu">
                                 <rect key="frame" x="0.0" y="507" width="600" height="44"/>
                                 <items>
@@ -433,11 +461,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="e6v-9o-9i0" secondAttribute="bottom" id="CXX-WX-CF0"/>
                             <constraint firstItem="A6N-rq-8HS" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" constant="-16" id="ELI-Cs-QmU"/>
                             <constraint firstAttribute="centerY" secondItem="mwv-QD-AdS" secondAttribute="centerY" constant="5.5" id="ER8-ry-9tr"/>
+                            <constraint firstItem="e6v-9o-9i0" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="IpO-pm-a6C"/>
                             <constraint firstItem="9Nf-DC-JYu" firstAttribute="top" secondItem="A6N-rq-8HS" secondAttribute="bottom" id="LPx-Nj-6c7"/>
                             <constraint firstItem="9Nf-DC-JYu" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" constant="-16" id="QE3-Ju-xDJ"/>
-                            <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="RWg-k0-4pR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e6v-9o-9i0" secondAttribute="trailing" constant="-16" id="WIl-MB-TOt"/>
+                            <constraint firstItem="e6v-9o-9i0" firstAttribute="leading" secondItem="SL4-am-Op4" secondAttribute="leadingMargin" constant="-16" id="a4m-ll-QQh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="A6N-rq-8HS" secondAttribute="trailing" constant="-16" id="duW-38-dCC"/>
                             <constraint firstItem="A6N-rq-8HS" firstAttribute="top" secondItem="jcO-of-grS" secondAttribute="bottom" id="ggg-4P-1fe"/>
                             <constraint firstItem="txJ-C1-6uW" firstAttribute="top" secondItem="A6N-rq-8HS" secondAttribute="bottom" id="hja-k4-DEH"/>
@@ -453,13 +484,6 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
-                    <navigationItem key="navigationItem" title="FunLyfe" id="E3j-au-dEI">
-                        <barButtonItem key="rightBarButtonItem" title="About" id="kjd-MC-wHf">
-                            <connections>
-                                <segue destination="hf5-09-FTs" kind="show" id="45F-su-XpH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="spinner" destination="mwv-QD-AdS" id="E5m-0p-bSL"/>
                         <outlet property="webView" destination="A6N-rq-8HS" id="Jzb-7R-kop"/>
@@ -469,27 +493,10 @@
             </objects>
             <point key="canvasLocation" x="1390" y="104"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UfA-aB-jIJ">
-            <objects>
-                <navigationController id="qEL-fN-T6r" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7MR-4A-WU7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="49e-Tb-3d3" kind="relationship" relationship="rootViewController" id="HfB-hs-ed9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SfW-Vf-Hqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="56" y="680"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="YGF-oC-pI2"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
