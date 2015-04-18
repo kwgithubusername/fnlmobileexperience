@@ -420,7 +420,7 @@
                                     <navigationItem title="FunLyfe" id="f99-Q3-tAo">
                                         <barButtonItem key="rightBarButtonItem" title="About" id="Dq2-In-7O7">
                                             <connections>
-                                                <segue destination="hf5-09-FTs" kind="show" id="NGP-WX-4We"/>
+                                                <segue destination="hf5-09-FTs" kind="presentation" id="NGP-WX-4We"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -516,7 +516,7 @@
         <!--About-->
         <scene sceneID="5sJ-aO-79I">
             <objects>
-                <viewController title="About" automaticallyAdjustsScrollViewInsets="NO" id="hf5-09-FTs" sceneMemberID="viewController">
+                <viewController title="About" automaticallyAdjustsScrollViewInsets="NO" id="hf5-09-FTs" customClass="FLFAboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBd-Ib-WsX"/>
                         <viewControllerLayoutGuide type="bottom" id="r17-Om-piY"/>
@@ -526,7 +526,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEn-nr-paM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <string key="text">Acknowledgements
 Portions of this software may utilize the following copyrighted material, the use of which is hereby acknowledged:
@@ -547,17 +547,37 @@ Copyright © 2015 Kevin Wu. All rights reserved.
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxb-53-BRK">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="About" id="2my-jJ-kOo">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="l30-d5-665">
+                                            <connections>
+                                                <action selector="backButtonClicked:" destination="hf5-09-FTs" id="fRZ-WE-Ifj"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="kEn-nr-paM" secondAttribute="trailing" constant="-16" id="F1c-vS-VoK"/>
                             <constraint firstItem="r17-Om-piY" firstAttribute="top" secondItem="kEn-nr-paM" secondAttribute="bottom" id="JJH-qq-dO1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cxb-53-BRK" secondAttribute="trailing" constant="-16" id="T4L-UN-S9j"/>
+                            <constraint firstItem="cxb-53-BRK" firstAttribute="top" secondItem="bBd-Ib-WsX" secondAttribute="bottom" id="XOt-PU-LfP"/>
+                            <constraint firstItem="kEn-nr-paM" firstAttribute="top" secondItem="bBd-Ib-WsX" secondAttribute="bottom" constant="44" id="cAt-Lp-YTc"/>
                             <constraint firstItem="kEn-nr-paM" firstAttribute="top" secondItem="bBd-Ib-WsX" secondAttribute="bottom" id="ct2-vx-AgX"/>
                             <constraint firstItem="kEn-nr-paM" firstAttribute="leading" secondItem="7mH-UQ-Eyi" secondAttribute="leadingMargin" constant="-16" id="l6w-I2-AvR"/>
+                            <constraint firstItem="cxb-53-BRK" firstAttribute="leading" secondItem="7mH-UQ-Eyi" secondAttribute="leadingMargin" constant="-16" id="rDq-Dc-j27"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ct2-vx-AgX"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="About" id="4wl-hr-P5c"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geV-PJ-EF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
