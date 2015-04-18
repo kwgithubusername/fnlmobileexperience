@@ -61,10 +61,13 @@
                                                         <action selector="likeButtonTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pjn-Y3-MEo"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ba-dJH">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ba-dJH">
                                                     <rect key="frame" x="530" y="92" width="30" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <state key="normal" title="💬">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="MpA-F8-Wbb"/>
+                                                        <constraint firstAttribute="width" constant="30" id="d4J-xK-UgY"/>
+                                                    </constraints>
+                                                    <state key="normal" image="lightBubble75PercentMITLicense.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -326,7 +329,7 @@
                                     <constraint firstAttribute="height" constant="50" id="k2h-9q-tGm"/>
                                     <constraint firstAttribute="width" constant="50" id="tAj-7u-0zv"/>
                                 </constraints>
-                                <state key="normal" image="playInverted.png">
+                                <state key="normal" image="playMITLicensedInverted.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -346,7 +349,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="U1t-gI-Z3o"/>
                                     <constraint firstAttribute="width" constant="50" id="Ue8-vz-vmj"/>
                                 </constraints>
-                                <state key="normal" image="nextInverted.png">
+                                <state key="normal" image="fowardInvertedMITLicense.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -357,7 +360,7 @@
                                     <constraint firstAttribute="width" constant="50" id="tqO-dT-KIY"/>
                                     <constraint firstAttribute="height" constant="50" id="wWG-ph-dE0"/>
                                 </constraints>
-                                <state key="normal" image="reverseInverted.png">
+                                <state key="normal" image="reverseInvertedMITLicense.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -587,11 +590,12 @@ Copyright © 2015 Kevin Wu. All rights reserved.
     <resources>
         <image name="favorite.png" width="16" height="16"/>
         <image name="first" width="30" height="30"/>
-        <image name="nextInverted.png" width="128" height="128"/>
-        <image name="playInverted.png" width="128" height="128"/>
+        <image name="fowardInvertedMITLicense.png" width="128" height="128"/>
+        <image name="lightBubble75PercentMITLicense.png" width="128" height="128"/>
+        <image name="playMITLicensedInverted.png" width="128" height="128"/>
         <image name="reply.png" width="16" height="16"/>
         <image name="retweet.png" width="19" height="16"/>
-        <image name="reverseInverted.png" width="128" height="128"/>
+        <image name="reverseInvertedMITLicense.png" width="128" height="128"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
