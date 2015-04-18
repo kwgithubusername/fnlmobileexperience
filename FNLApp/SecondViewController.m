@@ -17,9 +17,15 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) FLFMusicCollectionViewDataSource *dataSource;
 @property (nonatomic) FLFMusicWebServices *webServices;
+@property (weak, nonatomic) IBOutlet UISlider *volumeControlHorizontalSlider;
 @end
 
 @implementation SecondViewController
+
+- (IBAction)volumeControlHorizontalSliderMoved:(UISlider *)sender
+{
+    self.audioPlayer.volume = sender.value;
+}
 
 -(FLFMusicWebServices *)webServices
 {
@@ -56,6 +62,7 @@
                  responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                      NSError *playerError;
                      self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+                     self.audioPlayer.volume = self.volumeControlHorizontalSlider.value;
                      [self.audioPlayer prepareToPlay];
                      [self.audioPlayer play];
                  }];

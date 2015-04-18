@@ -270,7 +270,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
-                                <rect key="frame" x="0.0" y="64" width="600" height="435"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="383"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yfh-0c-7PM">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -321,18 +321,27 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vJ-M0-Mqv">
-                                <rect key="frame" x="277" y="513" width="46" height="30"/>
+                                <rect key="frame" x="277" y="461" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-DL-Bte">
+                                <rect key="frame" x="14" y="513" width="572" height="31"/>
+                                <connections>
+                                    <action selector="volumeControlHorizontalSliderMoved:" destination="8rJ-Kc-sve" eventType="valueChanged" id="eHB-Dx-mnf"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="c9f-DL-Bte" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="2l9-x4-iGV"/>
                             <constraint firstItem="0Wz-jD-Ohp" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="44" id="2np-dT-t1K"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="4vJ-M0-Mqv" secondAttribute="bottom" constant="8" id="37H-r5-fA7"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="4vJ-M0-Mqv" secondAttribute="bottom" constant="60" id="37H-r5-fA7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Wz-jD-Ohp" secondAttribute="trailing" constant="-16" id="4uN-73-LTm"/>
                             <constraint firstAttribute="centerX" secondItem="4vJ-M0-Mqv" secondAttribute="centerX" id="5by-Ml-Xcf"/>
+                            <constraint firstItem="c9f-DL-Bte" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="B4z-QX-2zp"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="c9f-DL-Bte" secondAttribute="bottom" constant="8" id="Ez9-MG-0yf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xZj-Fb-We2" secondAttribute="trailing" constant="-16" id="NL3-mv-fPm"/>
                             <constraint firstItem="4vJ-M0-Mqv" firstAttribute="top" secondItem="0Wz-jD-Ohp" secondAttribute="bottom" constant="14" id="cbH-Jy-Spt"/>
                             <constraint firstItem="0Wz-jD-Ohp" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="h4W-bo-Hsi"/>
@@ -343,6 +352,7 @@
                     <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
+                        <outlet property="volumeControlHorizontalSlider" destination="c9f-DL-Bte" id="xX5-qr-SMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
