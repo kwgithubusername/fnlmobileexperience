@@ -266,18 +266,14 @@
         
         instagramCell.captionLabel.text = instagramObject.caption.text;
         
-        [[InstagramEngine sharedEngine] getMedia:instagramObject.Id withSuccess:^(InstagramMedia *media) {
-            UIColor *likedOrNotColor =  media.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
-            instagramCell.likeButton.tag = media.userHasLiked? 7 : 6;
-            dispatch_async(dispatch_get_main_queue(), ^{
+        UIColor *likedOrNotColor =  instagramObject.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+                instagramCell.likeButton.tag = instagramObject.userHasLiked? 7 : 6;
                 instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
-                instagramCell.commentButton.enabled = media.commentCount > 0 ? YES:NO;
+                instagramCell.commentButton.enabled = instagramObject.commentCount > 0 ? YES:NO;
                 instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
-                NSLog(@"getting user like info");
-            });
-        } failure:^(NSError *error) {
-            NSLog(@"Error getting media:%@", [error localizedDescription]);
-        }];
+        });
         
         if (instagramObject.isVideo)
         {
