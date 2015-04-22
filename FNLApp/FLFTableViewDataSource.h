@@ -14,9 +14,11 @@ typedef void (^WillDisplayCellBlock)(NSIndexPath *indexPath);
 
 @interface FLFTableViewDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+
 -(id)initWithCellForRowAtIndexPathBlock:(CellForRowAtIndexPathBlock)aCellForRowAtIndexPathBlock
              NumberOfRowsInSectionBlock:(NumberOfRowsInSectionBlock)aNumberOfRowsInSectionBlock
-                   WillDisplayCellBlock:(WillDisplayCellBlock)aWillDisplayCellBlock;
+                   WillDisplayCellBlock:(WillDisplayCellBlock)aWillDisplayCellBlock
+;
 
 
 

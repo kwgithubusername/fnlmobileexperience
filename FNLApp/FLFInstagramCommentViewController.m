@@ -148,6 +148,7 @@
                                options:0
                                metrics:nil
                                views:viewsDictionary]];
+    captionLabel.numberOfLines = 0;
     self.captionLabel = captionLabel;
 }
 

@@ -305,12 +305,15 @@
     self.instagramDataSource = [[FLFTableViewDataSource alloc] initWithCellForRowAtIndexPathBlock:cellForRowAtIndexPathBlock NumberOfRowsInSectionBlock:numberOfRowsInSectionBlock WillDisplayCellBlock:willDisplayCellBlock];
     self.instagramTableView.delegate = self.instagramDataSource;
     self.instagramTableView.dataSource = self.instagramDataSource;
+    
 }
 
 - (void)setupInstagram
 {
     self.instagramWebServices = [[FLFInstagramWebServices alloc] initWithTableView:self.instagramTableView];
     [self setupInstagramDataSource];
+    self.instagramTableView.estimatedRowHeight = 130;
+    self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 -(void)setupTwitter

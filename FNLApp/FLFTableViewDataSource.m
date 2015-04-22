@@ -21,6 +21,7 @@
 -(id)initWithCellForRowAtIndexPathBlock:(CellForRowAtIndexPathBlock)aCellForRowAtIndexPathBlock
              NumberOfRowsInSectionBlock:(NumberOfRowsInSectionBlock)aNumberOfRowsInSectionBlock
                    WillDisplayCellBlock:(WillDisplayCellBlock)aWillDisplayCellBlock
+
 {
     self = [super init];
     if (self)
