@@ -84,6 +84,12 @@
                                                         <constraint firstAttribute="width" constant="30" id="fFF-aB-LTh"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxl-Tv-Ndc">
+                                                    <rect key="frame" x="524" y="29" width="36" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="8" id="2jf-vy-RBV"/>
@@ -100,9 +106,12 @@
                                                 <constraint firstItem="RiZ-le-uBS" firstAttribute="centerY" secondItem="hUZ-PR-f3B" secondAttribute="centerY" id="brR-BT-Mu8"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="leading" secondItem="hUZ-PR-f3B" secondAttribute="trailing" id="frg-Jf-sYZ"/>
                                                 <constraint firstAttribute="centerX" secondItem="hUZ-PR-f3B" secondAttribute="centerX" constant="-112.5" id="gIz-tI-JNl"/>
+                                                <constraint firstItem="G2m-7z-Owy" firstAttribute="top" secondItem="vxl-Tv-Ndc" secondAttribute="bottom" constant="8" id="gSW-MV-b4k"/>
                                                 <constraint firstItem="Wzw-Ba-dJH" firstAttribute="leading" secondItem="G2m-7z-Owy" secondAttribute="leading" id="h16-pl-Zqa"/>
+                                                <constraint firstItem="vxl-Tv-Ndc" firstAttribute="centerX" secondItem="G2m-7z-Owy" secondAttribute="centerX" constant="-3" id="na6-YI-tFh"/>
                                                 <constraint firstItem="G2m-7z-Owy" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" id="o6o-1j-zQw"/>
                                                 <constraint firstItem="hUZ-PR-f3B" firstAttribute="leading" secondItem="RiZ-le-uBS" secondAttribute="trailing" constant="59" id="uRI-rU-krm"/>
+                                                <constraint firstItem="vxl-Tv-Ndc" firstAttribute="trailing" secondItem="Ong-gM-d7w" secondAttribute="trailingMargin" id="yiF-NH-49a"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -111,6 +120,7 @@
                                                     <exclude reference="Lin-r7-bpA"/>
                                                     <exclude reference="gIz-tI-JNl"/>
                                                     <exclude reference="uRI-rU-krm"/>
+                                                    <exclude reference="yiF-NH-49a"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -120,6 +130,7 @@
                                             <outlet property="likeButton" destination="G2m-7z-Owy" id="uqm-1u-ICb"/>
                                             <outlet property="photoView" destination="RiZ-le-uBS" id="WiD-Yz-Bes"/>
                                             <outlet property="playButtonImageView" destination="JBd-PD-cAT" id="q2c-H4-U7q"/>
+                                            <outlet property="timeLabel" destination="vxl-Tv-Ndc" id="i96-ql-9r2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

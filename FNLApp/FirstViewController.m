@@ -18,6 +18,7 @@
 #import "FLFInstagramLoginViewController.h"
 #import "FLFInstagramCommentViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "FLFDateFormatter.h"
 
 #define FLFUsername @"thefunlyfe_"
 
@@ -33,10 +34,17 @@
 @property (nonatomic) int tableViewRowOfCurrentVideoPlayingInt;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBarTitleItem;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
+@property (nonatomic) FLFDateFormatter *dateFormatter;
 
 @end
 
 @implementation FirstViewController
+
+-(FLFDateFormatter *)dateFormatter
+{
+    if (!_dateFormatter) _dateFormatter = [[FLFDateFormatter alloc] init];
+    return _dateFormatter;
+}
 
 -(void)showMBProgressHUDSuccessWithString:(NSString *)string
 {
@@ -265,6 +273,8 @@
         [weakSelf.instagramWebServices loadImageIntoCell:instagramCell withURL:imageURL];
         
         instagramCell.captionLabel.text = instagramObject.caption.text;
+        
+        instagramCell.timeLabel.text = [weakSelf.dateFormatter formatDate:instagramObject.createdDate];
         
         UIColor *likedOrNotColor =  instagramObject.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
         

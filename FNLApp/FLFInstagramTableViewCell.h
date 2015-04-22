@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIImageView *playButtonImageView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
