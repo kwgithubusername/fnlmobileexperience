@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBarTitleItem;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (nonatomic) FLFDateFormatter *dateFormatter;
+@property (nonatomic) UIRefreshControl *instagramRefresh;
+@property (nonatomic) UIRefreshControl *twitterRefresh;
 
 @end
 
@@ -326,6 +328,20 @@
     self.instagramTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+- (void)checkForInstagramAccessToken
+{
+    if (![self.instagramWebServices hasAccessToken])
+    {
+        FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
+        loginViewController.mainViewController = self;
+        UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
+        loginViewController.view.frame = contentView.frame;
+        [self.view addSubview:loginViewController.view];
+        [self addChildViewController:loginViewController];
+        [loginViewController didMoveToParentViewController:self];
+    }
+}
+
 -(void)setupTwitter
 {
     self.twitterWebServices = [[FLFTwitterWebServices alloc] initWithTableView:self.twitterTableView];
@@ -414,10 +430,42 @@
     }
 }
 
+#pragma mark - Pull to refresh -
+
+-(void)refreshInstagram
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRefreshControlIfItExistsInInstagramTableView) name:@"FNLEndRefreshNotification" object:nil];
+    [self setupInstagram];
+    [self.instagramWebServices checkForAccessTokenAndLoad];
+}
+
+- (void)removeRefreshControlIfItExistsInInstagramTableView;
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FNLEndRefreshNotification" object:nil];
+    for (UIRefreshControl *refreshControl in self.instagramTableView.subviews)
+    {
+        if (refreshControl.tag == 400)
+        {
+            NSLog(@"ending refresh");
+           [refreshControl endRefreshing];
+        }
+    }
+}
+
+-(void)addPullToRefresh
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshInstagram) forControlEvents:UIControlEventValueChanged];
+    [self.instagramTableView addSubview:refreshControl];
+    refreshControl.tag = 400;
+}
+
 #pragma mark - View and background -
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    [self addPullToRefresh];
     [self setupBackground];
     [self setupTwitter];
     [self setupInstagram];
@@ -434,16 +482,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![self.instagramWebServices hasAccessToken])
-    {
-        FLFInstagramLoginViewController *loginViewController = [[FLFInstagramLoginViewController alloc] initWithWebServices:self.instagramWebServices];
-        loginViewController.mainViewController = self;
-        UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
-        loginViewController.view.frame = contentView.frame;
-        [self.view addSubview:loginViewController.view];
-        [self addChildViewController:loginViewController];
-        [loginViewController didMoveToParentViewController:self];
-    }
+    [self checkForInstagramAccessToken];
 }
 
 @end
