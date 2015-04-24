@@ -43,9 +43,6 @@
 		9EAEA4A01AE28AB900019077 /* reverseInvertedMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA49D1AE28AB900019077 /* reverseInvertedMITLicense.png */; };
 		9EAEA4A11AE28AB900019077 /* fowardInvertedMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA49E1AE28AB900019077 /* fowardInvertedMITLicense.png */; };
 		9EAEA4AC1AE295B400019077 /* backArrowMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4A71AE295B400019077 /* backArrowMITLicense.png */; };
-		9EAEA4AD1AE295B400019077 /* homeMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4A81AE295B400019077 /* homeMITLicense.png */; };
-		9EAEA4AF1AE295B400019077 /* refreshMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4AA1AE295B400019077 /* refreshMITLicense.png */; };
-		9EAEA4B01AE295B400019077 /* forwardArrowMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4AB1AE295B400019077 /* forwardArrowMITLicense.png */; };
 		9EAEA4C01AE2A21200019077 /* bubble75PercentMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */; };
 		9EAEA4C21AE2A2E500019077 /* lightBubble75PercentMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */; };
 		9EAEA4C61AE2A8DE00019077 /* playMITLicenseInverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4C51AE2A8DE00019077 /* playMITLicenseInverted.png */; };
@@ -232,9 +229,6 @@
 		9EAEA49D1AE28AB900019077 /* reverseInvertedMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reverseInvertedMITLicense.png; sourceTree = "<group>"; };
 		9EAEA49E1AE28AB900019077 /* fowardInvertedMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fowardInvertedMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4A71AE295B400019077 /* backArrowMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowMITLicense.png; sourceTree = "<group>"; };
-		9EAEA4A81AE295B400019077 /* homeMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeMITLicense.png; sourceTree = "<group>"; };
-		9EAEA4AA1AE295B400019077 /* refreshMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshMITLicense.png; sourceTree = "<group>"; };
-		9EAEA4AB1AE295B400019077 /* forwardArrowMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardArrowMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble75PercentMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightBubble75PercentMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4C51AE2A8DE00019077 /* playMITLicenseInverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playMITLicenseInverted.png; sourceTree = "<group>"; };
@@ -368,9 +362,6 @@
 				9EAEA4A71AE295B400019077 /* backArrowMITLicense.png */,
 				9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */,
 				9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */,
-				9EAEA4A81AE295B400019077 /* homeMITLicense.png */,
-				9EAEA4AA1AE295B400019077 /* refreshMITLicense.png */,
-				9EAEA4AB1AE295B400019077 /* forwardArrowMITLicense.png */,
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
@@ -680,11 +671,8 @@
 				9ECB994F1ABBB0990016A28D /* reply.png in Resources */,
 				9EAEA4C01AE2A21200019077 /* bubble75PercentMITLicense.png in Resources */,
 				9EAEA49F1AE28AB900019077 /* pauseInvertedMITLicense.png in Resources */,
-				9EAEA4AD1AE295B400019077 /* homeMITLicense.png in Resources */,
 				9EAEA4A01AE28AB900019077 /* reverseInvertedMITLicense.png in Resources */,
 				9EAEA4AC1AE295B400019077 /* backArrowMITLicense.png in Resources */,
-				9EAEA4AF1AE295B400019077 /* refreshMITLicense.png in Resources */,
-				9EAEA4B01AE295B400019077 /* forwardArrowMITLicense.png in Resources */,
 				9E20C2021A83BD8000DFCD93 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
