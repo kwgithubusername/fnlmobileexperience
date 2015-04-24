@@ -434,25 +434,59 @@
 
 -(void)refreshInstagram
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRefreshControlIfItExistsInInstagramTableView) name:@"FNLEndRefreshNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRefreshControlIfItExistsInInstagramTableView) name:@"FNLEndInstagramRefreshNotification" object:nil];
     [self setupInstagram];
     [self.instagramWebServices checkForAccessTokenAndLoad];
 }
 
+-(void)refreshTwitter
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRefreshControlIfItExistsInTwitterTableView) name:@"FNLEndTwitterRefreshNotification" object:nil];
+    [self setupTwitter];
+}
+
+-(void)addPullToRefresh
+{
+    [self addPullToRefreshToInstagram];
+    [self addPullToRefreshToTwitter];
+}
+
+- (void)removeRefreshControlIfItExistsInTwitterTableView;
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FNLEndTwitterRefreshNotification" object:nil];
+    for (UIRefreshControl *refreshControl in self.twitterTableView.subviews)
+    {
+        if (refreshControl.tag == 401)
+        {
+            NSLog(@"ending refresh");
+            [refreshControl endRefreshing];
+        }
+    }
+}
+
 - (void)removeRefreshControlIfItExistsInInstagramTableView;
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FNLEndRefreshNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FNLEndInstagramRefreshNotification" object:nil];
     for (UIRefreshControl *refreshControl in self.instagramTableView.subviews)
     {
         if (refreshControl.tag == 400)
         {
             NSLog(@"ending refresh");
-           [refreshControl endRefreshing];
+            [refreshControl endRefreshing];
         }
     }
 }
 
--(void)addPullToRefresh
+-(void)addPullToRefreshToTwitter
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshTwitter) forControlEvents:UIControlEventValueChanged];
+    [self.twitterTableView addSubview:refreshControl];
+    refreshControl.tag = 401;
+
+}
+
+-(void)addPullToRefreshToInstagram
 {
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshInstagram) forControlEvents:UIControlEventValueChanged];

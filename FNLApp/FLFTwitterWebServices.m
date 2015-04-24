@@ -66,6 +66,7 @@
                           //NSLog(@"%@", self.twitterFeedMutableArray);
                           [self.tableView reloadData];
                           self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndTwitterRefreshNotification" object:nil];
                           
                       } errorBlock:^(NSError *error)
                       {

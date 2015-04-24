@@ -88,7 +88,7 @@
         self.currentMaxIDString = lastMediaObject.Id;
         NSLog(@"Instagram:%@",media);
         [self.tableView reloadData];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndRefreshNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndInstagramRefreshNotification" object:nil];
     } failure:^(NSError *error) {
         NSLog(@"Error getting media:%@", [error localizedDescription]);
     }];
