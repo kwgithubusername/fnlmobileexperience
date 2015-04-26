@@ -237,6 +237,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // cells are not dynamically resized unless the following code is executed
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.instagramTableView reloadData];
     });
