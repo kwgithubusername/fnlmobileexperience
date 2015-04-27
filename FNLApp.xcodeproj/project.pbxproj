@@ -32,6 +32,7 @@
 		9E20C26A1A83C31500DFCD93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C2691A83C31500DFCD93 /* QuartzCore.framework */; };
 		9E20C26C1A83C31A00DFCD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C26B1A83C31A00DFCD93 /* Security.framework */; };
 		9E3025B41AE739C000B31F1F /* FLFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3025B31AE739C000B31F1F /* FLFDateFormatter.m */; };
+		9E4B714B1AEDCDEA001A2CBE /* FLFDateFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B714A1AEDCDEA001A2CBE /* FLFDateFormatterTests.m */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
 		9E5D987C1AE1FDE000AE5563 /* FLFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */; };
 		9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */; };
@@ -213,6 +214,7 @@
 		9E20C26B1A83C31A00DFCD93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9E3025B21AE739C000B31F1F /* FLFDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFDateFormatter.h; sourceTree = "<group>"; };
 		9E3025B31AE739C000B31F1F /* FLFDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFDateFormatter.m; sourceTree = "<group>"; };
+		9E4B714A1AEDCDEA001A2CBE /* FLFDateFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFDateFormatterTests.m; sourceTree = "<group>"; };
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
 		9E5D987A1AE1FDE000AE5563 /* FLFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFAboutViewController.h; sourceTree = "<group>"; };
 		9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFAboutViewController.m; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				9E20C2101A83BD8100DFCD93 /* FNLAppTests.m */,
+				9E4B714A1AEDCDEA001A2CBE /* FLFDateFormatterTests.m */,
 				9E20C20E1A83BD8100DFCD93 /* Supporting Files */,
 			);
 			path = FNLAppTests;
@@ -751,6 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E20C2111A83BD8100DFCD93 /* FNLAppTests.m in Sources */,
+				9E4B714B1AEDCDEA001A2CBE /* FLFDateFormatterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
