@@ -33,7 +33,7 @@
 @property (nonatomic) MPMoviePlayerController *videoPlayer;
 @property (nonatomic) int tableViewRowOfCurrentVideoPlayingInt;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBarTitleItem;
-@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBarProperty;
 @property (nonatomic) FLFDateFormatter *dateFormatter;
 @property (nonatomic) UIRefreshControl *instagramRefresh;
 @property (nonatomic) UIRefreshControl *twitterRefresh;
@@ -408,9 +408,9 @@
     // create a view which covers most of the tap bar to
     // manage the gestures - if we use the navigation bar
     // it interferes with the nav buttons
-    CGRect frame = self.navBar.frame;
+    CGRect frame = self.navigationBarProperty.frame;
     UIView *navBarTapView = [[UIView alloc] initWithFrame:frame];
-    [self.navBar addSubview:navBarTapView];
+    [self.navigationBarProperty addSubview:navBarTapView];
     [navBarTapView setUserInteractionEnabled:YES];
     [navBarTapView addGestureRecognizer:gestureRecognizer];
     navBarTapView.tag = 999;
@@ -509,13 +509,26 @@
 -(void)setupBackground
 {
     self.view.backgroundColor = [UIColor grayColor];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor grayColor]];
-    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"funlyfebanner.png"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
+    
+    CGRect frame = CGRectMake(80, 0, self.view.frame.size.width-160, self.navigationBarProperty.frame.size.height);
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
+    
+    [self.navigationBarProperty addSubview:logoView];
+    logoView.image = [UIImage imageNamed:@"funlyfebanner.png"];
+//    [[UINavigationBar appearance] setTranslucent:NO];
+//    UIImageView *barImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+//        barImageView.image = [UIImage imageNamed:@"funlyfebanner.png"];
+
+    //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"funlyfebanner.png"]  forBarMetrics:UIBarMetricsCompact];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
     [self checkForInstagramAccessToken];
 }
 

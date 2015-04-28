@@ -33,6 +33,7 @@
 		9E20C26C1A83C31A00DFCD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20C26B1A83C31A00DFCD93 /* Security.framework */; };
 		9E3025B41AE739C000B31F1F /* FLFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3025B31AE739C000B31F1F /* FLFDateFormatter.m */; };
 		9E4B714B1AEDCDEA001A2CBE /* FLFDateFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B714A1AEDCDEA001A2CBE /* FLFDateFormatterTests.m */; };
+		9E4B71571AEF0AD9001A2CBE /* funlyfebanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
 		9E5D987C1AE1FDE000AE5563 /* FLFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */; };
 		9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */; };
@@ -215,6 +216,7 @@
 		9E3025B21AE739C000B31F1F /* FLFDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFDateFormatter.h; sourceTree = "<group>"; };
 		9E3025B31AE739C000B31F1F /* FLFDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFDateFormatter.m; sourceTree = "<group>"; };
 		9E4B714A1AEDCDEA001A2CBE /* FLFDateFormatterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFDateFormatterTests.m; sourceTree = "<group>"; };
+		9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = funlyfebanner.png; sourceTree = "<group>"; };
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
 		9E5D987A1AE1FDE000AE5563 /* FLFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFAboutViewController.h; sourceTree = "<group>"; };
 		9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFAboutViewController.m; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				9EAEA4A71AE295B400019077 /* backArrowMITLicense.png */,
 				9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */,
 				9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */,
+				9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */,
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
@@ -663,6 +666,7 @@
 			files = (
 				9EAEA4C21AE2A2E500019077 /* lightBubble75PercentMITLicense.png in Resources */,
 				9EAEA4A11AE28AB900019077 /* fowardInvertedMITLicense.png in Resources */,
+				9E4B71571AEF0AD9001A2CBE /* funlyfebanner.png in Resources */,
 				9E20C2001A83BD8000DFCD93 /* Main.storyboard in Resources */,
 				9ECB99511ABBB0990016A28D /* retweet.png in Resources */,
 				9ECB99441ABBB0520016A28D /* favorite.png in Resources */,
