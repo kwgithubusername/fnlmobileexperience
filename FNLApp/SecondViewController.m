@@ -115,6 +115,9 @@
              responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                  NSError *playerError;
                  self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+                 [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+                 [[AVAudioSession sharedInstance] setActive: YES error: nil];
+                 [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
                  self.audioPlayer.volume = self.volumeControlHorizontalSlider.value;
                  [self.audioPlayer prepareToPlay];
                  [self.audioPlayer play];
