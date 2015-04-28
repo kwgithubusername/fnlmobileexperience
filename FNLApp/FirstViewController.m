@@ -510,19 +510,12 @@
 {
     self.view.backgroundColor = [UIColor grayColor];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"funlyfebanner.png"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     
-    CGRect frame = CGRectMake(80, 0, self.view.frame.size.width-160, self.navigationBarProperty.frame.size.height);
+    CGRect frame = CGRectMake(90, 0, self.view.frame.size.width-180, self.navigationBarProperty.frame.size.height);
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
     
     [self.navigationBarProperty addSubview:logoView];
     logoView.image = [UIImage imageNamed:@"funlyfebanner.png"];
-//    [[UINavigationBar appearance] setTranslucent:NO];
-//    UIImageView *barImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-//        barImageView.image = [UIImage imageNamed:@"funlyfebanner.png"];
-
-    //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"funlyfebanner.png"]  forBarMetrics:UIBarMetricsCompact];
 }
 
 -(void)viewDidAppear:(BOOL)animated
