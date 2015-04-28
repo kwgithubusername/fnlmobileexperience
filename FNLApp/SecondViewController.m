@@ -26,6 +26,14 @@
 
 @implementation SecondViewController
 
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if (flag)
+    {
+        [self nextButtonTapped:nil];
+    }
+}
+
 - (IBAction)previousButtonTapped:(UIButton *)sender
 {
     [self.audioPlayer pause];
