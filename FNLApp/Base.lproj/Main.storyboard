@@ -394,6 +394,9 @@
                                     <action selector="previousButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="zw0-UQ-aiY"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fiH-R0-pdr">
+                                <rect key="frame" x="282" y="282" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -404,7 +407,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0Wz-jD-Ohp" secondAttribute="trailing" constant="-16" id="4uN-73-LTm"/>
                             <constraint firstAttribute="centerX" secondItem="4vJ-M0-Mqv" secondAttribute="centerX" id="5by-Ml-Xcf"/>
                             <constraint firstItem="c9f-DL-Bte" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="B4z-QX-2zp"/>
+                            <constraint firstAttribute="centerX" secondItem="fiH-R0-pdr" secondAttribute="centerX" id="DaU-ID-CTu"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="c9f-DL-Bte" secondAttribute="bottom" constant="8" id="Ez9-MG-0yf"/>
+                            <constraint firstAttribute="centerY" secondItem="fiH-R0-pdr" secondAttribute="centerY" id="FRa-9I-uKz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xZj-Fb-We2" secondAttribute="trailing" constant="-16" id="NL3-mv-fPm"/>
                             <constraint firstItem="EYb-sB-0Oa" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="Us0-al-or2"/>
                             <constraint firstItem="VpJ-tJ-kj0" firstAttribute="centerY" secondItem="4vJ-M0-Mqv" secondAttribute="centerY" id="YM0-QQ-dCV"/>
@@ -427,6 +432,7 @@
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
                         <outlet property="forwardButton" destination="VpJ-tJ-kj0" id="qBk-nR-Zx2"/>
                         <outlet property="playOrPauseButton" destination="4vJ-M0-Mqv" id="pos-43-vuf"/>
+                        <outlet property="spinner" destination="fiH-R0-pdr" id="CYX-cZ-CM2"/>
                         <outlet property="volumeControlHorizontalSlider" destination="c9f-DL-Bte" id="xX5-qr-SMZ"/>
                     </connections>
                 </viewController>

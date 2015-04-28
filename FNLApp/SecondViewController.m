@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UISlider *volumeControlHorizontalSlider;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
 @implementation SecondViewController
@@ -102,6 +103,7 @@
 
 -(void)playTrackAtIndex:(int)index
 {
+    [self.spinner startAnimating];
     NSDictionary *track = [[self.tracksArray firstObject] objectAtIndex:index];
     NSString *streamURL = [track objectForKey:@"stream_url"];
     
@@ -124,6 +126,7 @@
                  dispatch_async(dispatch_get_main_queue(), ^{
                      self.playOrPauseButton.imageView.image = [UIImage imageNamed:@"pauseInvertedMITLicense.png"];
                      self.currentTrackInt = index;
+                     [self.spinner stopAnimating];
                  });
              }];
     
