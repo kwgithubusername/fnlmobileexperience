@@ -21,11 +21,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "InstagramModel.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @class InstagramUser;
 @class InstagramComment;
 
 @interface InstagramMedia : InstagramModel
+
+@property (nonatomic) BOOL userHasLikedByTapping;
 
 @property (nonatomic, readonly) InstagramUser* user;
 @property (nonatomic, readonly) BOOL userHasLiked;

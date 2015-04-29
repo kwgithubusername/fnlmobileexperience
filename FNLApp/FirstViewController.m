@@ -85,21 +85,21 @@
     NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
     InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
     
-    if (sender.tag == 6)
+    if (!media.userHasLikedByTapping)
     {
         [[InstagramEngine sharedEngine] likeMedia:media withSuccess:^{
             sender.titleLabel.textColor = [UIColor redColor];
-            sender.tag = 7;
+            media.userHasLikedByTapping = YES;
             [self showMBProgressHUDSuccessWithString:@"Media liked"];
         } failure:^(NSError *error) {
             NSLog(@"error liking:%@", [error localizedDescription]);
         }];
     }
-    else if (sender.tag == 7)
+    else if (media.userHasLikedByTapping)
     {
         [[InstagramEngine sharedEngine] unlikeMedia:media withSuccess:^{
             sender.titleLabel.textColor = [UIColor grayColor];
-            sender.tag = 6;
+            media.userHasLikedByTapping = NO;
             [self showMBProgressHUDSuccessWithString:@"Media unliked"];
         } failure:^(NSError *error) {
             NSLog(@"error liking:%@", [error localizedDescription]);
@@ -278,10 +278,11 @@
         
         instagramCell.timeLabel.text = [weakSelf.dateFormatter formatDate:instagramObject.createdDate];
         
-        UIColor *likedOrNotColor =  instagramObject.userHasLiked ? [UIColor redColor] : [UIColor grayColor];
+        BOOL userLiked = instagramObject.userHasLikedByTapping ? YES : NO;
+        
+        UIColor *likedOrNotColor =  userLiked ? [UIColor redColor] : [UIColor grayColor];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-                instagramCell.likeButton.tag = instagramObject.userHasLiked? 7 : 6;
                 instagramCell.likeButton.titleLabel.textColor = likedOrNotColor;
                 instagramCell.commentButton.enabled = instagramObject.commentCount > 0 ? YES:NO;
                 instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
