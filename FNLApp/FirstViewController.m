@@ -112,7 +112,7 @@
 {
     FLFTwitterTableViewCell *cell = (FLFTwitterTableViewCell *)sender.superview.superview;
     NSInteger row = [self.twitterTableView indexPathForCell:cell].row;
-    NSDictionary *tweetDictionary = [self.twitterWebServices.twitterFeedMutableArray objectAtIndex:row];
+    NSMutableDictionary *tweetDictionary = [self.twitterWebServices.twitterFeedMutableArray objectAtIndex:row];
     NSString *idString = tweetDictionary[@"id_str"];
     NSLog(@"idstring is %@",idString);
     
@@ -121,12 +121,12 @@
     UIImage *retweetOnImage = [UIImage imageNamed:@"retweet_on.png"];
     UIImage *retweetImage = [UIImage imageNamed:@"retweet.png"];
     
-    if (sender.tag == 4) // if not favorited
+    if (sender.tag == 4 && [tweetDictionary[@"favorited"] boolValue] == 0) // if not favorited
     {
         [self.twitterWebServices.twitter postFavoriteCreateWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = favoriteOnImage;
-            sender.tag = 5;
+            [tweetDictionary setValue:@1 forKey:@"favorited"];
             [self showMBProgressHUDSuccessWithString:@"Tweet favorited"];
             
         } errorBlock:^(NSError *error)
@@ -134,12 +134,12 @@
                 NSLog(@"error favoriting:%@", [error localizedDescription]);
         }];
     }
-    else if (sender.tag == 5) // if favorited
+    else if (sender.tag == 4 && [tweetDictionary[@"favorited"] boolValue] == 1) // if favorited
     {
         [self.twitterWebServices.twitter postFavoriteDestroyWithStatusID:idString includeEntities:@1 successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = favoriteOffImage;
-            sender.tag = 4;
+            [tweetDictionary setValue:@0 forKey:@"favorited"];
             [self showMBProgressHUDSuccessWithString:@"Tweet unfavorited"];
         } errorBlock:^(NSError *error)
         {
@@ -147,19 +147,19 @@
         }];
     }
     
-    if (sender.tag == 2) // if not retweeted
+    if (sender.tag == 2 &&[tweetDictionary[@"retweeted"] boolValue] == 0) // if not retweeted
     {
         [self.twitterWebServices.twitter postStatusRetweetWithID:idString successBlock:^(NSDictionary *status)
         {
             sender.imageView.image = retweetOnImage;
-            sender.tag = 3;
+            [tweetDictionary setValue:@1 forKey:@"retweeted"];
             [self showMBProgressHUDSuccessWithString:@"Tweet retweeted"];
         } errorBlock:^(NSError *error)
         {
             NSLog(@"error retweeting:%@", [error localizedDescription]);
         }];
     }
-    else if (sender.tag == 3) // if retweeted
+    else if (sender.tag == 2 && [tweetDictionary[@"retweeted"] boolValue] == 1) // if retweeted
     {
         [self.twitterWebServices.twitter getStatusesShowID:idString trimUser:@1 includeMyRetweet:@1 includeEntities:@1 successBlock:^(NSDictionary *status)
         {
@@ -167,7 +167,8 @@
             [self.twitterWebServices.twitter postStatusesDestroy:idStringOfRetweet trimUser:@1 successBlock:^(NSDictionary *status)
             {
                 sender.imageView.image = retweetImage;
-                sender.tag = 2;
+                [tweetDictionary setValue:@0 forKey:@"retweeted"];
+                
                 [self showMBProgressHUDSuccessWithString:@"Retweet removed"];
             } errorBlock:^(NSError *error)
             {
@@ -229,15 +230,11 @@
         twitterCell.dateLabel.text = dateString;
         
         UIImage *favoriteStatusImage = [twitterFeedDictionary[@"favorited"] boolValue] ? [UIImage imageNamed:@"favorite_on.png"] : [UIImage imageNamed:@"favorite.png"];
-        twitterCell.favoriteButton.tag = [twitterFeedDictionary[@"favorited"] boolValue] ? 5 : 4;
+
+        UIImage *retweetStatusImage = [twitterFeedDictionary[@"retweeted"] boolValue] ? [UIImage imageNamed:@"retweet_on.png"] : [UIImage imageNamed:@"retweet.png"];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             twitterCell.favoriteButton.imageView.image = favoriteStatusImage;
-        });
-        
-        
-        UIImage *retweetStatusImage = [twitterFeedDictionary[@"retweeted"] boolValue] ? [UIImage imageNamed:@"retweet_on.png"] : [UIImage imageNamed:@"retweet.png"];
-        twitterCell.retweetButton.tag = [twitterFeedDictionary[@"retweeted"] boolValue] ? 3 : 2;
-        dispatch_async(dispatch_get_main_queue(), ^{
             twitterCell.retweetButton.imageView.image = retweetStatusImage;
         });
         

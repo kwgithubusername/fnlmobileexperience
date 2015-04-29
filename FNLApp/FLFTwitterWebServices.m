@@ -35,7 +35,10 @@
 {
     NSLog(@"fetching more");
     [self.twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
-        [self.twitterFeedMutableArray addObjectsFromArray:statuses];
+        for (NSDictionary *dictionary in statuses)
+        {
+            [self.twitterFeedMutableArray addObject:[dictionary mutableCopy]];
+        }
         [self.tableView reloadData];
         self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
     } errorBlock:^(NSError *error) {
@@ -61,9 +64,10 @@
                  {
                      [self.twitter getUserTimelineWithScreenName:FLFUsername successBlock:^(NSArray *statuses)
                       {
-                          
-                          self.twitterFeedMutableArray = [[NSMutableArray alloc] initWithArray:statuses];
-                          //NSLog(@"%@", self.twitterFeedMutableArray);
+                          for (NSDictionary *dictionary in statuses)
+                          {
+                              [self.twitterFeedMutableArray addObject:[dictionary mutableCopy]];
+                          }
                           [self.tableView reloadData];
                           self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
                           [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndTwitterRefreshNotification" object:nil];
