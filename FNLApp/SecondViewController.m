@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UISlider *volumeControlHorizontalSlider;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBarProperty;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
@@ -217,9 +218,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupBackground];
     self.collectionView.allowsSelection = YES;
     [self getMusic];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)setupBackground
+{
+    self.view.backgroundColor = [UIColor grayColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    
+    CGRect frame = CGRectMake(90, 0, self.view.frame.size.width-180, self.navigationBarProperty.frame.size.height);
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
+    
+    [self.navigationBarProperty addSubview:logoView];
+    logoView.image = [UIImage imageNamed:@"funlyfebanner.png"];
 }
 
 - (void)didReceiveMemoryWarning {

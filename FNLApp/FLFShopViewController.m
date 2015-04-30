@@ -8,6 +8,7 @@
 
 #import "FLFShopViewController.h"
 @interface FLFShopViewController ()
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBarProperty;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
@@ -71,13 +72,25 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setupBackground];
     self.webView.delegate = self;
     
     if (!self.didLoadFromDifferentTab)
     {
         [self homeButtonTapped:nil];
     }
+}
+
+-(void)setupBackground
+{
+    self.view.backgroundColor = [UIColor grayColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    
+    CGRect frame = CGRectMake(90, 0, self.view.frame.size.width-180, self.navigationBarProperty.frame.size.height);
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
+    
+    [self.navigationBarProperty addSubview:logoView];
+    logoView.image = [UIImage imageNamed:@"funlyfebanner.png"];
 }
 
 @end

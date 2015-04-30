@@ -21,7 +21,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxC-4y-dBX">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="FunLyfe" id="kHp-qC-zPW"/>
+                                    <navigationItem title="FunLyfe" id="kHp-qC-zPW">
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="Hb0-FN-rxY">
+                                            <connections>
+                                                <segue destination="hf5-09-FTs" kind="presentation" id="fEs-uq-Phu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="137" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGz-le-s5T">
@@ -293,7 +299,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZj-Fb-We2">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="FunLyfe" id="FyV-JL-5pe"/>
+                                    <navigationItem title="FunLyfe" id="FyV-JL-5pe">
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="B2N-vN-H7e">
+                                            <connections>
+                                                <segue destination="hf5-09-FTs" kind="presentation" id="fbW-iW-xBD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
@@ -431,6 +443,7 @@
                         <outlet property="backButton" destination="EYb-sB-0Oa" id="ZH5-vy-E2R"/>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
                         <outlet property="forwardButton" destination="VpJ-tJ-kj0" id="qBk-nR-Zx2"/>
+                        <outlet property="navigationBarProperty" destination="xZj-Fb-We2" id="qYL-eg-ycC"/>
                         <outlet property="playOrPauseButton" destination="4vJ-M0-Mqv" id="pos-43-vuf"/>
                         <outlet property="spinner" destination="fiH-R0-pdr" id="CYX-cZ-CM2"/>
                         <outlet property="volumeControlHorizontalSlider" destination="c9f-DL-Bte" id="xX5-qr-SMZ"/>
@@ -527,6 +540,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
                     <connections>
+                        <outlet property="navigationBarProperty" destination="e6v-9o-9i0" id="6Li-IK-WSF"/>
                         <outlet property="spinner" destination="mwv-QD-AdS" id="E5m-0p-bSL"/>
                         <outlet property="webView" destination="A6N-rq-8HS" id="Jzb-7R-kop"/>
                     </connections>
@@ -651,4 +665,7 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         <image name="reverseInvertedMITLicense.png" width="128" height="128"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fEs-uq-Phu"/>
+    </inferredMetricsTieBreakers>
 </document>
