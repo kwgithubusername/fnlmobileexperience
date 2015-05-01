@@ -311,7 +311,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-jD-Ohp">
                                 <rect key="frame" x="0.0" y="64" width="600" height="375"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yfh-0c-7PM">
-                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -321,31 +321,31 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-hC-PGR">
-                                                    <rect key="frame" x="35" y="77" width="31" height="15"/>
+                                                    <rect key="frame" x="60" y="114" width="31" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zJi-d8-Ibu">
-                                                    <rect key="frame" x="17" y="8" width="67" height="67"/>
+                                                    <rect key="frame" x="25" y="8" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="67" id="Vyq-c6-6Av"/>
+                                                        <constraint firstAttribute="height" constant="100" id="1j7-Cm-2sd"/>
+                                                        <constraint firstAttribute="width" constant="100" id="fBS-wN-u46"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="zJi-d8-Ibu" firstAttribute="top" secondItem="4XP-wv-zRF" secondAttribute="topMargin" id="AES-5c-cwV"/>
-                                            <constraint firstItem="fqI-hC-PGR" firstAttribute="bottom" secondItem="4XP-wv-zRF" secondAttribute="bottomMargin" id="j9R-3v-1Um"/>
+                                            <constraint firstItem="fqI-hC-PGR" firstAttribute="top" secondItem="zJi-d8-Ibu" secondAttribute="bottom" constant="6" id="7o6-mO-9GR"/>
+                                            <constraint firstAttribute="centerX" secondItem="fqI-hC-PGR" secondAttribute="centerX" id="YsW-zF-iT3"/>
+                                            <constraint firstAttribute="centerX" secondItem="zJi-d8-Ibu" secondAttribute="centerX" id="n6O-6x-akJ"/>
                                             <constraint firstAttribute="centerY" secondItem="fqI-hC-PGR" secondAttribute="centerY" constant="0.5" id="nYi-aF-cOl"/>
-                                            <constraint firstAttribute="centerX" secondItem="fqI-hC-PGR" secondAttribute="centerX" id="nvq-aD-CN2"/>
-                                            <constraint firstAttribute="centerX" secondItem="zJi-d8-Ibu" secondAttribute="centerX" constant="-0.5" id="r9j-Up-QWx"/>
-                                            <constraint firstItem="fqI-hC-PGR" firstAttribute="top" secondItem="zJi-d8-Ibu" secondAttribute="bottom" constant="2" id="rBt-Sy-h0G"/>
+                                            <constraint firstItem="zJi-d8-Ibu" firstAttribute="top" secondItem="4XP-wv-zRF" secondAttribute="topMargin" id="qSS-f1-UFw"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -666,6 +666,6 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fEs-uq-Phu"/>
+        <segue reference="fbW-iW-xBD"/>
     </inferredMetricsTieBreakers>
 </document>
