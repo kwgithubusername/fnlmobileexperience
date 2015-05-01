@@ -290,7 +290,6 @@
                 UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
                 instagramCell.photoView.userInteractionEnabled = YES;
                 [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
-            NSLog(@"instagramCell.photoView.tag is %d", (int)indexPath.row);
                 instagramCell.playButtonImageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
                 instagramCell.playButtonImageView.alpha = 0.5;
         }
@@ -427,14 +426,20 @@
 
 -(void)removeVideoPlayers:(UITapGestureRecognizer *)tapGestureRecognizer
 {
+    for (UIView *tapBarView in self.navigationBarProperty.subviews)
+    {
+        if (tapBarView.tag == 999)
+        {
+            [tapBarView removeFromSuperview];
+        }
+    }
+    
     for (UIView *view in self.view.subviews)
     {
-        switch (view.tag)
+        if (view.tag == 101)
         {
-            case 101: [self.videoPlayer stop];
-                [view removeFromSuperview];
-            case 999: [view removeGestureRecognizer:tapGestureRecognizer];
-                [view removeFromSuperview];
+            [self.videoPlayer stop];
+            [view removeFromSuperview];
         }
     }
     [self addBannerLogo];
@@ -526,11 +531,11 @@
 
 -(void)removeBannerLogo
 {
-    for (UIView *view in self.navigationBarProperty.subviews)
+    for (UIImageView *imageView in self.navigationBarProperty.subviews)
     {
-        if (view.tag == 33)
+        if (imageView.tag == 33)
         {
-            [view removeFromSuperview];
+            [imageView removeFromSuperview];
         }
     }
 }
