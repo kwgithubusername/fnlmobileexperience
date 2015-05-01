@@ -283,16 +283,22 @@
                 instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
         });
         
-        if (instagramObject.isVideo)
+        NSLog(@"ISVIDEO IS %d", instagramObject.isVideo);
+        if (instagramObject.isVideo && instagramCell.photoView.gestureRecognizers.count == 0)
         {
-            if (instagramCell.photoView.gestureRecognizers.count == 0)
-            {
                 UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
                 instagramCell.photoView.tag = indexPath.row;
                 instagramCell.photoView.userInteractionEnabled = YES;
                 [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
                 instagramCell.playButtonImageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
                 instagramCell.playButtonImageView.alpha = 0.5;
+        }
+        else if (!instagramObject.isVideo)
+        {
+            instagramCell.playButtonImageView.image = nil;
+            for (UIGestureRecognizer *gestureRecognizer in instagramCell.photoView.gestureRecognizers)
+            {
+                [instagramCell.photoView removeGestureRecognizer:gestureRecognizer];
             }
         }
         
@@ -364,7 +370,7 @@
 
 -(void)playInstagramVideo:(UIGestureRecognizer *)sender
 {
-    [self removeVideoPlayers];
+    [self removeVideoPlayers:nil];
     self.tableViewRowOfCurrentVideoPlayingInt = (int)sender.view.tag;
     InstagramMedia *mediaToPlay = self.instagramWebServices.mediaMutableArray[sender.view.tag];
     NSURL *videoURL = mediaToPlay.standardResolutionVideoURL;
@@ -372,7 +378,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:self.videoPlayer queue:nil usingBlock:^(NSNotification *note)
      {
-        [self removeVideoPlayers];
+         [self removeVideoPlayers:nil];
     ;}];
 }
 
@@ -399,7 +405,7 @@
 - (void)setupNavbarGestureRecognizer
 {
     // recognise taps on navigation bar to hide
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeVideoPlayers)];
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeVideoPlayers:)];
     gestureRecognizer.numberOfTapsRequired = 1;
     // create a view which covers most of the tap bar to
     // manage the gestures - if we use the navigation bar
@@ -410,20 +416,26 @@
     [navBarTapView setUserInteractionEnabled:YES];
     [navBarTapView addGestureRecognizer:gestureRecognizer];
     navBarTapView.tag = 999;
+    [self removeBannerLogo];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     self.navBarTitleItem.title = @"Tap here to dismiss video";
 }
 
--(void)removeVideoPlayers
+-(void)removeVideoPlayers:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     for (UIView *view in self.view.subviews)
     {
-        if (view.tag == 101 || view.tag == 999)
+        switch (view.tag)
         {
-            [self.videoPlayer stop];
-            [view removeFromSuperview];
-            self.navBarTitleItem.title = @"FunLyfe";
+            case 101: [self.videoPlayer stop];
+                [view removeFromSuperview];
+            case 999: [view removeGestureRecognizer:tapGestureRecognizer];
+                [view removeFromSuperview];
         }
     }
+    [self addBannerLogo];
+    self.navBarTitleItem.title = @"Funlyfe";
 }
 
 #pragma mark - Pull to refresh -
@@ -505,12 +517,30 @@
 -(void)setupBackground
 {
     self.view.backgroundColor = [UIColor grayColor];
+    
+    [self addBannerLogo];
+}
+
+-(void)removeBannerLogo
+{
+    for (UIView *view in self.navigationBarProperty.subviews)
+    {
+        if (view.tag == 33)
+        {
+            [view removeFromSuperview];
+        }
+    }
+}
+
+-(void)addBannerLogo
+{
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
     CGRect frame = CGRectMake(90, 0, self.view.frame.size.width-180, self.navigationBarProperty.frame.size.height);
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
     
     [self.navigationBarProperty addSubview:logoView];
+    logoView.tag = 33;
     logoView.image = [UIImage imageNamed:@"funlyfebanner.png"];
 }
 
