@@ -420,7 +420,7 @@
     navBarTapView.tag = 999;
     [self removeBannerLogo];
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [self.navigationBarProperty setBarTintColor:[UIColor whiteColor]];
     self.navBarTitleItem.title = @"Tap here to dismiss video";
 }
 
@@ -525,7 +525,7 @@
 -(void)setupBackground
 {
     self.view.backgroundColor = [UIColor grayColor];
-    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     [self addBannerLogo];
 }
 
@@ -542,7 +542,7 @@
 
 -(void)addBannerLogo
 {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [self.navigationBarProperty setBarTintColor:[UIColor blackColor]];
     
     CGRect frame = CGRectMake(90, 0, self.view.frame.size.width-180, self.navigationBarProperty.frame.size.height);
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
