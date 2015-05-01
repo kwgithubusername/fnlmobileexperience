@@ -282,7 +282,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Social" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Social" image="socialMITLicenseS" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="instagramTableView" destination="cGz-le-s5T" id="ZTJ-WE-u97"/>
                         <outlet property="navBarTitleItem" destination="kHp-qC-zPW" id="6lg-7G-gws"/>
@@ -448,7 +448,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Listen" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Listen" image="musicalNoteIconMITLicenseS.png" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="backButton" destination="EYb-sB-0Oa" id="ZH5-vy-E2R"/>
                         <outlet property="collectionView" destination="0Wz-jD-Ohp" id="S1e-VN-0Aj"/>
@@ -548,7 +548,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shop" id="CKg-z7-BNI"/>
+                    <tabBarItem key="tabBarItem" title="Shop" image="cartMITLicenseS.png" id="CKg-z7-BNI"/>
                     <connections>
                         <outlet property="navigationBarProperty" destination="e6v-9o-9i0" id="6Li-IK-WSF"/>
                         <outlet property="spinner" destination="mwv-QD-AdS" id="E5m-0p-bSL"/>
@@ -665,15 +665,16 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         </scene>
     </scenes>
     <resources>
+        <image name="cartMITLicenseS.png" width="30" height="30"/>
         <image name="favorite.png" width="16" height="16"/>
-        <image name="first" width="30" height="30"/>
         <image name="fowardInvertedMITLicense.png" width="128" height="128"/>
         <image name="lightBubble75PercentMITLicense.png" width="128" height="128"/>
+        <image name="musicalNoteIconMITLicenseS.png" width="30" height="30"/>
         <image name="playMITLicenseInverted.png" width="128" height="128"/>
         <image name="reply.png" width="16" height="16"/>
         <image name="retweet.png" width="19" height="16"/>
         <image name="reverseInvertedMITLicense.png" width="128" height="128"/>
-        <image name="second" width="30" height="30"/>
+        <image name="socialMITLicenseS" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fEs-uq-Phu"/>

@@ -49,6 +49,12 @@
 		9EAEA4C01AE2A21200019077 /* bubble75PercentMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */; };
 		9EAEA4C21AE2A2E500019077 /* lightBubble75PercentMITLicense.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */; };
 		9EAEA4C61AE2A8DE00019077 /* playMITLicenseInverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EAEA4C51AE2A8DE00019077 /* playMITLicenseInverted.png */; };
+		9EB57E621AF40CFC00FA3065 /* musicalNoteIconMITLicenseS.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E611AF40CFC00FA3065 /* musicalNoteIconMITLicenseS.png */; };
+		9EB57E661AF40E8200FA3065 /* musicalNoteIconMITLicenseS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E651AF40E8200FA3065 /* musicalNoteIconMITLicenseS@2x.png */; };
+		9EB57E691AF4104600FA3065 /* cartMITLicenseS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E671AF4104600FA3065 /* cartMITLicenseS@2x.png */; };
+		9EB57E6A1AF4104600FA3065 /* cartMITLicenseS.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E681AF4104600FA3065 /* cartMITLicenseS.png */; };
+		9EB57E6D1AF410B700FA3065 /* socialMITLicenseS.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E6B1AF410B700FA3065 /* socialMITLicenseS.png */; };
+		9EB57E6E1AF410B700FA3065 /* socialMITLicenseS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EB57E6C1AF410B700FA3065 /* socialMITLicenseS@2x.png */; };
 		9EBAA9311AC0DA4400D214BB /* FLFInstagramLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */; };
 		9ECB99441ABBB0520016A28D /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB99431ABBB0520016A28D /* favorite.png */; };
 		9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ECB994A1ABBB0730016A28D /* favorite_on.png */; };
@@ -238,6 +244,12 @@
 		9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble75PercentMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightBubble75PercentMITLicense.png; sourceTree = "<group>"; };
 		9EAEA4C51AE2A8DE00019077 /* playMITLicenseInverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playMITLicenseInverted.png; sourceTree = "<group>"; };
+		9EB57E611AF40CFC00FA3065 /* musicalNoteIconMITLicenseS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicalNoteIconMITLicenseS.png; sourceTree = "<group>"; };
+		9EB57E651AF40E8200FA3065 /* musicalNoteIconMITLicenseS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "musicalNoteIconMITLicenseS@2x.png"; sourceTree = "<group>"; };
+		9EB57E671AF4104600FA3065 /* cartMITLicenseS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cartMITLicenseS@2x.png"; sourceTree = "<group>"; };
+		9EB57E681AF4104600FA3065 /* cartMITLicenseS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartMITLicenseS.png; sourceTree = "<group>"; };
+		9EB57E6B1AF410B700FA3065 /* socialMITLicenseS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socialMITLicenseS.png; sourceTree = "<group>"; };
+		9EB57E6C1AF410B700FA3065 /* socialMITLicenseS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socialMITLicenseS@2x.png"; sourceTree = "<group>"; };
 		9EBAA92F1AC0DA4400D214BB /* FLFInstagramLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFInstagramLoginViewController.h; sourceTree = "<group>"; };
 		9EBAA9301AC0DA4400D214BB /* FLFInstagramLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFInstagramLoginViewController.m; sourceTree = "<group>"; };
 		9ECB99431ABBB0520016A28D /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
@@ -368,6 +380,12 @@
 				9EAEA4A71AE295B400019077 /* backArrowMITLicense.png */,
 				9EAEA4C11AE2A2E500019077 /* lightBubble75PercentMITLicense.png */,
 				9EAEA4BF1AE2A21200019077 /* bubble75PercentMITLicense.png */,
+				9EB57E611AF40CFC00FA3065 /* musicalNoteIconMITLicenseS.png */,
+				9EB57E651AF40E8200FA3065 /* musicalNoteIconMITLicenseS@2x.png */,
+				9EB57E671AF4104600FA3065 /* cartMITLicenseS@2x.png */,
+				9EB57E681AF4104600FA3065 /* cartMITLicenseS.png */,
+				9EB57E6B1AF410B700FA3065 /* socialMITLicenseS.png */,
+				9EB57E6C1AF410B700FA3065 /* socialMITLicenseS@2x.png */,
 				9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */,
 				9E7A1F441AF03DDF006D03B0 /* funlyfeloading.png */,
 				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
@@ -667,6 +685,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EB57E6E1AF410B700FA3065 /* socialMITLicenseS@2x.png in Resources */,
+				9EB57E6A1AF4104600FA3065 /* cartMITLicenseS.png in Resources */,
 				9EAEA4C21AE2A2E500019077 /* lightBubble75PercentMITLicense.png in Resources */,
 				9EAEA4A11AE28AB900019077 /* fowardInvertedMITLicense.png in Resources */,
 				9E4B71571AEF0AD9001A2CBE /* funlyfebanner.png in Resources */,
@@ -676,12 +696,16 @@
 				9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */,
 				9E20C2051A83BD8000DFCD93 /* LaunchScreen.xib in Resources */,
 				9ECB994B1ABBB0730016A28D /* favorite_on.png in Resources */,
+				9EB57E6D1AF410B700FA3065 /* socialMITLicenseS.png in Resources */,
 				9EAEA4C61AE2A8DE00019077 /* playMITLicenseInverted.png in Resources */,
 				9E7A1F451AF03DDF006D03B0 /* funlyfeloading.png in Resources */,
+				9EB57E621AF40CFC00FA3065 /* musicalNoteIconMITLicenseS.png in Resources */,
 				9ECB99501ABBB0990016A28D /* retweet_on.png in Resources */,
+				9EB57E661AF40E8200FA3065 /* musicalNoteIconMITLicenseS@2x.png in Resources */,
 				9ECB994F1ABBB0990016A28D /* reply.png in Resources */,
 				9EAEA4C01AE2A21200019077 /* bubble75PercentMITLicense.png in Resources */,
 				9EAEA49F1AE28AB900019077 /* pauseInvertedMITLicense.png in Resources */,
+				9EB57E691AF4104600FA3065 /* cartMITLicenseS@2x.png in Resources */,
 				9EAEA4A01AE28AB900019077 /* reverseInvertedMITLicense.png in Resources */,
 				9EAEA4AC1AE295B400019077 /* backArrowMITLicense.png in Resources */,
 				9E20C2021A83BD8000DFCD93 /* Images.xcassets in Resources */,
