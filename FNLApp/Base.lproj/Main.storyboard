@@ -494,19 +494,19 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Nf-DC-JYu">
                                 <rect key="frame" x="0.0" y="507" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Back" id="Gt6-xk-eqs">
+                                    <barButtonItem image="backArrowMITLicenseS.png" id="Gt6-xk-eqs">
                                         <connections>
                                             <action selector="backButtonTapped:" destination="BRh-wL-Saa" id="dZf-sX-fS5"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xOA-gz-w5s"/>
-                                    <barButtonItem title="Forward" id="l3X-iJ-XIK">
+                                    <barButtonItem image="forwardArrowMITLicenseS.png" id="l3X-iJ-XIK">
                                         <connections>
                                             <action selector="forwardButtonTapped:" destination="BRh-wL-Saa" id="pq1-zY-Wwa"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fHB-kH-iOQ"/>
-                                    <barButtonItem title="Home" id="CX4-31-k8D">
+                                    <barButtonItem image="homeMITLicenseS.png" id="CX4-31-k8D">
                                         <connections>
                                             <action selector="homeButtonTapped:" destination="BRh-wL-Saa" id="bkG-h5-h7e"/>
                                         </connections>
@@ -665,9 +665,12 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         </scene>
     </scenes>
     <resources>
+        <image name="backArrowMITLicenseS.png" width="22" height="22"/>
         <image name="cartMITLicenseS.png" width="30" height="30"/>
         <image name="favorite.png" width="16" height="16"/>
+        <image name="forwardArrowMITLicenseS.png" width="22" height="22"/>
         <image name="fowardInvertedMITLicense.png" width="128" height="128"/>
+        <image name="homeMITLicenseS.png" width="22" height="22"/>
         <image name="lightBubble75PercentMITLicense.png" width="128" height="128"/>
         <image name="musicalNoteIconMITLicenseS.png" width="30" height="30"/>
         <image name="playMITLicenseInverted.png" width="128" height="128"/>
@@ -677,6 +680,6 @@ Copyright © 2015 Kevin Wu. All rights reserved.
         <image name="socialMITLicenseS" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fEs-uq-Phu"/>
+        <segue reference="NGP-WX-4We"/>
     </inferredMetricsTieBreakers>
 </document>
