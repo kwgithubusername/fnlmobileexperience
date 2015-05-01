@@ -495,8 +495,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.instagramTableView.layer.cornerRadius = 5;
-    self.twitterTableView.layer.cornerRadius = 5;
     [self addPullToRefresh];
     [self setupBackground];
     [self setupTwitter];
