@@ -35,10 +35,12 @@
 {
     NSLog(@"fetching more");
     [self.twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
+        
         for (NSDictionary *dictionary in statuses)
         {
             [self.twitterFeedMutableArray addObject:[dictionary mutableCopy]];
         }
+        
         [self.tableView reloadData];
         self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
     } errorBlock:^(NSError *error) {

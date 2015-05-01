@@ -12,6 +12,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import <MBProgressHUD.h>
+#import <QuartzCore/QuartzCore.h>
 #import "FLFTwitterWebServices.h"
 #import "FLFInstagramTableViewCell.h"
 #import "FLFInstagramWebServices.h"
@@ -70,9 +71,6 @@
     commentViewController.mainViewController = self;
     UIView *contentView = [[UIView alloc] initWithFrame:self.instagramTableView.frame];
     commentViewController.view.frame = contentView.frame;
-    
-    //NSInteger row = [self.instagramTableView indexPathForCell:cell].row;
-    //InstagramMedia *media = [self.instagramWebServices.mediaMutableArray objectAtIndex:row];
     
     [self.view addSubview:commentViewController.view];
     [self addChildViewController:commentViewController];
@@ -497,6 +495,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.instagramTableView.layer.cornerRadius = 5;
+    self.twitterTableView.layer.cornerRadius = 5;
     [self addPullToRefresh];
     [self setupBackground];
     [self setupTwitter];
