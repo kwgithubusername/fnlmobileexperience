@@ -283,20 +283,22 @@
                 instagramCell.commentButton.alpha = instagramCell.commentButton.enabled ? 1:0;
         });
         
-        NSLog(@"ISVIDEO IS %d", instagramObject.isVideo);
+        instagramCell.photoView.tag = indexPath.row;
+        
         if (instagramObject.isVideo && instagramCell.photoView.gestureRecognizers.count == 0)
         {
                 UITapGestureRecognizer *tapToPlayVideo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(instagramVideoTapped:)];
-                instagramCell.photoView.tag = indexPath.row;
                 instagramCell.photoView.userInteractionEnabled = YES;
                 [instagramCell.photoView addGestureRecognizer:tapToPlayVideo];
+            NSLog(@"instagramCell.photoView.tag is %d", (int)indexPath.row);
                 instagramCell.playButtonImageView.image = [UIImage imageNamed:@"playMITLicenseInverted.png"];
                 instagramCell.playButtonImageView.alpha = 0.5;
         }
         else if (!instagramObject.isVideo)
         {
             instagramCell.playButtonImageView.image = nil;
-            for (UIGestureRecognizer *gestureRecognizer in instagramCell.photoView.gestureRecognizers)
+            instagramCell.photoView.tag = 0;
+            for (UITapGestureRecognizer *gestureRecognizer in instagramCell.photoView.gestureRecognizers)
             {
                 [instagramCell.photoView removeGestureRecognizer:gestureRecognizer];
             }
@@ -355,7 +357,7 @@
 
 #pragma mark - Instagram Video -
 
--(void)instagramVideoTapped:(UIGestureRecognizer *)sender
+-(void)instagramVideoTapped:(UITapGestureRecognizer *)sender
 {
     NSLog(@"video tapped");
     if (self.videoPlayer.playbackState == MPMoviePlaybackStatePlaying && self.tableViewRowOfCurrentVideoPlayingInt == sender.view.tag)
@@ -372,6 +374,7 @@
 {
     [self removeVideoPlayers:nil];
     self.tableViewRowOfCurrentVideoPlayingInt = (int)sender.view.tag;
+    NSLog(@"sender.view.tag from playInstagramVideo is %d", (int)sender.view.tag);
     InstagramMedia *mediaToPlay = self.instagramWebServices.mediaMutableArray[sender.view.tag];
     NSURL *videoURL = mediaToPlay.standardResolutionVideoURL;
     [self setupVideoPlayerWithURL:videoURL];
