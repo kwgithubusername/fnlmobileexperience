@@ -959,21 +959,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
-					"-l\"Pods-STTwitter\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"Accounts\"",
-					"-framework",
-					"\"Twitter\"",
-					"-framework",
-					"\"UIKit\"",
-					"-weak_framework",
-					"\"Social\"",
 					"-all_load",
 					"-ObjC",
 					"$(inherited)",
@@ -998,21 +983,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
-					"-l\"Pods-STTwitter\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"Accounts\"",
-					"-framework",
-					"\"Twitter\"",
-					"-framework",
-					"\"UIKit\"",
-					"-weak_framework",
-					"\"Social\"",
 					"-all_load",
 					"-ObjC",
 					"$(inherited)",
