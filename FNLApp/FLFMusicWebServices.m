@@ -43,15 +43,22 @@
     
     SCRequestResponseHandler handler;
     handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSError *jsonError = nil;
-#warning NSInvalidArgumentException reason 'data parameter is nil' when no internet connection
-        NSJSONSerialization *jsonResponse = [NSJSONSerialization
-                                             JSONObjectWithData:data
-                                             options:0
-                                             error:&jsonError];
-        if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
-            self.getTracksCompletionBlock(jsonResponse);
-            NSLog(@"json response is %@", jsonResponse);
+        NSError *jsonError;
+        
+        if (data != nil)
+        {
+            NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:0
+                                                 error:&jsonError];
+            if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
+                self.getTracksCompletionBlock(jsonResponse);
+                NSLog(@"json response is %@", jsonResponse);
+            }
+            else
+            {
+                NSLog(@"error is %@", [jsonError localizedDescription]);
+            }
         }
     };
     
