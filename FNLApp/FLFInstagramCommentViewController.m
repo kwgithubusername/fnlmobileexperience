@@ -154,7 +154,7 @@
 
 -(void)createImageView
 {
-    NSLog(@"creating imageView");
+    // NSLog(@"creating imageView");
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     NSDictionary *viewsDictionary = @{ @"closeButton" : self.closeButton, @"imageView" : imageView};
     
@@ -187,7 +187,7 @@
 
 -(void)createCloseButton
 {
-    NSLog(@"creating close button");
+    // NSLog(@"creating close button");
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];

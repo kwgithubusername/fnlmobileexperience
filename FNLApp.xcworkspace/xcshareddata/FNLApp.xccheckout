@@ -6,6 +6,8 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5092FAA2-8996-4092-BED6-559490C059B7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FNLApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>2F16ABB5253C8A53BD834DD2135B7E534A667AC1</key>
@@ -21,27 +23,29 @@
 		<key>EF51387A5AF28E4351AFB0302884600583A438B5</key>
 		<string>git://github.com/nxtbgthng/JSONKit.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FNLApp.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2F16ABB5253C8A53BD834DD2135B7E534A667AC1</key>
-		<string>CocoaSoundCloudUI/</string>
+		<string>..CocoaSoundCloudUI</string>
 		<key>3AE304DD21A413FE4F137E97969AE82EBF0F9E91</key>
-		<string></string>
+		<string>..</string>
 		<key>48734AC5978E47BCAB24F1E9699B65204C5FF04A</key>
-		<string>OHAttributedLabel/</string>
+		<string>..OHAttributedLabel</string>
 		<key>4DFCCBAAFC97C65D80F81B0E4894DA70B64A77E3</key>
-		<string>CocoaSoundCloudAPI/</string>
+		<string>..CocoaSoundCloudAPI</string>
 		<key>EB5674475998A0DD33CD59076628ED3B93CBE9CA</key>
-		<string>OAuth2Client/</string>
+		<string>..OAuth2Client</string>
 		<key>EF51387A5AF28E4351AFB0302884600583A438B5</key>
-		<string>JSONKit/</string>
+		<string>..JSONKit</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>git://github.com/soundcloud/CocoaSoundCloudUI.git</string>
+	<string>https://bitbucket.org/woudini/thefunlyfemobileexperience.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2F16ABB5253C8A53BD834DD2135B7E534A667AC1</string>
+	<string>3AE304DD21A413FE4F137E97969AE82EBF0F9E91</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -50,7 +54,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>3AE304DD21A413FE4F137E97969AE82EBF0F9E91</string>
 			<key>IDESourceControlWCCName</key>
-			<string></string>
+			<string>FNLApp</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -58,7 +62,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>4DFCCBAAFC97C65D80F81B0E4894DA70B64A77E3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CocoaSoundCloudAPI</string>
+			<string>FNLAppCocoaSoundCloudAPI</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -66,7 +70,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>2F16ABB5253C8A53BD834DD2135B7E534A667AC1</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CocoaSoundCloudUI</string>
+			<string>FNLAppCocoaSoundCloudUI</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -74,7 +78,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>EF51387A5AF28E4351AFB0302884600583A438B5</string>
 			<key>IDESourceControlWCCName</key>
-			<string>JSONKit</string>
+			<string>FNLAppJSONKit</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -82,7 +86,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>EB5674475998A0DD33CD59076628ED3B93CBE9CA</string>
 			<key>IDESourceControlWCCName</key>
-			<string>OAuth2Client</string>
+			<string>FNLAppOAuth2Client</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -90,7 +94,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>48734AC5978E47BCAB24F1E9699B65204C5FF04A</string>
 			<key>IDESourceControlWCCName</key>
-			<string>OHAttributedLabel</string>
+			<string>FNLAppOHAttributedLabel</string>
 		</dict>
 	</array>
 </dict>

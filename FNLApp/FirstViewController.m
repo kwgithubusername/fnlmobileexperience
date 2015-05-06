@@ -358,7 +358,7 @@
 
 -(void)instagramVideoTapped:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"video tapped");
+    // NSLog(@"video tapped");
     if (self.videoPlayer.playbackState == MPMoviePlaybackStatePlaying && self.tableViewRowOfCurrentVideoPlayingInt == sender.view.tag)
     {
         [self.videoPlayer pause];
@@ -373,7 +373,7 @@
 {
     [self removeVideoPlayers:nil];
     self.tableViewRowOfCurrentVideoPlayingInt = (int)sender.view.tag;
-    NSLog(@"sender.view.tag from playInstagramVideo is %d", (int)sender.view.tag);
+    // NSLog(@"sender.view.tag from playInstagramVideo is %d", (int)sender.view.tag);
     InstagramMedia *mediaToPlay = self.instagramWebServices.mediaMutableArray[sender.view.tag];
     NSURL *videoURL = mediaToPlay.standardResolutionVideoURL;
     [self setupVideoPlayerWithURL:videoURL];
@@ -474,7 +474,7 @@
     {
         if (refreshControl.tag == 401)
         {
-            NSLog(@"ending refresh");
+            // NSLog(@"ending refresh");
             [refreshControl endRefreshing];
         }
     }
@@ -487,7 +487,7 @@
     {
         if (refreshControl.tag == 400)
         {
-            NSLog(@"ending refresh");
+            // NSLog(@"ending refresh");
             [refreshControl endRefreshing];
         }
     }

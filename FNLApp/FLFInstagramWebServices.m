@@ -45,12 +45,12 @@
     
     [[InstagramEngine sharedEngine] getMedia:media.Id withSuccess:^(InstagramMedia *media) {
         [commentsMutableArray addObjectsFromArray:media.comments];
-        NSLog(@"got comments");
+        // NSLog(@"got comments");
     } failure:^(NSError *error) {
         NSLog(@"failed to get comments");
     }];
     
-    NSLog(@"commentsarray is %@",commentsMutableArray);
+    // NSLog(@"commentsarray is %@",commentsMutableArray);
     return commentsMutableArray;
 }
 
@@ -86,7 +86,7 @@
         [self.mediaMutableArray addObjectsFromArray:media];
         InstagramMedia *lastMediaObject = [self.mediaMutableArray lastObject];
         self.currentMaxIDString = lastMediaObject.Id;
-        NSLog(@"Instagram:%@",media);
+        // NSLog(@"Instagram:%@",media);
         [self.tableView reloadData];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndInstagramRefreshNotification" object:nil];
     } failure:^(NSError *error) {

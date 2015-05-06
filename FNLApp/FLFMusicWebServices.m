@@ -53,7 +53,7 @@
                                                  error:&jsonError];
             if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
                 self.getTracksCompletionBlock(jsonResponse);
-                NSLog(@"json response is %@", jsonResponse);
+                // NSLog(@"json response is %@", jsonResponse);
             }
             else
             {

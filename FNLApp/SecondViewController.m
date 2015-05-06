@@ -155,7 +155,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"track tapped");
+    // NSLog(@"track tapped");
     
     if (!self.audioPlayer || self.currentTrackInt != indexPath.row)
     {
@@ -177,7 +177,7 @@
     {
         FLFMusicTrackCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"trackCell" forIndexPath:indexPath];
         NSDictionary *trackDictionary = [[weakSelf.tracksArray firstObject] objectAtIndex:indexPath.row];
-        NSLog(@"trackis %@", trackDictionary);
+        // NSLog(@"trackis %@", trackDictionary);
         cell.trackNameLabel.text = [trackDictionary objectForKey:@"title"];
         NSURL *trackArtworkImageURL = [NSURL URLWithString:trackDictionary[@"artwork_url"]];
         [weakSelf.webServices loadImageIntoCell:cell withURL:trackArtworkImageURL];

@@ -34,7 +34,7 @@
         if (components.count > 1)
         {
             NSString *accessToken = [components lastObject];
-            NSLog(@"ACCESS TOKEN = %@",accessToken);
+            // NSLog(@"ACCESS TOKEN = %@",accessToken);
             [[InstagramEngine sharedEngine] setAccessToken:accessToken];
             //NSLog(@"ready to load media");
             [self.webServices checkForAccessTokenAndLoad];

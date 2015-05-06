@@ -33,7 +33,7 @@
 
 -(void)fetchMoreTweets
 {
-    NSLog(@"fetching more");
+    // NSLog(@"fetching more");
     [self.twitter getUserTimelineWithScreenName:FLFUsername sinceID:self.currentIDString maxID:nil count:20 successBlock:^(NSArray *statuses) {
         
         for (NSDictionary *dictionary in statuses)
