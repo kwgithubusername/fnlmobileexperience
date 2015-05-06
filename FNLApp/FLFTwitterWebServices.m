@@ -60,7 +60,6 @@
             {
                 ACAccount *twitterAccount = [arrayOfAccounts lastObject];
                 self.twitter = [STTwitterAPI twitterAPIOSWithAccount:twitterAccount];
-                //    STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:FLFConsumerKey consumerSecret:FLFConsumerSecret];
                 
                 [self.twitter verifyCredentialsWithSuccessBlock:^(NSString *username)
                  {
@@ -92,5 +91,31 @@
     }];
 }
 
+
+-(void)loadTwitterForScreenShots
+{
+    STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:FLFConsumerKey consumerSecret:FLFConsumerSecret];
+    [twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
+        [twitter getUserTimelineWithScreenName:FLFUsername successBlock:^(NSArray *statuses)
+         {
+             for (NSDictionary *dictionary in statuses)
+             {
+                 [self.twitterFeedMutableArray addObject:[dictionary mutableCopy]];
+             }
+             [self.tableView reloadData];
+             self.currentIDString = [self.twitterFeedMutableArray lastObject][@"id_str"];
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"FNLEndTwitterRefreshNotification" object:nil];
+             
+         } errorBlock:^(NSError *error)
+         {
+             
+             NSLog(@"%@", error.debugDescription);
+             
+         }];
+
+    } errorBlock:^(NSError *error) {
+        
+    }];
+}
 
 @end

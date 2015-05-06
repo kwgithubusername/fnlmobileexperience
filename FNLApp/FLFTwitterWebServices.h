@@ -15,5 +15,5 @@
 -(id)initWithTableView:(UITableView *)tableView;
 -(void)fetchMoreTweets;
 -(void)loadTwitter;
-
+-(void)loadTwitterForScreenShots;
 @end
