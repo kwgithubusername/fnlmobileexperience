@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E20C1F41A83BD8000DFCD93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20C1F31A83BD8000DFCD93 /* main.m */; };
-		9E20C1F71A83BD8000DFCD93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */; };
 		9E20C1FA1A83BD8000DFCD93 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */; };
 		9E20C1FD1A83BD8000DFCD93 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20C1FC1A83BD8000DFCD93 /* SecondViewController.m */; };
 		9E20C2001A83BD8000DFCD93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E20C1FE1A83BD8000DFCD93 /* Main.storyboard */; };
@@ -36,6 +35,7 @@
 		9E4B71571AEF0AD9001A2CBE /* funlyfebanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */; };
 		9E4D12D51A83C50A0021EBB3 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */; };
 		9E5D987C1AE1FDE000AE5563 /* FLFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */; };
+		9E7216261B0530040029AA48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7216251B0530040029AA48 /* AppDelegate.m */; };
 		9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */; };
 		9E7A1F451AF03DDF006D03B0 /* funlyfeloading.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A1F441AF03DDF006D03B0 /* funlyfeloading.png */; };
 		9E9564371ADF4033009DDCBD /* FLFMusicTrackCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9564361ADF4033009DDCBD /* FLFMusicTrackCollectionViewCell.m */; };
@@ -197,7 +197,6 @@
 		9E20C1F21A83BD8000DFCD93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E20C1F31A83BD8000DFCD93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E20C1F51A83BD8000DFCD93 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		9E20C1FB1A83BD8000DFCD93 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -232,6 +231,8 @@
 		9E4D12D41A83C50A0021EBB3 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
 		9E5D987A1AE1FDE000AE5563 /* FLFAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFAboutViewController.h; sourceTree = "<group>"; };
 		9E5D987B1AE1FDE000AE5563 /* FLFAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFAboutViewController.m; sourceTree = "<group>"; };
+		9E7216251B0530040029AA48 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9E7216271B0530290029AA48 /* FLFAccountInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLFAccountInfo.h; sourceTree = "<group>"; };
 		9E74BAD51ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFMusicCollectionViewDataSource.h; sourceTree = "<group>"; };
 		9E74BAD61ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFMusicCollectionViewDataSource.m; sourceTree = "<group>"; };
 		9E7A1F441AF03DDF006D03B0 /* funlyfeloading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = funlyfeloading.png; sourceTree = "<group>"; };
@@ -403,7 +404,8 @@
 				9EB57E801AF4138D00FA3065 /* homeMITLicenseS.png */,
 				9E4B71561AEF0AD9001A2CBE /* funlyfebanner.png */,
 				9E7A1F441AF03DDF006D03B0 /* funlyfeloading.png */,
-				9E20C1F61A83BD8000DFCD93 /* AppDelegate.m */,
+				9E7216271B0530290029AA48 /* FLFAccountInfo.h */,
+				9E7216251B0530040029AA48 /* AppDelegate.m */,
 				9E20C1F81A83BD8000DFCD93 /* FirstViewController.h */,
 				9E20C1F91A83BD8000DFCD93 /* FirstViewController.m */,
 				9E3025B21AE739C000B31F1F /* FLFDateFormatter.h */,
@@ -779,6 +781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7216261B0530040029AA48 /* AppDelegate.m in Sources */,
 				9ED693D21ABE1D9B00EA60CF /* FLFInstagramWebServices.m in Sources */,
 				9E20C1FD1A83BD8000DFCD93 /* SecondViewController.m in Sources */,
 				9E20C2221A83C02E00DFCD93 /* FLFTwitterTableViewCell.m in Sources */,
@@ -788,7 +791,6 @@
 				9E5D987C1AE1FDE000AE5563 /* FLFAboutViewController.m in Sources */,
 				9E95643F1ADF4A03009DDCBD /* FLFMusicWebServices.m in Sources */,
 				9ED091091AB5CD59004E3770 /* KILabel.m in Sources */,
-				9E20C1F71A83BD8000DFCD93 /* AppDelegate.m in Sources */,
 				9ECF7DB51AA1536E009A3DC2 /* FLFShopViewController.m in Sources */,
 				9E74BAD71ADDF75400A0DF43 /* FLFMusicCollectionViewDataSource.m in Sources */,
 				9EF3238C1AC61A6D0011522D /* FLFInstagramCommentViewController.m in Sources */,
